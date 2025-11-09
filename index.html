@@ -518,10 +518,15 @@
 
       // Cursor glow effect
       const cursorGlow = document.querySelector('.cursor-glow');
-      document.addEventListener('mousemove', (e) => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-      });
+      if (cursorGlow) {
+        document.addEventListener('mousemove', (e) => {
+          // Use requestAnimationFrame for smoother animation
+          requestAnimationFrame(() => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+          });
+        });
+      }
 
       // Typing animation
       const typingElement = document.querySelector('.typing-animation');

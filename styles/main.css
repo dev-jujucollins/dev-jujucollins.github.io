@@ -104,6 +104,9 @@ body::before {
     z-index: -1;
     transform: translate(-50%, -50%);
     transition: opacity var(--transition-fast);
+    will-change: transform;
+    top: 0;
+    left: 0;
 }
 
 /* Typography */
