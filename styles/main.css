@@ -1250,3 +1250,58 @@ a:hover {
         page-break-inside: avoid;
     }
 }
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    /* Fix for Safari text rendering */
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Fix for Safari gradient text issues */
+    .name-highlight,
+    .tech-icon {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* Fix for Safari flexbox issues */
+    .skills-container,
+    .projects-grid,
+    .tech-grid {
+        -webkit-flex: 1;
+        flex: 1;
+    }
+    
+    /* Fix for Safari transform issues */
+    .floating-shape,
+    .cursor-glow {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* Fix for Safari animation issues */
+    .fade-in {
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+    
+    /* Fix for Safari CSS Grid fallback */
+    @supports not (display: grid) {
+        .projects-grid {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        
+        .project-card {
+            -webkit-flex: 0 0 calc(50% - 1rem);
+            flex: 0 0 calc(50% - 1rem);
+        }
+    }
+}
