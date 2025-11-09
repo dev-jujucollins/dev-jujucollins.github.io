@@ -1259,15 +1259,15 @@ a:hover {
     }
     
     /* Fix for Safari gradient text issues */
-    .name-highlight,
-    .tech-icon {
+    .name-highlight {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
     }
     
     /* Fix for Safari emoji rendering with gradients */
-    .project-icon {
+    .project-icon,
+    .tech-icon {
         /* Fallback for Safari - remove gradient from emojis */
         background: none !important;
         -webkit-background-clip: unset !important;
