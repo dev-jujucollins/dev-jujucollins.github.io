@@ -102,11 +102,10 @@ body::before {
     border-radius: 50%;
     pointer-events: none;
     z-index: -1;
-    transform: translate(-50%, -50%);
-    transition: opacity var(--transition-fast);
-    will-change: transform;
     top: 0;
     left: 0;
+    will-change: transform;
+    transition: opacity var(--transition-fast);
 }
 
 /* Typography */

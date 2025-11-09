@@ -519,12 +519,29 @@
       // Cursor glow effect
       const cursorGlow = document.querySelector('.cursor-glow');
       if (cursorGlow) {
-        document.addEventListener('mousemove', (e) => {
-          // Use requestAnimationFrame for smoother animation
+        const updateCursorPosition = (e) => {
           requestAnimationFrame(() => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
+            // Use transform instead of left/top for better performance and accuracy
+            const x = e.clientX;
+            const y = e.clientY;
+            cursorGlow.style.transform = `translate(${x - 150}px, ${y - 150}px)`;
           });
+        };
+        
+        document.addEventListener('mousemove', updateCursorPosition);
+        
+        // Also track on scroll to maintain position
+        window.addEventListener('scroll', (e) => {
+          // Re-trigger on next mouse move after scroll
+          const lastMouseEvent = window.lastMouseEvent;
+          if (lastMouseEvent) {
+            updateCursorPosition(lastMouseEvent);
+          }
+        });
+        
+        // Store last mouse event for scroll handling
+        document.addEventListener('mousemove', (e) => {
+          window.lastMouseEvent = e;
         });
       }
 
