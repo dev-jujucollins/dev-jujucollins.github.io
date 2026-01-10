@@ -265,6 +265,37 @@ function initSkipLink() {
   }
 }
 
+// Project filtering
+function initProjectFilters() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  if (!filterBtns.length || !projectCards.length) return;
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      projectCards.forEach((card) => {
+        const tags = card.getAttribute('data-tags') || '';
+
+        if (filter === 'all' || tags.includes(filter)) {
+          card.classList.remove('hidden', 'fade-out');
+        } else {
+          card.classList.add('fade-out');
+          setTimeout(() => {
+            card.classList.add('hidden');
+          }, 300);
+        }
+      });
+    });
+  });
+}
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
@@ -276,4 +307,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypingAnimation();
   initContactForm();
   initSkipLink();
+  initProjectFilters();
 });

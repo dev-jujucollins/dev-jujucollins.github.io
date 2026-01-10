@@ -242,6 +242,33 @@ a:hover {
     opacity: 1;
 }
 
+/* Nav dot labels on hover */
+.nav-dot::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+    pointer-events: none;
+    border: 1px solid var(--border-primary);
+}
+
+.nav-dot:hover::after {
+    opacity: 1;
+    visibility: visible;
+    right: 28px;
+}
+
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
@@ -485,6 +512,21 @@ a:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-accent);
     transform: translateY(-2px);
+}
+
+/* Button icons */
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: var(--space-xs);
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Social Section */
@@ -925,10 +967,64 @@ a:hover {
     margin: var(--space-xl) 0;
 }
 
+/* Project Filters */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-bottom: var(--space-xl);
+}
+
+.filter-btn {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.filter-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: white;
+    box-shadow: var(--shadow-glow);
+}
+
+.filter-btn:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--space-xl);
+}
+
+/* Project card filter animation */
+.project-card {
+    transition: all var(--transition-normal), opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.project-card.hidden {
+    display: none;
+}
+
+.project-card.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
 }
 
 .project-card {
