@@ -1,0 +1,7 @@
+# robots.txt for dev-jujucollins.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dev-jujucollins.github.io/sitemap.xml
