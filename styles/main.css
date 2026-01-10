@@ -95,6 +95,34 @@
     background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
 }
 
+/* Safari fix: Explicit background colors for sections in light theme */
+/* Safari sometimes doesn't properly inherit CSS variable changes */
+[data-theme="light"] .skills-section,
+[data-theme="light"] .tech-section,
+[data-theme="light"] .experience-section,
+[data-theme="light"] .projects-section,
+[data-theme="light"] .contact-section {
+    background: #ffffff;
+}
+
+[data-theme="light"] .skill-bar,
+[data-theme="light"] .qualification-card,
+[data-theme="light"] .card--techstack,
+[data-theme="light"] .timeline-content,
+[data-theme="light"] .project-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .skill-bar:hover,
+[data-theme="light"] .qualification-card:hover,
+[data-theme="light"] .card--techstack:hover,
+[data-theme="light"] .timeline-content:hover,
+[data-theme="light"] .project-card:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(90, 103, 216, 0.3);
+}
+
 /* Reset and Base Styles */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -1446,20 +1474,22 @@ a:hover {
     transition: all var(--transition-normal);
 }
 
+/* Default (dark theme): show sun icon to switch to light */
 .theme-toggle .sun-icon {
-    display: none;
+    display: block;
 }
 
 .theme-toggle .moon-icon {
-    display: block;
-}
-
-[data-theme="dark"] .theme-toggle .sun-icon {
-    display: block;
-}
-
-[data-theme="dark"] .theme-toggle .moon-icon {
     display: none;
+}
+
+/* Light theme: show moon icon to switch to dark */
+[data-theme="light"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+    display: block;
 }
 
 /* Contact Section */

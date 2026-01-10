@@ -38,6 +38,12 @@ const ThemeManager = {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(this.storageKey, theme);
     this.updateToggleIcon(theme);
+    
+    // Safari fix: Force repaint to ensure CSS variables update properly
+    // Safari sometimes doesn't recalculate inherited CSS custom properties
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
   },
 
   toggleTheme() {
@@ -47,13 +53,8 @@ const ThemeManager = {
   },
 
   updateToggleIcon(theme) {
-    if (!this.toggle) return;
-    const sunIcon = this.toggle.querySelector('.sun-icon');
-    const moonIcon = this.toggle.querySelector('.moon-icon');
-    if (sunIcon && moonIcon) {
-      sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
-      moonIcon.style.display = theme === 'light' ? 'block' : 'none';
-    }
+    // Icons are controlled via CSS based on [data-theme] attribute
+    // No JavaScript manipulation needed - CSS handles visibility
   },
 };
 
