@@ -2,7 +2,7 @@
 
 :root {
     /* Color Palette */
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
     --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
@@ -17,14 +17,14 @@
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --text-tertiary: #6a6a6a;
-    --text-accent: #667eea;
+    --text-accent: #0ea5e9;
 
     --border-primary: rgba(255, 255, 255, 0.1);
     --border-secondary: rgba(255, 255, 255, 0.05);
-    --border-accent: rgba(102, 126, 234, 0.3);
+    --border-accent: rgba(14, 165, 233, 0.3);
 
     /* Focus outline */
-    --focus-outline: 2px solid #667eea;
+    --focus-outline: 2px solid #0ea5e9;
     --focus-outline-offset: 2px;
     
     /* Shadows */
@@ -32,7 +32,7 @@
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
     --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.3);
+    --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.3);
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -71,28 +71,28 @@
     --text-primary: #1a1a1c;
     --text-secondary: #4a4a4a;
     --text-tertiary: #6a6a6a;
-    --text-accent: #5a67d8;
+    --text-accent: #0284c7;
 
     --border-primary: rgba(0, 0, 0, 0.1);
     --border-secondary: rgba(0, 0, 0, 0.05);
-    --border-accent: rgba(90, 103, 216, 0.3);
+    --border-accent: rgba(2, 132, 199, 0.3);
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --shadow-glow: 0 0 20px rgba(90, 103, 216, 0.2);
+    --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.2);
 }
 
 [data-theme="light"] body::before {
     background:
-        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.04) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(34, 211, 238, 0.04) 0%, transparent 50%);
 }
 
 [data-theme="light"] .cursor-glow {
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
 }
 
 /* Safari fix: Explicit background colors for sections in light theme */
@@ -120,7 +120,7 @@
 [data-theme="light"] .timeline-content:hover,
 [data-theme="light"] .project-card:hover {
     background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(90, 103, 216, 0.3);
+    border-color: rgba(2, 132, 199, 0.3);
 }
 
 /* Reset and Base Styles */
@@ -152,8 +152,8 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
@@ -164,7 +164,7 @@ body::before {
     position: fixed;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: -1;
@@ -384,7 +384,7 @@ a:hover {
 
 #profile-pic:hover {
     transform: scale(1.05);
-    box-shadow: var(--shadow-xl), 0 0 40px rgba(102, 126, 234, 0.5);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(14, 165, 233, 0.5);
 }
 
 .profile-ring {
@@ -815,7 +815,7 @@ a:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
     transition: left 0.5s;
 }
 
@@ -972,7 +972,7 @@ a:hover {
     align-items: flex-start;
     gap: var(--space-sm);
     padding: var(--space-sm);
-    background: rgba(102, 126, 234, 0.05);
+    background: rgba(14, 165, 233, 0.05);
     border-radius: var(--radius-md);
     border-left: 3px solid var(--text-accent);
 }
@@ -1162,13 +1162,13 @@ a:hover {
 }
 
 .tag {
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(14, 165, 233, 0.1);
     color: var(--text-accent);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-full);
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 /* Footer */
@@ -1588,7 +1588,7 @@ a:hover {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--text-accent);
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
 }
 
 .form-group input::placeholder,
@@ -1712,7 +1712,7 @@ a:hover {
         -webkit-text-fill-color: unset !important;
         color: var(--text-primary);
         /* Add a subtle glow effect instead */
-        text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        text-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
     }
     
     /* Fix for Safari flexbox issues */
