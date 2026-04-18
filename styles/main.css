@@ -95,6 +95,26 @@
     background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
 }
 
+[data-theme="light"] .selected-wins-section {
+    background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(245, 87, 108, 0.1)),
+        #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .win-card {
+    background: rgba(255, 255, 255, 0.66);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .win-stat {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .win-copy {
+    color: var(--text-secondary);
+}
+
 /* Safari fix: Explicit background colors for sections in light theme */
 /* Safari sometimes doesn't properly inherit CSS variable changes */
 [data-theme="light"] .skills-section,
@@ -441,8 +461,32 @@ a:hover {
 #bio {
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-sm);
     color: var(--text-secondary);
+}
+
+.hero-summary {
+    max-width: 42rem;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.hero-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.metric-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-full);
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid var(--border-accent);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .typing-animation {
@@ -491,7 +535,8 @@ a:hover {
 .hero-cta {
     display: flex;
     gap: var(--space-md);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-lg);
+    flex-wrap: wrap;
 }
 
 .cta-button {
@@ -555,6 +600,23 @@ a:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.hero-link-inline {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.hero-link-inline:hover {
+    color: var(--text-primary);
 }
 
 /* Social Section */
@@ -629,6 +691,84 @@ a:hover {
     margin-top: var(--space-sm);
 }
 
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+}
+
+/* Selected wins */
+.selected-wins-section {
+    position: relative;
+    margin: 0 0 var(--space-xl);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(245, 87, 108, 0.14)),
+        var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.selected-wins-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.06), transparent 30%);
+    pointer-events: none;
+}
+
+.selected-wins-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: var(--space-xl);
+}
+
+.selected-wins-header h2 {
+    margin-bottom: 0;
+}
+
+.selected-wins-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-lg);
+}
+
+.win-card {
+    background: rgba(10, 10, 11, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    backdrop-filter: blur(12px);
+}
+
+.win-label {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.win-stat {
+    margin: var(--space-sm) 0;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+}
+
+.win-copy {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.96rem;
+}
+
 /* Skills Section */
 .skills-section {
     background: var(--bg-secondary);
@@ -665,7 +805,6 @@ a:hover {
 
 .skill-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-sm);
 }
@@ -675,43 +814,9 @@ a:hover {
     font-weight: 500;
 }
 
-.skill-percentage {
-    color: var(--text-accent);
-    font-weight: 600;
-    font-family: var(--font-mono);
-}
-
-.skill-progress {
-    height: 8px;
-    background: var(--bg-tertiary);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-fill {
-    height: 100%;
-    background: var(--primary-gradient);
-    width: 0;
-    border-radius: var(--radius-full);
-    transition: width 1s ease-out 0.5s;
-    position: relative;
-}
-
-.skill-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    animation: shimmer-bar 2s infinite;
-}
-
-@keyframes shimmer-bar {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+.skill-proof {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
 }
 
 .qualifications-grid {
@@ -959,6 +1064,25 @@ a:hover {
     color: var(--text-tertiary);
     font-family: var(--font-mono);
     font-size: 0.9rem;
+}
+
+.job-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.job-metric {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.8rem;
+    border-radius: var(--radius-full);
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid var(--border-accent);
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 600;
 }
 
 .job-achievements {
@@ -1234,6 +1358,10 @@ a:hover {
     .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
+
+    .selected-wins-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -1259,6 +1387,12 @@ a:hover {
     .hero-cta {
         flex-direction: column;
         align-items: center;
+    }
+
+    .hero-metrics,
+    .hero-links,
+    .job-metrics {
+        justify-content: center;
     }
     
     .cta-button {
@@ -1297,6 +1431,14 @@ a:hover {
     .qualifications-grid {
         grid-template-columns: 1fr;
     }
+
+    .selected-wins-section {
+        padding: var(--space-xl);
+    }
+
+    .selected-wins-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1311,6 +1453,7 @@ a:hover {
     }
     
     .hero-section,
+    .selected-wins-section,
     .skills-section,
     .tech-section,
     .experience-section,

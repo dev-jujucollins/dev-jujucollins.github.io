@@ -96,24 +96,6 @@ function initNavIndicator() {
   window.addEventListener('scroll', updateActiveDot);
 }
 
-// Animate skill bars on scroll
-function initSkillBars() {
-  const skillBars = document.querySelectorAll('.skill-fill');
-
-  const animateSkillBars = () => {
-    skillBars.forEach((bar) => {
-      const rect = bar.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const width = bar.getAttribute('data-width');
-        bar.style.width = width + '%';
-      }
-    });
-  };
-
-  window.addEventListener('scroll', throttle(animateSkillBars, 100));
-  window.addEventListener('load', animateSkillBars);
-}
-
 // Fade in animation on scroll
 function initFadeAnimations() {
   const observerOptions = {
@@ -302,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
   initSmoothScrolling();
   initNavIndicator();
-  initSkillBars();
   initFadeAnimations();
   initCursorGlow();
   initTypingAnimation();
