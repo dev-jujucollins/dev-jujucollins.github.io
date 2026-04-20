@@ -3,36 +3,40 @@
 :root {
     /* Color Palette */
     --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --secondary-gradient: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #22d3ee 100%);
     --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 
     /* Dark Theme Colors (default) */
-    --bg-primary: #0a0a0b;
-    --bg-secondary: #111113;
-    --bg-tertiary: #1a1a1c;
-    --bg-card: rgba(255, 255, 255, 0.03);
-    --bg-card-hover: rgba(255, 255, 255, 0.06);
+    --bg-primary: #08111f;
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #162033;
+    --bg-card: rgba(148, 163, 184, 0.06);
+    --bg-card-hover: rgba(148, 163, 184, 0.1);
 
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --text-tertiary: #6a6a6a;
-    --text-accent: #0ea5e9;
+    --text-primary: #f8fafc;
+    --text-secondary: #b8c4d4;
+    --text-tertiary: #7c8aa0;
+    --text-accent: #38bdf8;
+    --text-accent-secondary: #fbbf24;
+    --text-body-strong: #c8d4e3;
+    --tag-bg: rgba(251, 191, 36, 0.12);
 
-    --border-primary: rgba(255, 255, 255, 0.1);
-    --border-secondary: rgba(255, 255, 255, 0.05);
-    --border-accent: rgba(14, 165, 233, 0.3);
+    --border-primary: rgba(148, 163, 184, 0.18);
+    --border-secondary: rgba(148, 163, 184, 0.1);
+    --border-accent: rgba(56, 189, 248, 0.28);
+    --border-accent-secondary: rgba(251, 191, 36, 0.28);
 
     /* Focus outline */
-    --focus-outline: 2px solid #0ea5e9;
+    --focus-outline: 2px solid #38bdf8;
     --focus-outline-offset: 2px;
     
     /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.3);
+    --shadow-sm: 0 2px 4px rgba(2, 6, 23, 0.14);
+    --shadow-md: 0 4px 12px rgba(2, 6, 23, 0.2);
+    --shadow-lg: 0 8px 25px rgba(2, 6, 23, 0.26);
+    --shadow-xl: 0 20px 40px rgba(2, 6, 23, 0.34);
+    --shadow-glow: 0 0 16px rgba(56, 189, 248, 0.2);
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -62,26 +66,30 @@
 
 /* Light Theme */
 [data-theme="light"] {
-    --bg-primary: #f8f9fa;
+    --bg-primary: #f7fafc;
     --bg-secondary: #ffffff;
-    --bg-tertiary: #e9ecef;
-    --bg-card: rgba(0, 0, 0, 0.02);
-    --bg-card-hover: rgba(0, 0, 0, 0.05);
+    --bg-tertiary: #edf2f7;
+    --bg-card: rgba(15, 23, 42, 0.03);
+    --bg-card-hover: rgba(15, 23, 42, 0.06);
 
-    --text-primary: #1a1a1c;
-    --text-secondary: #4a4a4a;
-    --text-tertiary: #6a6a6a;
+    --text-primary: #172033;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
     --text-accent: #0284c7;
+    --text-accent-secondary: #c2410c;
+    --text-body-strong: #334155;
+    --tag-bg: rgba(194, 65, 12, 0.1);
 
-    --border-primary: rgba(0, 0, 0, 0.1);
-    --border-secondary: rgba(0, 0, 0, 0.05);
-    --border-accent: rgba(2, 132, 199, 0.3);
+    --border-primary: rgba(15, 23, 42, 0.1);
+    --border-secondary: rgba(15, 23, 42, 0.06);
+    --border-accent: rgba(2, 132, 199, 0.24);
+    --border-accent-secondary: rgba(194, 65, 12, 0.24);
 
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.2);
+    --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 8px 25px rgba(15, 23, 42, 0.1);
+    --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.14);
+    --shadow-glow: 0 0 16px rgba(2, 132, 199, 0.14);
 }
 
 [data-theme="light"] body::before {
@@ -210,7 +218,7 @@ h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 p, span, li {
     color: var(--text-secondary);
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 a {
@@ -397,14 +405,14 @@ a:hover {
     border-radius: 50%;
     border: 4px solid var(--border-accent);
     box-shadow: var(--shadow-xl), var(--shadow-glow);
-    transition: all var(--transition-slow);
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
     position: relative;
     z-index: 2;
 }
 
 #profile-pic:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-xl), 0 0 40px rgba(14, 165, 233, 0.5);
+    transform: scale(1.04);
+    box-shadow: var(--shadow-xl), 0 0 28px rgba(56, 189, 248, 0.28);
 }
 
 .profile-ring {
@@ -1215,6 +1223,42 @@ a:hover {
     transform: scaleX(1);
 }
 
+.project-media {
+    position: relative;
+    display: grid;
+    margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl)) var(--space-lg);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-primary);
+    background: rgba(2, 6, 23, 0.72);
+}
+
+
+.project-media-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    background: rgba(2, 6, 23, 0.72);
+}
+
+.project-media-link:focus-visible {
+    outline: 2px solid var(--text-accent);
+    outline-offset: -2px;
+}
+
+.project-preview {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+
+.project-card:hover .project-preview {
+    transform: scale(1.03);
+}
+
 .project-header {
     display: flex;
     justify-content: space-between;
@@ -1272,7 +1316,7 @@ a:hover {
 }
 
 .project-description {
-    color: var(--text-secondary);
+    color: var(--text-body-strong);
     line-height: 1.7;
     margin-bottom: var(--space-lg);
     flex-grow: 1;
@@ -1286,13 +1330,14 @@ a:hover {
 }
 
 .tag {
-    background: rgba(14, 165, 233, 0.1);
-    color: var(--text-accent);
+    background: var(--tag-bg);
+    color: var(--text-accent-secondary);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-full);
     font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    font-weight: 600;
+    border: 1px solid var(--border-accent-secondary);
+    letter-spacing: 0.01em;
 }
 
 /* Footer */
@@ -1407,6 +1452,11 @@ a:hover {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    .project-preview {
+        height: 200px;
     }
     
     .timeline-item {
