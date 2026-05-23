@@ -73,12 +73,16 @@ function initSmoothScrolling() {
 
 // Update active navigation dot
 function initNavIndicator() {
-  const sections = document.querySelectorAll('section[id]');
+  const sections = Array.from(document.querySelectorAll('header[id], section[id]'));
   const navDots = document.querySelectorAll('.nav-dot');
 
   const updateActiveDot = throttle(() => {
     let current = '';
-    sections.forEach((section) => {
+    const orderedSections = sections
+      .slice()
+      .sort((a, b) => a.offsetTop - b.offsetTop);
+
+    orderedSections.forEach((section) => {
       const sectionTop = section.offsetTop;
       if (window.scrollY >= sectionTop - 200) {
         current = section.getAttribute('id');
@@ -146,26 +150,6 @@ function initCursorGlow() {
       cursorGlow.style.opacity = '0';
     }
   });
-}
-
-// Typing animation
-function initTypingAnimation() {
-  const typingElement = document.querySelector('.typing-animation');
-  if (!typingElement) return;
-
-  const text = typingElement.textContent;
-  typingElement.textContent = '';
-  let i = 0;
-
-  const typeWriter = () => {
-    if (i < text.length) {
-      typingElement.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 100);
-    }
-  };
-
-  setTimeout(typeWriter, 1000);
 }
 
 // Contact form handling
@@ -286,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavIndicator();
   initFadeAnimations();
   initCursorGlow();
-  initTypingAnimation();
   initContactForm();
   initSkipLink();
   initProjectFilters();
