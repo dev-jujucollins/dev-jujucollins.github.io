@@ -7,7 +7,8 @@ This is a static portfolio website for Julius Collins, hosted on GitHub Pages. T
 - **Type**: Static personal portfolio/resume website
 - **Tech Stack**: Vanilla HTML5, CSS3, JavaScript (ES6+)
 - **Hosting**: GitHub Pages
-- **Fonts**: Google Fonts (Inter, JetBrains Mono)
+- **Design**: Apple-inspired — system font stack (SF Pro on Apple devices), frosted-glass fixed nav, alternating white/#f5f5f7 sections (black/#1d1d1f in dark mode), single #0071e3 blue accent, pill buttons, large-radius cards
+- **Fonts**: System font stack only (no webfont downloads)
 
 ## Project Structure
 
@@ -156,16 +157,13 @@ Examples from this repo:
 ## Key Features to Maintain
 
 1. **Theme Toggle**: Dark/light mode with system preference detection
-2. **Smooth Scrolling**: Navigation with dot indicators
-3. **Animations**: Fade-in on scroll, skill bar animations, typing effect
-4. **Cursor Glow**: Desktop-only decorative effect
-5. **Contact Form**: Opens mailto with pre-filled content
-6. **Responsive Design**: Mobile-first, works on all screen sizes
+2. **Global Nav**: Fixed frosted-glass bar with smooth scrolling and active section highlighting
+3. **Animations**: Subtle fade-in on scroll, card hover lift
+4. **Contact Form**: Opens mailto with pre-filled content
+5. **Responsive Design**: Mobile-first, works on all screen sizes
 
 ## Common Pitfalls
 
-- Safari has different emoji rendering - avoid gradients on emoji text
 - Always test theme toggle in both light and dark modes
-- Cursor glow should hide for keyboard users
 - Form validation must handle edge cases gracefully
 - External links need `rel="noopener noreferrer"` for security

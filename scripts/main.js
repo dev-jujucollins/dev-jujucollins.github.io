@@ -37,8 +37,7 @@ const ThemeManager = {
   setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(this.storageKey, theme);
-    this.updateToggleIcon(theme);
-    
+
     // Safari fix: Force repaint to ensure CSS variables update properly
     // Safari sometimes doesn't recalculate inherited CSS custom properties
     document.body.style.display = 'none';
@@ -50,11 +49,6 @@ const ThemeManager = {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     this.setTheme(next);
-  },
-
-  updateToggleIcon(theme) {
-    // Icons are controlled via CSS based on [data-theme] attribute
-    // No JavaScript manipulation needed - CSS handles visibility
   },
 };
 
@@ -71,33 +65,34 @@ function initSmoothScrolling() {
   });
 }
 
-// Update active navigation dot
-function initNavIndicator() {
+// Global nav: highlight active section link, show hairline border on scroll
+function initGlobalNav() {
+  const nav = document.querySelector('.globalnav');
   const sections = Array.from(document.querySelectorAll('header[id], section[id]'));
-  const navDots = document.querySelectorAll('.nav-dot');
+  const navLinks = document.querySelectorAll('.nav-link');
 
-  const updateActiveDot = throttle(() => {
+  const onScroll = throttle(() => {
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    }
+
     let current = '';
-    const orderedSections = sections
+    sections
       .slice()
-      .sort((a, b) => a.offsetTop - b.offsetTop);
+      .sort((a, b) => a.offsetTop - b.offsetTop)
+      .forEach((section) => {
+        if (window.scrollY >= section.offsetTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
 
-    orderedSections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navDots.forEach((dot) => {
-      dot.classList.remove('active');
-      if (dot.getAttribute('href').slice(1) === current) {
-        dot.classList.add('active');
-      }
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href').slice(1) === current);
     });
   }, 100);
 
-  window.addEventListener('scroll', updateActiveDot);
+  window.addEventListener('scroll', onScroll);
+  onScroll();
 }
 
 // Fade in animation on scroll
@@ -117,38 +112,6 @@ function initFadeAnimations() {
 
   document.querySelectorAll('.fade-in').forEach((el) => {
     observer.observe(el);
-  });
-}
-
-// Cursor glow effect with throttling
-function initCursorGlow() {
-  const cursorGlow = document.querySelector('.cursor-glow');
-  if (!cursorGlow) return;
-
-  // Hide cursor glow for keyboard users
-  let isUsingMouse = false;
-
-  const updateCursorPosition = throttle((e) => {
-    if (!isUsingMouse) return;
-    requestAnimationFrame(() => {
-      const x = e.clientX;
-      const y = e.clientY;
-      cursorGlow.style.transform = `translate(${x - 150}px, ${y - 150}px)`;
-    });
-  }, 16); // ~60fps
-
-  document.addEventListener('mousemove', (e) => {
-    isUsingMouse = true;
-    cursorGlow.style.opacity = '1';
-    updateCursorPosition(e);
-  });
-
-  // Hide cursor glow when using keyboard
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-      isUsingMouse = false;
-      cursorGlow.style.opacity = '0';
-    }
   });
 }
 
@@ -183,10 +146,8 @@ function initContactForm() {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
-    // Simulate form submission (replace with actual endpoint)
-    // For a static site, you can use services like Formspree, Netlify Forms, or EmailJS
+    // Static site: hand off to the visitor's email client via mailto
     try {
-      // Create mailto link as fallback for static site
       const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
       window.location.href = `mailto:collinsjulius@hotmail.com?subject=${subject}&body=${body}`;
@@ -267,9 +228,8 @@ function initProjectFilters() {
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
   initSmoothScrolling();
-  initNavIndicator();
+  initGlobalNav();
   initFadeAnimations();
-  initCursorGlow();
   initContactForm();
   initSkipLink();
   initProjectFilters();

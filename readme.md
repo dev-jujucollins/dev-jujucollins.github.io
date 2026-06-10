@@ -4,11 +4,11 @@ Static portfolio site for Julius Collins. Built with plain HTML, CSS, and JavaSc
 
 ## What It Includes
 
+- Apple-inspired design: frosted-glass fixed nav, large display typography, alternating neutral sections, pill buttons, large-radius cards
 - Hero section with resume download and project CTA
 - Dark and light theme toggle with saved preference
-- Smooth section navigation with active dot indicator
+- Fixed top navigation with active section highlighting
 - Scroll-triggered fade animations
-- Desktop cursor glow effect
 - Accessible skip link and keyboard-friendly focus flow
 - Contact form that falls back to `mailto:`
 - SEO and social metadata, including JSON-LD
@@ -18,7 +18,7 @@ Static portfolio site for Julius Collins. Built with plain HTML, CSS, and JavaSc
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- Google Fonts
+- System font stack (SF Pro on Apple devices; no webfont downloads)
 - GitHub Pages hosting
 
 ## Local Development
@@ -59,7 +59,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 ### Navigation
 
 - In-page links use smooth scrolling
-- Right-side dot navigation updates as sections enter viewport
+- Fixed frosted-glass nav highlights the active section and gains a hairline border once scrolled
 
 ### Contact flow
 
@@ -70,8 +70,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 
 - Skip link jumps to main content
 - Theme toggle has accessible labeling
-- Keyboard navigation hides decorative cursor glow
-- Motion-heavy effects are separated in JavaScript and can be tuned independently
+- `prefers-reduced-motion` disables animations; `prefers-contrast: more` raises text contrast
 
 ## Deployment
 

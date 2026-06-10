@@ -1,1132 +1,752 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Julius Collins - Software Engineer & QA Specialist</title>
-        <meta
-            name="description"
-            content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development. Former Apple engineer passionate about quality and innovation."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="Julius Collins" />
-        <meta name="theme-color" content="#131415" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Julius Collins - Software Engineer & QA Specialist</title>
+    <meta
+      name="description"
+      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development. Former Apple engineer passionate about quality and innovation."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Julius Collins" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 
-        <!-- JSON-LD Structured Data -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Julius Collins",
-                "url": "https://dev-jujucollins.github.io/",
-                "image": "https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg",
-                "jobTitle": "Software Engineer & QA Specialist",
-                "description": "Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development.",
-                "email": "collinsjulius@hotmail.com",
-                "sameAs": [
-                    "https://github.com/dev-jujucollins",
-                    "https://linkedin.com/in/jujucollins"
-                ],
-                "knowsAbout": [
-                    "Python",
-                    "QA Testing",
-                    "Automation",
-                    "iOS Development",
-                    "Selenium",
-                    "Swift"
-                ]
-            }
-        </script>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Julius Collins",
+        "url": "https://dev-jujucollins.github.io/",
+        "image": "https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg",
+        "jobTitle": "Software Engineer & QA Specialist",
+        "description": "Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development.",
+        "email": "collinsjulius@hotmail.com",
+        "sameAs": [
+          "https://github.com/dev-jujucollins",
+          "https://linkedin.com/in/jujucollins"
+        ],
+        "knowsAbout": [
+          "Python",
+          "QA Testing",
+          "Automation",
+          "iOS Development",
+          "Selenium",
+          "Swift"
+        ]
+      }
+    </script>
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dev-jujucollins.github.io/" />
-        <meta
-            property="og:title"
-            content="Julius Collins - Software Engineer & QA Specialist"
-        />
-        <meta
-            property="og:description"
-            content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
-        />
-        <meta
-            property="og:image"
-            content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
-        />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dev-jujucollins.github.io/" />
+    <meta
+      property="og:title"
+      content="Julius Collins - Software Engineer & QA Specialist"
+    />
+    <meta
+      property="og:description"
+      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
+    />
+    <meta
+      property="og:image"
+      content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
+    />
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-            property="twitter:url"
-            content="https://dev-jujucollins.github.io/"
-        />
-        <meta
-            property="twitter:title"
-            content="Julius Collins - Software Engineer & QA Specialist"
-        />
-        <meta
-            property="twitter:description"
-            content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
-        />
-        <meta
-            property="twitter:image"
-            content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
-        />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://dev-jujucollins.github.io/" />
+    <meta
+      property="twitter:title"
+      content="Julius Collins - Software Engineer & QA Specialist"
+    />
+    <meta
+      property="twitter:description"
+      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
+    />
+    <meta
+      property="twitter:image"
+      content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
+    />
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Set theme before CSS loads to prevent flash -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme-preference");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <link rel="stylesheet" href="./styles/main.css?v=20260609-apple" />
+  </head>
+  <body>
+    <a href="#container--main" class="skip-link">Skip to main content</a>
 
-        <!-- Set theme before CSS loads to prevent flash -->
-        <script>
-            (function () {
-                const saved = localStorage.getItem("theme-preference");
-                const prefersDark = window.matchMedia(
-                    "(prefers-color-scheme: dark)",
-                ).matches;
-                const theme = saved || (prefersDark ? "dark" : "light");
-                document.documentElement.setAttribute("data-theme", theme);
-            })();
-        </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20260523-light" />
-    </head>
-    <body>
-        <a href="#container--main" class="skip-link">Skip to main content</a>
-
+    <nav class="globalnav" aria-label="Primary navigation">
+      <div class="globalnav-content">
+        <a href="#hero" class="globalnav-brand">Julius Collins</a>
+        <div class="globalnav-links">
+          <a href="#highlights" class="nav-link" data-section="highlights"
+            >Highlights</a
+          >
+          <a href="#projects" class="nav-link" data-section="projects"
+            >Projects</a
+          >
+          <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+          <a href="#experience" class="nav-link" data-section="experience"
+            >Experience</a
+          >
+          <a href="#contact" class="nav-link" data-section="contact"
+            >Contact</a
+          >
+        </div>
         <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle light/dark theme"
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle light/dark theme"
         >
-            <svg
-                class="sun-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-            >
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg
-                class="moon-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-            >
-                <path
-                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-                ></path>
-            </svg>
+          <svg
+            class="sun-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg
+            class="moon-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
         </button>
+      </div>
+    </nav>
 
-        <div class="cursor-glow"></div>
-        <nav class="nav-indicator">
-            <div class="nav-dots">
-                <a
-                    href="#hero"
-                    class="nav-dot active"
-                    aria-label="Go to hero section"
-                    data-label="Home"
-                ></a>
-                <a
-                    href="#projects"
-                    class="nav-dot"
-                    aria-label="Go to projects section"
-                    data-label="Projects"
-                ></a>
-                <a
-                    href="#skills"
-                    class="nav-dot"
-                    aria-label="Go to skills section"
-                    data-label="Skills"
-                ></a>
-                <a
-                    href="#techstack"
-                    class="nav-dot"
-                    aria-label="Go to tech stack section"
-                    data-label="Tech Stack"
-                ></a>
-                <a
-                    href="#experience"
-                    class="nav-dot"
-                    aria-label="Go to experience section"
-                    data-label="Experience"
-                ></a>
-                <a
-                    href="#contact"
-                    class="nav-dot"
-                    aria-label="Go to contact section"
-                    data-label="Contact"
-                ></a>
-            </div>
-        </nav>
-
-        <main id="container--main" tabindex="-1">
-            <header id="hero" class="section--page hero-section">
-                <div class="hero-background-elements">
-                    <div class="floating-shape shape-1"></div>
-                    <div class="floating-shape shape-2"></div>
-                    <div class="floating-shape shape-3"></div>
-                </div>
-                <div id="wrapper--hero" class="fade-in">
-                    <div class="profile-container">
-                        <img
-                            id="profile-pic"
-                            src="./assets/images/profile_pic5.jpg"
-                            alt="Julius Collins profile picture"
-                        />
-                        <div class="profile-ring"></div>
-                    </div>
-
-                    <div class="hero-content">
-                        <h1 id="user-name">
-                            <span class="name-highlight">Julius Collins</span>
-                        </h1>
-                        <p id="bio">
-                            <span class="typing-animation"
-                                >QA engineer building Python automation for iOS,
-                                web, and enterprise support workflows</span
-                            >
-                        </p>
-                        <p class="hero-summary">
-                            Software enthusiast focused on regression coverage,
-                            debugging, and tooling that cuts manual work while
-                            improving release confidence.
-                        </p>
-                        <div
-                            class="hero-metrics"
-                            aria-label="Selected outcome highlights"
-                        >
-                            <span class="metric-badge"
-                                >40% less manual testing</span
-                            >
-                            <span class="metric-badge">75+ migrated tests</span>
-                            <span class="metric-badge">50+ tickets weekly</span>
-                        </div>
-                        <p id="email">
-                            <a
-                                href="mailto:collinsjulius@hotmail.com"
-                                class="email-link"
-                            >
-                                <span class="email-icon">✉</span>
-                                collinsjulius@hotmail.com
-                            </a>
-                        </p>
-                        <div class="hero-cta">
-                            <a href="#projects" class="cta-button primary"
-                                >View My Work</a
-                            >
-                            <a
-                                href="./assets/resume/JuliusCollins_Resume_External.pdf"
-                                download
-                                class="cta-button secondary"
-                                aria-label="Download Resume PDF"
-                            >
-                                <svg
-                                    class="btn-icon"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path
-                                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                                    ></path>
-                                    <polyline
-                                        points="7 10 12 15 17 10"
-                                    ></polyline>
-                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                </svg>
-                                Resume
-                            </a>
-                            <a
-                                href="https://linkedin.com/in/jujucollins"
-                                target="_blank"
-                                class="cta-button secondary"
-                                rel="noopener noreferrer"
-                                aria-label="LinkedIn Profile"
-                            >
-                                <svg
-                                    class="btn-icon"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                    />
-                                </svg>
-                                LinkedIn
-                            </a>
-                        </div>
-                        <div class="hero-links">
-                            <a
-                                href="https://github.com/dev-jujucollins"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="hero-link-inline"
-                            >
-                                Browse GitHub projects
-                            </a>
-                            <a href="#contact" class="hero-link-inline"
-                                >Contact me</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <section
-                class="selected-wins-section fade-in"
-                aria-labelledby="selected-wins-title"
+    <main id="container--main" tabindex="-1">
+      <!-- Hero -->
+      <header id="hero" class="hero-section">
+        <div class="hero-inner fade-in">
+          <img
+            id="profile-pic"
+            src="./assets/images/profile_pic5.jpg"
+            alt="Julius Collins profile picture"
+            width="120"
+            height="120"
+          />
+          <p class="hero-eyebrow">Software Engineer &amp; QA Specialist</p>
+          <h1 class="hero-headline">Julius Collins.</h1>
+          <p class="hero-subhead">
+            QA engineer building Python automation for iOS, web, and
+            enterprise support workflows.
+          </p>
+          <p class="hero-copy">
+            Focused on regression coverage, debugging, and tooling that cuts
+            manual work while improving release confidence.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a
+              href="./assets/resume/JuliusCollins_Resume_External.pdf"
+              download
+              class="btn btn-secondary"
+              aria-label="Download Resume PDF"
+              >Download Resume</a
             >
-                <div class="selected-wins-header">
-                    <p class="eyebrow">Selected Wins</p>
-                    <h2 id="selected-wins-title">Fast proof of value</h2>
-                </div>
-                <div class="selected-wins-grid">
-                    <article class="win-card">
-                        <p class="win-label">Apple QA</p>
-                        <div class="win-stat">75+ tests migrated</div>
-                        <p class="win-copy">
-                            Helped move legacy automation to Python while
-                            sustaining 95-100% automated coverage.
-                        </p>
-                    </article>
-                    <article class="win-card">
-                        <p class="win-label">iOS Automation</p>
-                        <div class="win-stat">40-60% faster prep</div>
-                        <p class="win-copy">
-                            Built lab and UI automation that reduced repetitive
-                            setup and manual testing time.
-                        </p>
-                    </article>
-                    <article class="win-card">
-                        <p class="win-label">Python Tooling</p>
-                        <div class="win-stat">15+ device configs</div>
-                        <p class="win-copy">
-                            Supported repeatable regression across complex
-                            hardware and software combinations.
-                        </p>
-                    </article>
-                    <article class="win-card">
-                        <p class="win-label">Enterprise Support</p>
-                        <div class="win-stat">50+ tickets weekly</div>
-                        <p class="win-copy">
-                            Deliver front-line support and large-scale system
-                            deployment in a hybrid enterprise environment.
-                        </p>
-                    </article>
-                </div>
-            </section>
+          </div>
+          <div class="hero-links">
+            <a
+              href="https://github.com/dev-jujucollins"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+              >Browse GitHub <span aria-hidden="true">&rsaquo;</span></a
+            >
+            <a
+              href="https://linkedin.com/in/jujucollins"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+              >LinkedIn <span aria-hidden="true">&rsaquo;</span></a
+            >
+            <a href="mailto:collinsjulius@hotmail.com" class="text-link"
+              >collinsjulius@hotmail.com <span aria-hidden="true">&rsaquo;</span></a
+            >
+          </div>
+        </div>
+      </header>
 
-            <section id="skills" class="section--page skills-section">
-                <div class="section-header fade-in">
-                    <h2>Skills & Qualifications</h2>
-                    <p class="section-subtitle">
-                        Capabilities backed by shipped work, measurable
-                        outcomes, and hands-on execution
-                    </p>
-                </div>
+      <!-- Highlights (bento) -->
+      <section
+        id="highlights"
+        class="section section-alt"
+        aria-labelledby="highlights-title"
+      >
+        <div class="section-header fade-in">
+          <h2 id="highlights-title" class="section-headline">
+            Highlights.
+            <span class="headline-muted">Proof, not promises.</span>
+          </h2>
+        </div>
+        <div class="bento-grid fade-in">
+          <article class="bento-card">
+            <p class="bento-label">Apple QA</p>
+            <p class="bento-stat">75+</p>
+            <p class="bento-caption">tests migrated</p>
+            <p class="bento-copy">
+              Helped move legacy automation to Python while sustaining 95-100%
+              automated coverage.
+            </p>
+          </article>
+          <article class="bento-card">
+            <p class="bento-label">iOS Automation</p>
+            <p class="bento-stat">40-60%</p>
+            <p class="bento-caption">faster prep</p>
+            <p class="bento-copy">
+              Built lab and UI automation that reduced repetitive setup and
+              manual testing time.
+            </p>
+          </article>
+          <article class="bento-card">
+            <p class="bento-label">Python Tooling</p>
+            <p class="bento-stat">15+</p>
+            <p class="bento-caption">device configs</p>
+            <p class="bento-copy">
+              Supported repeatable regression across complex hardware and
+              software combinations.
+            </p>
+          </article>
+          <article class="bento-card">
+            <p class="bento-label">Enterprise Support</p>
+            <p class="bento-stat">50+</p>
+            <p class="bento-caption">tickets weekly</p>
+            <p class="bento-copy">
+              Front-line support and large-scale system deployment in a hybrid
+              enterprise environment.
+            </p>
+          </article>
+        </div>
+      </section>
 
-                <div class="skills-container fade-in">
-                    <div class="skill-category">
-                        <h3>Capabilities in Practice</h3>
-                        <div class="skill-bars">
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>QA & Regression Testing</span>
-                                </div>
-                                <p class="skill-proof">
-                                    Ran daily display and video regression
-                                    across 15+ device configurations and
-                                    maintained 95-100% automated coverage during
-                                    a 75+ test migration.
-                                </p>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Python Automation</span>
-                                </div>
-                                <p class="skill-proof">
-                                    Built automation that cut manual testing and
-                                    lab preparation time by 40-60%, including
-                                    rack restoration, UI automation, and
-                                    reusable test tooling.
-                                </p>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Debugging & Triage</span>
-                                </div>
-                                <p class="skill-proof">
-                                    Documented and escalated defects across
-                                    Apple engineering teams, using logs, repro
-                                    detail, and root-cause analysis to reduce
-                                    post-release issues.
-                                </p>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Enterprise Support Systems</span>
-                                </div>
-                                <p class="skill-proof">
-                                    Resolve 50+ support tickets weekly and
-                                    deploy 200+ Mac and PC systems with JAMF,
-                                    SCCM/Intune, ServiceNow, and conferencing
-                                    tools in hybrid enterprise environments.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+      <!-- Projects -->
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <div class="section-header fade-in">
+          <h2 id="projects-title" class="section-headline">
+            Projects.
+            <span class="headline-muted">Automation tools I've built.</span>
+          </h2>
+        </div>
 
-                    <div class="qualifications-grid">
-                        <div class="qualification-card">
-                            <div class="qualification-icon">🧪</div>
-                            <h4>Testing Excellence</h4>
-                            <p>
-                                Passion for manual testing and automation with
-                                proven track record
-                            </p>
-                        </div>
-                        <div class="qualification-card">
-                            <div class="qualification-icon">⏰</div>
-                            <h4>Time Management</h4>
-                            <p>
-                                Proven time management and multitasking skills
-                                in fast-paced environments
-                            </p>
-                        </div>
-                        <div class="qualification-card">
-                            <div class="qualification-icon">🤝</div>
-                            <h4>Collaboration</h4>
-                            <p>
-                                Excellent communication and teamwork across
-                                cross-functional teams
-                            </p>
-                        </div>
-                        <div class="qualification-card">
-                            <div class="qualification-icon">🎯</div>
-                            <h4>Self-Driven</h4>
-                            <p>
-                                Organizational skills and self-sufficient
-                                problem-solving approach
-                            </p>
-                        </div>
-                        <div class="qualification-card">
-                            <div class="qualification-icon">🔍</div>
-                            <h4>Debug Expert</h4>
-                            <p>
-                                Keen interest in triaging and debugging complex
-                                technical issues
-                            </p>
-                        </div>
-                        <div class="qualification-card">
-                            <div class="qualification-icon">💡</div>
-                            <h4>Problem Solver</h4>
-                            <p>
-                                Logical approach to researching solutions and
-                                implementing fixes
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="project-filters fade-in" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="python">Python</button>
+          <button class="filter-btn" data-filter="web-scraping">
+            Web Scraping
+          </button>
+          <button class="filter-btn" data-filter="automation">
+            Automation
+          </button>
+          <button class="filter-btn" data-filter="testing">Testing</button>
+          <button class="filter-btn" data-filter="data">Data Analysis</button>
+        </div>
 
-            <section id="techstack" class="section--page tech-section">
-                <div class="section-header fade-in">
-                    <h2>Tech Stack</h2>
-                    <p class="section-subtitle">
-                        Technologies and tools I work with
-                    </p>
-                </div>
+        <div class="projects-grid fade-in">
+          <article class="project-card" data-tags="python automation testing">
+            <div class="project-media">
+              <a
+                href="./assets/images/projects/uiautomation-pytest-report-full.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-media-link"
+                aria-label="Open full UI automation pytest report image"
+              >
+                <img
+                  src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
+                  alt="Preview of a pytest full run report for the iOS UI automation framework"
+                  class="project-preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+            <div class="project-body">
+              <p class="project-eyebrow">Python · Appium · iOS Testing</p>
+              <h3>iOS UI Automation Framework</h3>
+              <p class="project-description">
+                Comprehensive UI test automation framework for native iOS apps
+                using Appium and Python. Implements Page Object Model pattern
+                for maintainable, scalable test automation with support for
+                Settings and Calendar apps.
+              </p>
+              <a
+                href="https://github.com/dev-jujucollins/UIAutomation"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
+              >
+            </div>
+          </article>
 
-                <div id="wrapper--techstack__items" class="fade-in">
-                    <div class="tech-category">
-                        <h3>Languages</h3>
-                        <div class="tech-grid">
-                            <div class="card--techstack">
-                                <div class="tech-icon">PY</div>
-                                <span>Python</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">SW</div>
-                                <span>Swift</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">SH</div>
-                                <span>Bash/Shell</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">UI</div>
-                                <span>HTML/CSS</span>
-                            </div>
-                        </div>
-                    </div>
+          <article class="project-card" data-tags="python web-scraping data">
+            <div class="project-media">
+              <a
+                href="./assets/images/projects/ebay-tracker-output.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-media-link"
+                aria-label="Open full eBay tracker image"
+              >
+                <img
+                  src="./assets/images/projects/ebay-tracker-output-preview.webp"
+                  alt="eBay tracker output showing average prices and saved CSV rows"
+                  class="project-preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+            <div class="project-body">
+              <p class="project-eyebrow">Python · Web Scraping · Data</p>
+              <h3>eBay Price Tracker</h3>
+              <p class="project-description">
+                Automation script that monitors eBay search results and tracks
+                average prices over time. Built to help make informed
+                purchasing decisions by analyzing market trends and exporting
+                data to CSV.
+              </p>
+              <a
+                href="https://github.com/dev-jujucollins/ebay_tracker"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
+              >
+            </div>
+          </article>
 
-                    <div class="tech-category">
-                        <h3>Tools & Frameworks</h3>
-                        <div class="tech-grid">
-                            <div class="card--techstack">
-                                <div class="tech-icon">PW</div>
-                                <span>Playwright</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">AP</div>
-                                <span>Appium</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">DK</div>
-                                <span>Docker</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">GT</div>
-                                <span>Git</span>
-                            </div>
-                            <div class="card--techstack">
-                                <div class="tech-icon">LX</div>
-                                <span>Linux</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <article class="project-card" data-tags="python web-scraping data">
+            <div class="project-media">
+              <a
+                href="./assets/images/projects/valorant-match-tracker-output.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-media-link"
+                aria-label="Open full Valorant match tracker image"
+              >
+                <img
+                  src="./assets/images/projects/valorant-match-tracker-output-preview.webp"
+                  alt="Valorant match tracker terminal output showing current VCT match results"
+                  class="project-preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+            <div class="project-body">
+              <p class="project-eyebrow">Python · Web Scraping · Analytics</p>
+              <h3>Valorant Match Tracker</h3>
+              <p class="project-description">
+                Esports data aggregation tool that scrapes recent Valorant
+                Champions Tour match results. Provides structured data
+                including team stats, scores, and match analytics.
+              </p>
+              <a
+                href="https://github.com/dev-jujucollins/valorant_matches"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
+              >
+            </div>
+          </article>
 
-            <section id="experience" class="section--page experience-section">
-                <div class="section-header fade-in">
-                    <h2>Work Experience</h2>
-                    <p class="section-subtitle">
-                        Professional journey and key achievements
-                    </p>
-                </div>
+          <article class="project-card" data-tags="python automation">
+            <div class="project-body">
+              <p class="project-eyebrow">Python · Automation · DevOps</p>
+              <h3>Test Environment Automation Script</h3>
+              <p class="project-description">
+                Automated lab environment management tool that streamlines
+                device restoration processes. Reduced manual testing
+                preparation time by 60% for the engineering team.
+              </p>
+              <span class="project-note">Internal tool</span>
+            </div>
+          </article>
 
-                <div class="timeline-container fade-in">
-                    <div class="timeline-line"></div>
+          <article class="project-card" data-tags="python web-scraping">
+            <div class="project-body">
+              <p class="project-eyebrow">Python · JSON · E-commerce</p>
+              <h3>Demandware Scraper</h3>
+              <p class="project-description">
+                Inventory tracking tool for Salesforce Commerce Cloud websites.
+                Monitors stock levels and outputs formatted JSON data for
+                limited release items.
+              </p>
+              <a
+                href="https://github.com/dev-jujucollins/stocknumbers"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2025</div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="job-header">
-                                <h3>Support Technician</h3>
-                                <p class="job-company">Universal Music Group</p>
-                                <p class="job-duration">07/2025 - Current</p>
-                                <div class="job-metrics">
-                                    <span class="job-metric"
-                                        >50+ tickets weekly</span
-                                    >
-                                    <span class="job-metric"
-                                        >200+ systems deployed</span
-                                    >
-                                    <span class="job-metric"
-                                        >30% faster rollouts</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="job-achievements">
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Provide front-line and remote technical
-                                        support across hardware, software, and
-                                        conferencing systems, resolving 50+
-                                        tickets weekly in hybrid enterprise
-                                        environment
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Configure, deploy and maintain over 200
-                                        Mac and PC systems using JAMF,
-                                        SCCM/Intune, and ServiceNow for
-                                        operational readiness
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Support technology rollouts and process
-                                        improvements, reducing deployment time
-                                        by 30% through testing and implementing
-                                        new tools
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Document best practices and mentor
-                                        colleagues to strengthen global support
-                                        operations
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <!-- Skills -->
+      <section
+        id="skills"
+        class="section section-alt"
+        aria-labelledby="skills-title"
+      >
+        <div class="section-header fade-in">
+          <h2 id="skills-title" class="section-headline">
+            Skills.
+            <span class="headline-muted"
+              >Backed by shipped work and measurable outcomes.</span
+            >
+          </h2>
+        </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2023</div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="job-header">
-                                <h3>iOS Test Engineer</h3>
-                                <p class="job-company">
-                                    Apple - GPU, Graphics, and Displays Software
-                                    CE
-                                </p>
-                                <p class="job-duration">07/2023 - 11/2023</p>
-                                <div class="job-metrics">
-                                    <span class="job-metric"
-                                        >15+ device configs</span
-                                    >
-                                    <span class="job-metric"
-                                        >40% less manual testing</span
-                                    >
-                                    <span class="job-metric"
-                                        >75+ tests migrated</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="job-achievements">
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Performed daily display and video
-                                        focused regression testing across 15+
-                                        device configurations for upcoming
-                                        software trains
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Debugged and documented bugs, escalating
-                                        to cross-functional teams reducing
-                                        post-release issues by 25%
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Reduced manual testing time by 40%
-                                        through a Python automation script for
-                                        test rack restoration
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Maintained 95-100% automated test
-                                        coverage through Ruby to Python
-                                        migration of 75+ test cases
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="skills-grid fade-in">
+          <article class="skill-card">
+            <h3>QA &amp; Regression Testing</h3>
+            <p>
+              Ran daily display and video regression across 15+ device
+              configurations and maintained 95-100% automated coverage during a
+              75+ test migration.
+            </p>
+          </article>
+          <article class="skill-card">
+            <h3>Python Automation</h3>
+            <p>
+              Built automation that cut manual testing and lab preparation time
+              by 40-60%, including rack restoration, UI automation, and
+              reusable test tooling.
+            </p>
+          </article>
+          <article class="skill-card">
+            <h3>Debugging &amp; Triage</h3>
+            <p>
+              Documented and escalated defects across Apple engineering teams,
+              using logs, repro detail, and root-cause analysis to reduce
+              post-release issues.
+            </p>
+          </article>
+          <article class="skill-card">
+            <h3>Enterprise Support Systems</h3>
+            <p>
+              Resolve 50+ support tickets weekly and deploy 200+ Mac and PC
+              systems with JAMF, SCCM/Intune, ServiceNow, and conferencing
+              tools in hybrid enterprise environments.
+            </p>
+          </article>
+        </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2021</div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="job-header">
-                                <h3>Quality Engineer</h3>
-                                <p class="job-company">
-                                    Apple - Self Service Engineering CE
-                                </p>
-                                <p class="job-duration">01/2021 - 06/2021</p>
-                                <div class="job-metrics">
-                                    <span class="job-metric"
-                                        >25+ automation scripts</span
-                                    >
-                                    <span class="job-metric"
-                                        >30% faster regression</span
-                                    >
-                                    <span class="job-metric"
-                                        >10,000+ users simulated</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="job-achievements">
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Led cross-functional collaboration for
-                                        test planning and execution with
-                                        developers and product managers
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Created 25+ automation scripts using
-                                        Python and Selenium, reducing regression
-                                        testing time by 30%
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Conducted load testing with JMeter
-                                        simulating 10,000+ concurrent users
-                                        ensuring product stability
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Utilized Splunk for log monitoring,
-                                        identifying and resolving critical
-                                        issues pre-deployment
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="tech-strip fade-in" aria-label="Technologies and tools">
+          <h3 class="tech-strip-title">Tech Stack</h3>
+          <ul class="tech-list">
+            <li>Python</li>
+            <li>Swift</li>
+            <li>Bash/Shell</li>
+            <li>HTML/CSS</li>
+            <li>Playwright</li>
+            <li>Appium</li>
+            <li>Docker</li>
+            <li>Git</li>
+            <li>Linux</li>
+          </ul>
+        </div>
+      </section>
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2017</div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="job-header">
-                                <h3>Genius</h3>
-                                <p class="job-company">Apple</p>
-                                <p class="job-duration">06/2017 - 05/2025</p>
-                                <div class="job-metrics">
-                                    <span class="job-metric"
-                                        >30+ issues daily</span
-                                    >
-                                    <span class="job-metric"
-                                        >95%+ satisfaction</span
-                                    >
-                                    <span class="job-metric"
-                                        >15+ certifications</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="job-achievements">
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Technical support specialist resolving
-                                        30+ complex Apple software/hardware
-                                        issues daily with 95%+ customer
-                                        satisfaction
-                                    </p>
-                                </div>
-                                <div class="achievement">
-                                    <span class="achievement-icon"></span>
-                                    <p>
-                                        Achieved and maintained 15+ Apple
-                                        certifications for software and hardware
-                                        repair across all product lines
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- Experience -->
+      <section
+        id="experience"
+        class="section"
+        aria-labelledby="experience-title"
+      >
+        <div class="section-header fade-in">
+          <h2 id="experience-title" class="section-headline">
+            Experience.
+            <span class="headline-muted">The journey so far.</span>
+          </h2>
+        </div>
 
-            <section id="projects" class="section--page projects-section">
-                <div class="section-header fade-in">
-                    <h2>Featured Projects</h2>
-                    <p class="section-subtitle">
-                        Automation tools and innovative solutions I've built
-                    </p>
-                </div>
+        <div class="experience-list fade-in">
+          <article class="experience-item">
+            <div class="experience-meta">
+              <p class="experience-duration">07/2025 — Current</p>
+            </div>
+            <div class="experience-content">
+              <h3>Support Technician</h3>
+              <p class="experience-company">Universal Music Group</p>
+              <div class="experience-metrics">
+                <span>50+ tickets weekly</span>
+                <span>200+ systems deployed</span>
+                <span>30% faster rollouts</span>
+              </div>
+              <ul class="experience-achievements">
+                <li>
+                  Provide front-line and remote technical support across
+                  hardware, software, and conferencing systems, resolving 50+
+                  tickets weekly in hybrid enterprise environment
+                </li>
+                <li>
+                  Configure, deploy and maintain over 200 Mac and PC systems
+                  using JAMF, SCCM/Intune, and ServiceNow for operational
+                  readiness
+                </li>
+                <li>
+                  Support technology rollouts and process improvements,
+                  reducing deployment time by 30% through testing and
+                  implementing new tools
+                </li>
+                <li>
+                  Document best practices and mentor colleagues to strengthen
+                  global support operations
+                </li>
+              </ul>
+            </div>
+          </article>
 
-                <div class="project-filters fade-in">
-                    <button class="filter-btn active" data-filter="all">
-                        All
-                    </button>
-                    <button class="filter-btn" data-filter="python">
-                        Python
-                    </button>
-                    <button class="filter-btn" data-filter="web-scraping">
-                        Web Scraping
-                    </button>
-                    <button class="filter-btn" data-filter="automation">
-                        Automation
-                    </button>
-                    <button class="filter-btn" data-filter="testing">
-                        Testing
-                    </button>
-                    <button class="filter-btn" data-filter="data">
-                        Data Analysis
-                    </button>
-                </div>
+          <article class="experience-item">
+            <div class="experience-meta">
+              <p class="experience-duration">07/2023 — 11/2023</p>
+            </div>
+            <div class="experience-content">
+              <h3>iOS Test Engineer</h3>
+              <p class="experience-company">
+                Apple — GPU, Graphics, and Displays Software CE
+              </p>
+              <div class="experience-metrics">
+                <span>15+ device configs</span>
+                <span>40% less manual testing</span>
+                <span>75+ tests migrated</span>
+              </div>
+              <ul class="experience-achievements">
+                <li>
+                  Performed daily display and video focused regression testing
+                  across 15+ device configurations for upcoming software trains
+                </li>
+                <li>
+                  Debugged and documented bugs, escalating to cross-functional
+                  teams reducing post-release issues by 25%
+                </li>
+                <li>
+                  Reduced manual testing time by 40% through a Python
+                  automation script for test rack restoration
+                </li>
+                <li>
+                  Maintained 95-100% automated test coverage through Ruby to
+                  Python migration of 75+ test cases
+                </li>
+              </ul>
+            </div>
+          </article>
 
-                <div class="projects-grid fade-in">
-                    <article
-                        class="project-card"
-                        data-tags="python automation testing"
-                    >
-                        <div class="project-media">
-                            <a
-                                href="./assets/images/projects/uiautomation-pytest-report-full.png"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-media-link"
-                                aria-label="Open full UI automation pytest report image"
-                            >
-                                <img
-                                    src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
-                                    alt="Dark-framed preview of a pytest full run report for the iOS UI automation framework"
-                                    class="project-preview"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            </a>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/dev-jujucollins/UIAutomation"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="project-link"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <h3>iOS UI Automation Framework</h3>
-                        <p class="project-description">
-                            Comprehensive UI test automation framework for
-                            native iOS apps using Appium and Python. Implements
-                            Page Object Model pattern for maintainable, scalable
-                            test automation with support for Settings and
-                            Calendar apps. Preview shows a full pytest run with
-                            debug locator capture tests excluded.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Appium</span>
-                            <span class="tag">iOS Testing</span>
-                        </div>
-                    </article>
+          <article class="experience-item">
+            <div class="experience-meta">
+              <p class="experience-duration">01/2021 — 06/2021</p>
+            </div>
+            <div class="experience-content">
+              <h3>Quality Engineer</h3>
+              <p class="experience-company">
+                Apple — Self Service Engineering CE
+              </p>
+              <div class="experience-metrics">
+                <span>25+ automation scripts</span>
+                <span>30% faster regression</span>
+                <span>10,000+ users simulated</span>
+              </div>
+              <ul class="experience-achievements">
+                <li>
+                  Led cross-functional collaboration for test planning and
+                  execution with developers and product managers
+                </li>
+                <li>
+                  Created 25+ automation scripts using Python and Selenium,
+                  reducing regression testing time by 30%
+                </li>
+                <li>
+                  Conducted load testing with JMeter simulating 10,000+
+                  concurrent users ensuring product stability
+                </li>
+                <li>
+                  Utilized Splunk for log monitoring, identifying and resolving
+                  critical issues pre-deployment
+                </li>
+              </ul>
+            </div>
+          </article>
 
-                    <article
-                        class="project-card"
-                        data-tags="python web-scraping data"
-                    >
-                        <div class="project-media">
-                            <a
-                                href="./assets/images/projects/ebay-tracker-output.png"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-media-link"
-                                aria-label="Open full eBay tracker image"
-                            >
-                                <img
-                                    src="./assets/images/projects/ebay-tracker-output-preview.webp"
-                                    alt="eBay tracker output showing average prices and saved CSV rows"
-                                    class="project-preview"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            </a>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/dev-jujucollins/ebay_tracker"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="project-link"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <h3>eBay Price Tracker</h3>
-                        <p class="project-description">
-                            Intelligent automation script that monitors eBay
-                            search results and tracks average prices over time.
-                            Built to help make informed purchasing decisions by
-                            analyzing market trends and exporting data to CSV.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Web Scraping</span>
-                            <span class="tag">Data Analysis</span>
-                        </div>
-                    </article>
+          <article class="experience-item">
+            <div class="experience-meta">
+              <p class="experience-duration">06/2017 — 05/2025</p>
+            </div>
+            <div class="experience-content">
+              <h3>Genius</h3>
+              <p class="experience-company">Apple</p>
+              <div class="experience-metrics">
+                <span>30+ issues daily</span>
+                <span>95%+ satisfaction</span>
+                <span>15+ certifications</span>
+              </div>
+              <ul class="experience-achievements">
+                <li>
+                  Technical support specialist resolving 30+ complex Apple
+                  software/hardware issues daily with 95%+ customer
+                  satisfaction
+                </li>
+                <li>
+                  Achieved and maintained 15+ Apple certifications for software
+                  and hardware repair across all product lines
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
 
-                    <article class="project-card" data-tags="python automation">
-                        <div class="project-header">
-                            <div class="project-links">
-                                <span class="project-link internal">
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                                        />
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                        <h3>Test Environment Automation Script</h3>
-                        <p class="project-description">
-                            Automated lab environment management tool that
-                            streamlines device restoration processes. Reduced
-                            manual testing preparation time by 60% for the
-                            engineering team.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Automation</span>
-                            <span class="tag">DevOps</span>
-                        </div>
-                    </article>
+      <!-- Contact -->
+      <section
+        id="contact"
+        class="section section-alt"
+        aria-labelledby="contact-title"
+      >
+        <div class="section-header fade-in">
+          <h2 id="contact-title" class="section-headline">
+            Get in touch.
+            <span class="headline-muted"
+              >Open to new projects and opportunities.</span
+            >
+          </h2>
+        </div>
 
-                    <article
-                        class="project-card"
-                        data-tags="python web-scraping data"
-                    >
-                        <div class="project-media">
-                            <a
-                                href="./assets/images/projects/valorant-match-tracker-output.png"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-media-link"
-                                aria-label="Open full Valorant match tracker image"
-                            >
-                                <img
-                                    src="./assets/images/projects/valorant-match-tracker-output-preview.webp"
-                                    alt="Valorant match tracker terminal output showing current VCT match results"
-                                    class="project-preview"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            </a>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/dev-jujucollins/valorant_matches"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="project-link"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <h3>Valorant Match Tracker</h3>
-                        <p class="project-description">
-                            Esports data aggregation tool that scrapes recent
-                            Valorant Champions Tour match results. Provides
-                            structured data including team stats, scores, and
-                            match analytics.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Web Scraping</span>
-                            <span class="tag">Sports Analytics</span>
-                        </div>
-                    </article>
+        <div class="contact-container fade-in">
+          <div class="contact-info">
+            <a href="mailto:collinsjulius@hotmail.com" class="contact-method">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>collinsjulius@hotmail.com</span>
+            </a>
+            <a
+              href="https://github.com/dev-jujucollins"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-method"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/jujucollins"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-method"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
 
-                    <article
-                        class="project-card"
-                        data-tags="python web-scraping"
-                    >
-                        <div class="project-header">
-                            <div class="project-links">
-                                <a
-                                    href="https://github.com/dev-jujucollins/stocknumbers"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="project-link"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path
-                                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <h3>Demandware Scraper</h3>
-                        <p class="project-description">
-                            Sophisticated inventory tracking tool for Salesforce
-                            Commerce Cloud websites. Monitors stock levels and
-                            outputs formatted JSON data for limited release
-                            items.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">JSON</span>
-                            <span class="tag">E-commerce</span>
-                        </div>
-                    </article>
-                </div>
-            </section>
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                placeholder="Your message..."
+                required
+              ></textarea>
+            </div>
+            <div class="form-status"></div>
+            <button type="submit" class="btn btn-primary form-submit">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
 
-            <section id="contact" class="section--page contact-section">
-                <div class="section-header fade-in">
-                    <h2>Get In Touch</h2>
-                    <p class="section-subtitle">
-                        Have a question or want to connect? Send me a message!
-                    </p>
-                </div>
+      <footer class="footer-section">
+        <div class="footer-content">
+          <p>Copyright &copy; 2026 Julius Collins. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#hero">Back to Top</a>
+            <a href="mailto:collinsjulius@hotmail.com">Contact</a>
+            <a
+              href="https://github.com/dev-jujucollins"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </footer>
+    </main>
 
-                <div class="contact-container fade-in">
-                    <div class="contact-info">
-                        <h3>Let's Connect</h3>
-                        <p>
-                            I'm always open to discussing new projects or
-                            opportunities. Feel free to reach out!
-                        </p>
-                        <div class="contact-methods">
-                            <a
-                                href="mailto:collinsjulius@hotmail.com"
-                                class="contact-method"
-                            >
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                                    ></path>
-                                    <polyline
-                                        points="22,6 12,13 2,6"
-                                    ></polyline>
-                                </svg>
-                                <span>collinsjulius@hotmail.com</span>
-                            </a>
-                            <a
-                                href="https://github.com/dev-jujucollins"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="contact-method"
-                            >
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                    />
-                                </svg>
-                                <span>GitHub Profile</span>
-                            </a>
-                            <a
-                                href="https://linkedin.com/in/jujucollins"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="contact-method"
-                            >
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                    />
-                                </svg>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name">Name</label>
-                            <input
-                                type="text"
-                                id="contact-name"
-                                name="name"
-                                placeholder="Your name"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email</label>
-                            <input
-                                type="email"
-                                id="contact-email"
-                                name="email"
-                                placeholder="your.email@example.com"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Message</label>
-                            <textarea
-                                id="contact-message"
-                                name="message"
-                                placeholder="Your message..."
-                                required
-                            ></textarea>
-                        </div>
-                        <div class="form-status"></div>
-                        <button type="submit" class="form-submit">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <footer class="footer-section">
-                <div class="footer-content fade-in">
-                    <p>&copy; 2025 Julius Collins. All rights reserved.</p>
-                    <div class="footer-links">
-                        <a href="#hero">Back to Top</a>
-                        <a href="mailto:collinsjulius@hotmail.com">Contact</a>
-                    </div>
-                </div>
-            </footer>
-        </main>
-
-    <script src="./scripts/main.js?v=20260523-light"></script>
-    </body>
+    <script src="./scripts/main.js?v=20260609-apple"></script>
+  </body>
 </html>
