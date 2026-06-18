@@ -1,1 +1,4 @@
 .DS_Store
+
+# Local agent instructions, not for the repo
+AGENTS.md
