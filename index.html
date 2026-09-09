@@ -3,15 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Julius Collins - Aspiring Software Engineer & QA Specialist</title>
+    <title>Julius Collins - QA Engineer · Python Automation</title>
     <meta
       name="description"
       content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development. Former Apple engineer passionate about quality and innovation."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Julius Collins" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -21,7 +29,7 @@
         "name": "Julius Collins",
         "url": "https://dev-jujucollins.github.io/",
         "image": "https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg",
-        "jobTitle": "Aspiring Software Engineer & QA Specialist",
+        "jobTitle": "QA Engineer · Python Automation",
         "description": "Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development.",
         "email": "collinsjulius@hotmail.com",
         "sameAs": [
@@ -44,11 +52,11 @@
     <meta property="og:url" content="https://dev-jujucollins.github.io/" />
     <meta
       property="og:title"
-      content="Julius Collins - Aspiring Software Engineer & QA Specialist"
+      content="Julius Collins - QA Engineer · Python Automation"
     />
     <meta
       property="og:description"
-      content="Aspiring Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
+      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
     />
     <meta
       property="og:image"
@@ -60,7 +68,7 @@
     <meta property="twitter:url" content="https://dev-jujucollins.github.io/" />
     <meta
       property="twitter:title"
-      content="Julius Collins - Aspiring Software Engineer & QA Specialist"
+      content="Julius Collins - QA Engineer · Python Automation"
     />
     <meta
       property="twitter:description"
@@ -72,21 +80,27 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
 
     <!-- Set theme before CSS loads to prevent flash -->
     <script>
       (function () {
-        const saved = localStorage.getItem("theme-preference");
+        let saved;
+        try {
+          saved = localStorage.getItem("theme-preference");
+        } catch {}
         const prefersDark = window.matchMedia(
           "(prefers-color-scheme: dark)",
         ).matches;
-        const theme = saved || (prefersDark ? "dark" : "light");
+        const theme = ["dark", "light"].includes(saved)
+          ? saved
+          : prefersDark
+            ? "dark"
+            : "light";
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20260609-apple" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260909-editorial" />
   </head>
   <body>
     <a href="#container--main" class="skip-link">Skip to main content</a>
@@ -94,20 +108,22 @@
     <nav class="globalnav" aria-label="Primary navigation">
       <div class="globalnav-content">
         <a href="#hero" class="globalnav-brand">Julius Collins</a>
-        <div class="globalnav-links">
-          <a href="#highlights" class="nav-link" data-section="highlights"
-            >Highlights</a
-          >
-          <a href="#projects" class="nav-link" data-section="projects"
-            >Projects</a
-          >
-          <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          hidden
+        >
+          Menu
+        </button>
+        <div class="globalnav-links" id="nav-links">
+          <a href="#projects" class="nav-link" data-section="projects">Work</a>
+          <a href="#qa-lab" class="nav-link" data-section="qa-lab">QA Lab</a>
+          <a href="#skills" class="nav-link" data-section="skills">Approach</a>
           <a href="#experience" class="nav-link" data-section="experience"
             >Experience</a
           >
-          <a href="#contact" class="nav-link" data-section="contact"
-            >Contact</a
-          >
+          <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </div>
         <button
           id="theme-toggle"
@@ -116,6 +132,7 @@
         >
           <svg
             class="sun-icon"
+            aria-hidden="true"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -134,6 +151,7 @@
           </svg>
           <svg
             class="moon-icon"
+            aria-hidden="true"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -149,168 +167,199 @@
     <main id="container--main" tabindex="-1">
       <!-- Hero -->
       <header id="hero" class="hero-section">
-        <div class="hero-inner fade-in">
-          <img
-            id="profile-pic"
-            src="./assets/images/profile_pic5.jpg"
-            alt="Julius Collins profile picture"
-            width="120"
-            height="120"
-          />
-          <p class="hero-eyebrow">Aspiring Software Engineer &amp; QA Specialist</p>
-          <h1 class="hero-headline">Julius Collins.</h1>
-          <p class="hero-subhead">
-            QA engineer building Python automation for iOS, web, and
-            enterprise support workflows.
-          </p>
-          <p class="hero-copy">
-            Focused on regression coverage, debugging, and tooling that cuts
-            manual work while improving release confidence.
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a
-              href="./assets/resume/JuliusCollins_Resume_External.pdf"
-              download
-              class="btn btn-secondary"
-              aria-label="Download Resume PDF"
-              >Download Resume</a
-            >
+        <div class="hero-layout">
+          <div class="hero-inner fade-in">
+            <div class="hero-identity">
+              <img
+                id="profile-pic"
+                src="./assets/images/profile_pic5.jpg"
+                alt="Julius Collins profile picture"
+                width="120"
+                height="120"
+              />
+              <div>
+                <p class="hero-name">Julius Collins</p>
+                <p class="hero-eyebrow">QA Engineer · Python Automation</p>
+              </div>
+            </div>
+            <h1 class="hero-headline">
+              I build tools that make software more reliable.
+            </h1>
+            <p class="hero-copy">
+              Python automation, iOS testing, and practical tools for the work
+              between finding a bug and shipping a fix.
+            </p>
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">Explore my work</a>
+              <a
+                href="./assets/resume/JuliusCollins_Resume_External.pdf"
+                download
+                class="btn btn-secondary"
+                aria-label="Download Resume PDF"
+                >Download resume</a
+              >
+            </div>
+            <p class="hero-proof">
+              <strong>75+ tests migrated</strong
+              ><span>Ruby to Python · Apple QA</span>
+            </p>
           </div>
-          <div class="hero-links">
-            <a
-              href="https://github.com/dev-jujucollins"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-link"
-              >Browse GitHub <span aria-hidden="true">&rsaquo;</span></a
-            >
-            <a
-              href="https://linkedin.com/in/jujucollins"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-link"
-              >LinkedIn <span aria-hidden="true">&rsaquo;</span></a
-            >
-            <a href="mailto:collinsjulius@hotmail.com" class="text-link"
-              >collinsjulius@hotmail.com <span aria-hidden="true">&rsaquo;</span></a
-            >
-          </div>
+          <a
+            class="hero-feature"
+            href="#case-ios"
+            aria-label="Explore the iOS UI Automation Framework case study"
+          >
+            <div class="feature-topline">
+              <span>Featured work / 01</span><span aria-hidden="true">↗</span>
+            </div>
+            <h2>From test steps<br />to repeatable checks.</h2>
+            <img
+              src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
+              alt="Pytest report preview from the iOS automation framework"
+              width="960"
+              height="600"
+            />
+            <div class="feature-bottomline">
+              <span>iOS UI Automation Framework</span
+              ><span>Explore project <span aria-hidden="true">↗</span></span>
+            </div>
+          </a>
         </div>
       </header>
-
-      <!-- Highlights (bento) -->
-      <section
-        id="highlights"
-        class="section section-alt"
-        aria-labelledby="highlights-title"
-      >
-        <div class="section-header fade-in">
-          <h2 id="highlights-title" class="section-headline">
-            Highlights.
-            <span class="headline-muted">Proof, not promises.</span>
-          </h2>
-        </div>
-        <div class="bento-grid fade-in">
-          <article class="bento-card">
-            <p class="bento-label">Apple QA</p>
-            <p class="bento-stat">75+</p>
-            <p class="bento-caption">tests migrated</p>
-            <p class="bento-copy">
-              Helped move legacy automation to Python while sustaining 95-100%
-              automated coverage.
-            </p>
-          </article>
-          <article class="bento-card">
-            <p class="bento-label">iOS Automation</p>
-            <p class="bento-stat">40-60%</p>
-            <p class="bento-caption">faster prep</p>
-            <p class="bento-copy">
-              Built lab and UI automation that reduced repetitive setup and
-              manual testing time.
-            </p>
-          </article>
-          <article class="bento-card">
-            <p class="bento-label">Python Tooling</p>
-            <p class="bento-stat">15+</p>
-            <p class="bento-caption">device configs</p>
-            <p class="bento-copy">
-              Supported repeatable regression across complex hardware and
-              software combinations.
-            </p>
-          </article>
-          <article class="bento-card">
-            <p class="bento-label">Enterprise Support</p>
-            <p class="bento-stat">50+</p>
-            <p class="bento-caption">tickets weekly</p>
-            <p class="bento-copy">
-              Front-line support and large-scale system deployment in a hybrid
-              enterprise environment.
-            </p>
-          </article>
-        </div>
-      </section>
 
       <!-- Projects -->
       <section id="projects" class="section" aria-labelledby="projects-title">
         <div class="section-header fade-in">
           <h2 id="projects-title" class="section-headline">
-            Projects.
-            <span class="headline-muted">Automation tools I've built.</span>
+            Selected work.
+            <span class="headline-muted">Built around real problems.</span>
           </h2>
         </div>
 
-        <div class="project-filters fade-in" role="group" aria-label="Filter projects">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="python">Python</button>
-          <button class="filter-btn" data-filter="web-scraping">
-            Web Scraping
-          </button>
-          <button class="filter-btn" data-filter="automation">
-            Automation
-          </button>
-          <button class="filter-btn" data-filter="testing">Testing</button>
-          <button class="filter-btn" data-filter="data">Data Analysis</button>
-        </div>
+        <article
+          id="case-ios"
+          class="case-study fade-in"
+          aria-labelledby="case-ios-title"
+        >
+          <div class="case-intro">
+            <p class="project-eyebrow">01 / Python · Appium · iOS</p>
+            <h3 id="case-ios-title">
+              A repeatable way to test native iOS apps.
+            </h3>
+            <p>
+              UI tests become difficult to maintain when every test knows every
+              screen. This framework separates screen interactions from test
+              intent.
+            </p>
+            <dl class="case-facts">
+              <div>
+                <dt>The problem</dt>
+                <dd>
+                  Repeated Settings and Calendar checks need consistent steps
+                  and clear results.
+                </dd>
+              </div>
+              <div>
+                <dt>What I built</dt>
+                <dd>
+                  A Python and Appium framework using the Page Object Model to
+                  keep screen logic reusable.
+                </dd>
+              </div>
+              <div>
+                <dt>The result</dt>
+                <dd>
+                  A runnable test suite with a pytest report that makes
+                  individual outcomes inspectable.
+                </dd>
+              </div>
+            </dl>
+            <a
+              class="text-link"
+              href="https://github.com/dev-jujucollins/UIAutomation"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Explore source code <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <figure class="case-media">
+            <a
+              href="./assets/images/projects/uiautomation-pytest-report-full.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open full iOS test report"
+            >
+              <img
+                src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
+                alt="Pytest report with individual iOS test results"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>
+              Actual project output. Open image to inspect the full report.
+            </figcaption>
+          </figure>
+        </article>
 
+        <article
+          class="case-study case-study--workflow fade-in"
+          aria-labelledby="case-lab-title"
+        >
+          <div class="case-intro">
+            <p class="project-eyebrow">
+              02 / Python · Lab automation · Internal tool
+            </p>
+            <h3 id="case-lab-title">Less setup. More time to test.</h3>
+            <p>
+              Device restoration was repetitive preparation work. I built a
+              Python tool to streamline that workflow for the engineering team.
+            </p>
+            <p class="case-result">
+              <strong>60%</strong> less manual testing preparation time
+            </p>
+            <p class="project-note">
+              Reported result from the internal test environment automation
+              project. Source code is not public.
+            </p>
+          </div>
+          <div class="workflow">
+            <p class="workflow-label">Inside the workflow</p>
+            <fieldset class="workflow-switch" hidden>
+              <legend class="sr-only">Compare lab preparation workflows</legend>
+              <label
+                ><input type="radio" name="workflow" value="manual" checked />
+                Manual</label
+              >
+              <label
+                ><input type="radio" name="workflow" value="automated" />
+                Automated</label
+              >
+            </fieldset>
+            <div id="workflow-manual">
+              <h4>Repeat the setup for each device.</h4>
+              <ol class="workflow-steps">
+                <li>Identify the device and target configuration.</li>
+                <li>Start restoration manually.</li>
+                <li>Check the result before the next device.</li>
+                <li>Repeat preparation across the test rack.</li>
+              </ol>
+            </div>
+            <div id="workflow-automated">
+              <h4>Let a repeatable script handle restoration.</h4>
+              <ol class="workflow-steps">
+                <li>Select the devices and intended configuration.</li>
+                <li>Run the restoration workflow.</li>
+                <li>Review results and investigate exceptions.</li>
+              </ol>
+            </div>
+            <p class="project-note">
+              Illustrative workflow; simplified to explain the approach.
+            </p>
+          </div>
+        </article>
+
+        <h3 class="supporting-title">More tools I've built</h3>
         <div class="projects-grid fade-in">
-          <article class="project-card" data-tags="python automation testing">
-            <div class="project-media">
-              <a
-                href="./assets/images/projects/uiautomation-pytest-report-full.png"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-media-link"
-                aria-label="Open full UI automation pytest report image"
-              >
-                <img
-                  src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
-                  alt="Preview of a pytest full run report for the iOS UI automation framework"
-                  class="project-preview"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-            </div>
-            <div class="project-body">
-              <p class="project-eyebrow">Python · Appium · iOS Testing</p>
-              <h3>iOS UI Automation Framework</h3>
-              <p class="project-description">
-                Comprehensive UI test automation framework for native iOS apps
-                using Appium and Python. Implements Page Object Model pattern
-                for maintainable, scalable test automation with support for
-                Settings and Calendar apps.
-              </p>
-              <a
-                href="https://github.com/dev-jujucollins/UIAutomation"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-link"
-                >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
-              >
-            </div>
-          </article>
-
           <article class="project-card" data-tags="python web-scraping data">
             <div class="project-media">
               <a
@@ -334,9 +383,8 @@
               <h3>eBay Price Tracker</h3>
               <p class="project-description">
                 Automation script that monitors eBay search results and tracks
-                average prices over time. Built to help make informed
-                purchasing decisions by analyzing market trends and exporting
-                data to CSV.
+                average prices over time. Built to help make informed purchasing
+                decisions by analyzing market trends and exporting data to CSV.
               </p>
               <a
                 href="https://github.com/dev-jujucollins/ebay_tracker"
@@ -371,8 +419,8 @@
               <h3>Valorant Match Tracker</h3>
               <p class="project-description">
                 Esports data aggregation tool that scrapes recent Valorant
-                Champions Tour match results. Provides structured data
-                including team stats, scores, and match analytics.
+                Champions Tour match results. Provides structured data including
+                team stats, scores, and match analytics.
               </p>
               <a
                 href="https://github.com/dev-jujucollins/valorant_matches"
@@ -381,19 +429,6 @@
                 class="text-link"
                 >View on GitHub <span aria-hidden="true">&rsaquo;</span></a
               >
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="python automation">
-            <div class="project-body">
-              <p class="project-eyebrow">Python · Automation · DevOps</p>
-              <h3>Test Environment Automation Script</h3>
-              <p class="project-description">
-                Automated lab environment management tool that streamlines
-                device restoration processes. Reduced manual testing
-                preparation time by 60% for the engineering team.
-              </p>
-              <span class="project-note">Internal tool</span>
             </div>
           </article>
 
@@ -418,52 +453,125 @@
         </div>
       </section>
 
-      <!-- Skills -->
       <section
-        id="skills"
+        id="qa-lab"
         class="section section-alt"
-        aria-labelledby="skills-title"
+        aria-labelledby="qa-lab-title"
       >
         <div class="section-header fade-in">
-          <h2 id="skills-title" class="section-headline">
-            Skills.
-            <span class="headline-muted"
-              >Backed by shipped work and measurable outcomes.</span
+          <p class="project-eyebrow">
+            Interactive QA lab / browser-only simulation
+          </p>
+          <h2 id="qa-lab-title" class="section-headline">
+            A small bug.<br /><span class="headline-muted">A useful test.</span>
+          </h2>
+          <p class="section-description">
+            A task form accepts a blank title. Run the checks, inspect the
+            failure, then apply a validation fix and try again.
+          </p>
+        </div>
+        <div class="qa-lab fade-in">
+          <div class="sample-app">
+            <div class="sample-app-header">
+              <span>Sample task app</span
+              ><span class="sample-badge" id="lab-version"
+                >Original version</span
+              >
+            </div>
+            <form id="sample-form">
+              <label for="sample-title">Task title</label>
+              <input
+                id="sample-title"
+                name="title"
+                value="Release smoke test"
+                autocomplete="off"
+              />
+              <button type="submit" class="btn btn-secondary" disabled>
+                Add sample task
+              </button>
+            </form>
+            <p id="sample-feedback" class="sample-feedback" role="status">
+              Try a title, or leave it blank to explore the bug.
+            </p>
+            <ul
+              class="sample-tasks"
+              id="sample-tasks"
+              aria-label="Sample tasks"
             >
+              <li>Check the release notes</li>
+            </ul>
+            <p class="project-note">
+              Demo data stays on this page. Nothing is sent or saved.
+            </p>
+          </div>
+          <div class="test-console">
+            <p class="workflow-label">Regression checks</p>
+            <ol class="test-results" id="test-results">
+              <li>Save a valid task title.</li>
+              <li>Reject an empty title.</li>
+              <li>Reject a whitespace-only title.</li>
+            </ol>
+            <p id="test-summary" role="status">
+              Ready to check the original version.
+            </p>
+            <p id="test-diagnosis" class="test-diagnosis">
+              Expected fix: trim the input, then reject an empty title before
+              saving.
+            </p>
+            <div class="lab-actions">
+              <button id="run-tests" class="btn btn-primary" disabled>
+                Run sample tests
+              </button>
+              <button id="apply-fix" class="btn btn-secondary" disabled>
+                Apply validation fix
+              </button>
+              <button id="reset-lab" class="text-button" disabled>
+                Reset demo
+              </button>
+            </div>
+            <noscript
+              ><p>
+                This demo needs JavaScript. The original form accepts empty
+                titles; trimming and validating input makes all three checks
+                pass.
+              </p></noscript
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <div class="section-header fade-in">
+          <h2 id="skills-title" class="section-headline">
+            How I work.
+            <span class="headline-muted">From reproduction to regression.</span>
           </h2>
         </div>
 
         <div class="skills-grid fade-in">
           <article class="skill-card">
-            <h3>QA &amp; Regression Testing</h3>
+            <p class="step-number">01</p>
+            <h3>Reproduce the problem</h3>
             <p>
-              Ran daily display and video regression across 15+ device
-              configurations and maintained 95-100% automated coverage during a
-              75+ test migration.
+              Pin down the environment, collect logs, and write clear steps so
+              the failure can be investigated consistently.
             </p>
           </article>
           <article class="skill-card">
-            <h3>Python Automation</h3>
+            <p class="step-number">02</p>
+            <h3>Automate the repetition</h3>
             <p>
-              Built automation that cut manual testing and lab preparation time
-              by 40-60%, including rack restoration, UI automation, and
-              reusable test tooling.
+              Turn recurring setup and checks into reusable Python tools,
+              keeping inputs and results easy to inspect.
             </p>
           </article>
           <article class="skill-card">
-            <h3>Debugging &amp; Triage</h3>
+            <p class="step-number">03</p>
+            <h3>Protect the fix</h3>
             <p>
-              Documented and escalated defects across Apple engineering teams,
-              using logs, repro detail, and root-cause analysis to reduce
-              post-release issues.
-            </p>
-          </article>
-          <article class="skill-card">
-            <h3>Enterprise Support Systems</h3>
-            <p>
-              Resolve 50+ support tickets weekly and deploy 200+ Mac and PC
-              systems with JAMF, SCCM/Intune, ServiceNow, and conferencing
-              tools in hybrid enterprise environments.
+              Add regression coverage, check relevant device configurations, and
+              document what the test does and does not cover.
             </p>
           </article>
         </div>
@@ -487,7 +595,7 @@
       <!-- Experience -->
       <section
         id="experience"
-        class="section"
+        class="section section-alt"
         aria-labelledby="experience-title"
       >
         <div class="section-header fade-in">
@@ -505,11 +613,6 @@
             <div class="experience-content">
               <h3>Support Technician</h3>
               <p class="experience-company">Universal Music Group</p>
-              <div class="experience-metrics">
-                <span>50+ tickets weekly</span>
-                <span>200+ systems deployed</span>
-                <span>30% faster rollouts</span>
-              </div>
               <ul class="experience-achievements">
                 <li>
                   Provide front-line and remote technical support across
@@ -522,9 +625,9 @@
                   readiness
                 </li>
                 <li>
-                  Support technology rollouts and process improvements,
-                  reducing deployment time by 30% through testing and
-                  implementing new tools
+                  Support technology rollouts and process improvements, reducing
+                  deployment time by 30% through testing and implementing new
+                  tools
                 </li>
                 <li>
                   Document best practices and mentor colleagues to strengthen
@@ -543,11 +646,6 @@
               <p class="experience-company">
                 Apple — GPU, Graphics, and Displays Software CE
               </p>
-              <div class="experience-metrics">
-                <span>15+ device configs</span>
-                <span>40% less manual testing</span>
-                <span>75+ tests migrated</span>
-              </div>
               <ul class="experience-achievements">
                 <li>
                   Performed daily display and video focused regression testing
@@ -558,12 +656,12 @@
                   teams reducing post-release issues by 25%
                 </li>
                 <li>
-                  Reduced manual testing time by 40% through a Python
-                  automation script for test rack restoration
+                  Reduced manual testing time by 40% through a Python automation
+                  script for test rack restoration
                 </li>
                 <li>
-                  Maintained 95-100% automated test coverage through Ruby to
-                  Python migration of 75+ test cases
+                  Maintained automated coverage while migrating legacy Ruby test
+                  cases to Python
                 </li>
               </ul>
             </div>
@@ -578,11 +676,6 @@
               <p class="experience-company">
                 Apple — Self Service Engineering CE
               </p>
-              <div class="experience-metrics">
-                <span>25+ automation scripts</span>
-                <span>30% faster regression</span>
-                <span>10,000+ users simulated</span>
-              </div>
               <ul class="experience-achievements">
                 <li>
                   Led cross-functional collaboration for test planning and
@@ -611,16 +704,10 @@
             <div class="experience-content">
               <h3>Genius</h3>
               <p class="experience-company">Apple</p>
-              <div class="experience-metrics">
-                <span>30+ issues daily</span>
-                <span>95%+ satisfaction</span>
-                <span>15+ certifications</span>
-              </div>
               <ul class="experience-achievements">
                 <li>
                   Technical support specialist resolving 30+ complex Apple
-                  software/hardware issues daily with 95%+ customer
-                  satisfaction
+                  software/hardware issues daily with 95%+ customer satisfaction
                 </li>
                 <li>
                   Achieved and maintained 15+ Apple certifications for software
@@ -692,7 +779,15 @@
             </a>
           </div>
 
-          <form id="contact-form" class="contact-form">
+          <form
+            id="contact-form"
+            class="contact-form"
+            aria-describedby="contact-help"
+          >
+            <p id="contact-help" class="project-note">
+              Opens a draft in your email app. Review and send it there; your
+              text stays here.
+            </p>
             <div class="form-group">
               <label for="contact-name">Name</label>
               <input
@@ -722,10 +817,16 @@
                 required
               ></textarea>
             </div>
-            <div class="form-status"></div>
-            <button type="submit" class="btn btn-primary form-submit">
-              Send Message
+            <div class="form-status" role="status" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary form-submit" disabled>
+              Open email draft
             </button>
+            <noscript
+              ><p>
+                Use the email link to get in touch; this draft helper needs
+                JavaScript.
+              </p></noscript
+            >
           </form>
         </div>
       </section>
@@ -747,6 +848,6 @@
       </footer>
     </main>
 
-    <script src="./scripts/main.js?v=20260609-apple"></script>
+    <script src="./scripts/main.js?v=20260909-editorial"></script>
   </body>
 </html>
