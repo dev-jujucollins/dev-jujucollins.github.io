@@ -39,6 +39,11 @@ motion in a browser after visual changes.
 - **Contact:** creates a mailto draft in the visitor's email app. It does not
   deliver mail or clear the entered message.
 
+The eBay and Valorant card images are dated snapshots from local project runs.
+The eBay image uses a real listing average and a clearly marked illustrative
+target; no price alert was sent. Each card links to a larger version of its
+capture.
+
 Core portfolio content remains readable without JavaScript. Demo and draft
 controls remain disabled when JavaScript is unavailable; a direct email link
 remains available.

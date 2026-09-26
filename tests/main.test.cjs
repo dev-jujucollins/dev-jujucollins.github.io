@@ -253,3 +253,20 @@ test("iOS test recording has user controls and a compact playable file", () => {
   assert.ok(fs.statSync(file).size < 3_000_000, "Video exceeds 3 MB");
   assert.equal(fs.readFileSync(file).toString("ascii", 4, 8), "ftyp");
 });
+
+test("tracker previews are valid, compact images", () => {
+  for (const project of ["ebay-tracker", "valorant-match-tracker"]) {
+    const preview = fs.readFileSync(
+      path.join(root, `assets/images/projects/${project}-output-preview.webp`),
+    );
+    assert.ok(preview.length < 150_000, `${project} preview is too large`);
+    assert.equal(preview.toString("ascii", 0, 4), "RIFF");
+    assert.equal(preview.toString("ascii", 8, 12), "WEBP");
+
+    const full = fs.readFileSync(
+      path.join(root, `assets/images/projects/${project}-output.png`),
+    );
+    assert.ok(full.length < 1_500_000, `${project} full image is too large`);
+    assert.equal(full.toString("hex", 0, 8), "89504e470d0a1a0a");
+  }
+});

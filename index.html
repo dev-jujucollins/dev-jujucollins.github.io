@@ -101,7 +101,7 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20260926-automation" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260926-trackers" />
   </head>
   <body>
     <a href="#container--main" class="skip-link">Skip to main content</a>
@@ -394,31 +394,33 @@
 
         <h3 class="supporting-title">More tools I've built</h3>
         <div class="projects-grid fade-in">
-          <article class="project-card" data-tags="python web-scraping data">
+          <article class="project-card" data-tags="python price-monitoring alerts">
             <div class="project-media">
               <a
-                href="./assets/images/projects/ebay-tracker-output.png"
+                href="./assets/images/projects/ebay-tracker-output.png?v=20260926"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="project-media-link"
-                aria-label="Open full eBay tracker image"
+                aria-label="Open full September 2026 eBay price check image"
               >
                 <img
-                  src="./assets/images/projects/ebay-tracker-output-preview.webp"
-                  alt="eBay tracker output showing average prices and saved CSV rows"
+                  src="./assets/images/projects/ebay-tracker-output-preview.webp?v=20260926"
+                  alt="Steam Deck OLED 1TB price check captured September 26, 2026: $809.42 average from 47 active listings, beside an illustrative $800 target"
                   class="project-preview"
+                  width="1600"
+                  height="1000"
                   loading="lazy"
                   decoding="async"
                 />
               </a>
             </div>
             <div class="project-body">
-              <p class="project-eyebrow">Python · Web Scraping · Data</p>
+              <p class="project-eyebrow">Python · Price Monitoring · Alerts</p>
               <h3>eBay Price Tracker</h3>
               <p class="project-description">
-                Automation script that monitors eBay search results and tracks
-                average prices over time. Built to help make informed purchasing
-                decisions by analyzing market trends and exporting data to CSV.
+                Checks eBay listing averages against watchlist targets, exports
+                item results to CSV, and can alert when an average reaches a
+                target.
               </p>
               <a
                 href="https://github.com/dev-jujucollins/ebay_tracker"
@@ -430,31 +432,33 @@
             </div>
           </article>
 
-          <article class="project-card" data-tags="python web-scraping data">
+          <article class="project-card" data-tags="python cli esports-data">
             <div class="project-media">
               <a
-                href="./assets/images/projects/valorant-match-tracker-output.png"
+                href="./assets/images/projects/valorant-match-tracker-output.png?v=20260926"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="project-media-link"
-                aria-label="Open full Valorant match tracker image"
+                aria-label="Open full September 2026 Valorant results image"
               >
                 <img
-                  src="./assets/images/projects/valorant-match-tracker-output-preview.webp"
-                  alt="Valorant match tracker terminal output showing current VCT match results"
+                  src="./assets/images/projects/valorant-match-tracker-output-preview.webp?v=20260926"
+                  alt="Valorant Champions 2026 tracker preview showing three completed match results captured September 26, 2026"
                   class="project-preview"
+                  width="1600"
+                  height="1000"
                   loading="lazy"
                   decoding="async"
                 />
               </a>
             </div>
             <div class="project-body">
-              <p class="project-eyebrow">Python · Web Scraping · Analytics</p>
+              <p class="project-eyebrow">Python · CLI · Esports Data</p>
               <h3>Valorant Match Tracker</h3>
               <p class="project-description">
-                Esports data aggregation tool that scrapes recent Valorant
-                Champions Tour match results. Provides structured data including
-                team stats, scores, and match analytics.
+                Finds VCT matches by region and shows upcoming, live, and
+                completed results. Supports team filters, watch mode, and
+                CSV/JSON output.
               </p>
               <a
                 href="https://github.com/dev-jujucollins/valorant_matches"
