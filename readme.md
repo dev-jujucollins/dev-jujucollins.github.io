@@ -27,6 +27,10 @@ motion in a browser after visual changes.
 
 ## Interactive examples
 
+- **iOS automation recording:** click-to-play footage of a passing Appium test
+  opening a Calendar event draft, entering a title, and canceling without
+  saving. The source project also covers Settings, Messages, and Maps. The
+  earlier full-suite report remains linked below the recording.
 - **QA lab:** intentionally accepts blank task titles in its original version.
   Run tests, apply validation, and rerun. Reset restores the original example.
   Demo tasks are held in page memory only.

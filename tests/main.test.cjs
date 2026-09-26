@@ -124,6 +124,7 @@ test("contact draft encodes special characters and rejects invalid input", () =>
     ),
   );
   assert.equal(url.protocol, "mailto:");
+  assert.equal(url.pathname, "collinsjulius@gmail.com");
   assert.equal(
     url.searchParams.get("subject"),
     "Portfolio Contact from Jules & Co",
@@ -224,11 +225,11 @@ test("workflow selection switches panels and preserves accessible native control
   assert.equal(panels["workflow-automated"].hidden, false);
 });
 
-test("every local page link and image resolves; all fragment IDs are unique", () => {
+test("every local page link and media asset resolves; fragment IDs are unique", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(new Set(ids).size, ids.length);
-  for (const [, target] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+  for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
     if (/^(https?:|mailto:)/.test(target)) continue;
     if (target.startsWith("#"))
       assert.ok(ids.includes(target.slice(1)), `Missing anchor: ${target}`);
@@ -238,4 +239,17 @@ test("every local page link and image resolves; all fragment IDs are unique", ()
         `Missing file: ${target}`,
       );
   }
+});
+
+test("iOS test recording has user controls and a compact playable file", () => {
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const video = html.match(/<video\b[^>]*>/)?.[0];
+  assert.ok(video, "Missing iOS project video");
+  assert.match(video, /\bcontrols\b/);
+  assert.match(video, /\bpreload="none"/);
+  assert.doesNotMatch(video, /\bautoplay\b/);
+
+  const file = path.join(root, "assets/videos/uiautomation-calendar-demo.mp4");
+  assert.ok(fs.statSync(file).size < 3_000_000, "Video exceeds 3 MB");
+  assert.equal(fs.readFileSync(file).toString("ascii", 4, 8), "ftyp");
 });

@@ -153,7 +153,7 @@ function buildContactDraft(name, email, message) {
   const body = encodeURIComponent(
     `Name: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`,
   );
-  return `mailto:collinsjulius@hotmail.com?subject=${subject}&body=${body}`;
+  return `mailto:collinsjulius@gmail.com?subject=${subject}&body=${body}`;
 }
 
 function initContactForm() {

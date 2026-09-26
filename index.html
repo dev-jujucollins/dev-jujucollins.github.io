@@ -6,7 +6,7 @@
     <title>Julius Collins - QA Engineer · Python Automation</title>
     <meta
       name="description"
-      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development. Former Apple engineer passionate about quality and innovation."
+      content="QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery. Explore real projects and engineering experience."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Julius Collins" />
@@ -30,19 +30,20 @@
         "url": "https://dev-jujucollins.github.io/",
         "image": "https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg",
         "jobTitle": "QA Engineer · Python Automation",
-        "description": "Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development.",
-        "email": "collinsjulius@hotmail.com",
+        "description": "QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery.",
+        "email": "collinsjulius@gmail.com",
         "sameAs": [
           "https://github.com/dev-jujucollins",
           "https://linkedin.com/in/jujucollins"
         ],
         "knowsAbout": [
           "Python",
-          "QA Testing",
-          "Automation",
-          "iOS Development",
+          "Software Quality Engineering",
+          "iOS Test Automation",
+          "Regression Testing",
           "Selenium",
-          "Swift"
+          "Pytest",
+          "Appium"
         ]
       }
     </script>
@@ -56,7 +57,7 @@
     />
     <meta
       property="og:description"
-      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
+      content="QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery."
     />
     <meta
       property="og:image"
@@ -72,7 +73,7 @@
     />
     <meta
       property="twitter:description"
-      content="Software enthusiast and QA engineer with expertise in Python, automation testing, and iOS development."
+      content="QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery."
     />
     <meta
       property="twitter:image"
@@ -100,7 +101,7 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20260909-editorial" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260926-automation" />
   </head>
   <body>
     <a href="#container--main" class="skip-link">Skip to main content</a>
@@ -200,8 +201,8 @@
               >
             </div>
             <p class="hero-proof">
-              <strong>75+ tests migrated</strong
-              ><span>Ruby to Python · Apple QA</span>
+              <strong>95–100% automated coverage</strong
+              ><span>Maintained during iOS test migration · Apple QA</span>
             </p>
           </div>
           <a
@@ -213,12 +214,19 @@
               <span>Featured work / 01</span><span aria-hidden="true">↗</span>
             </div>
             <h2>From test steps<br />to repeatable checks.</h2>
-            <img
-              src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
-              alt="Pytest report preview from the iOS automation framework"
-              width="960"
-              height="600"
-            />
+            <div class="feature-preview">
+              <img
+                src="./assets/images/projects/uiautomation-demo-poster.webp"
+                alt="Calendar event draft on an iPhone simulator"
+                width="460"
+                height="1000"
+              />
+              <div class="feature-preview-copy">
+                <span>Recorded simulator run</span>
+                <strong>Watch Appium drive iOS.</strong>
+                <span>Calendar event draft · pytest passed</span>
+              </div>
+            </div>
             <div class="feature-bottomline">
               <span>iOS UI Automation Framework</span
               ><span>Explore project <span aria-hidden="true">↗</span></span>
@@ -255,22 +263,22 @@
               <div>
                 <dt>The problem</dt>
                 <dd>
-                  Repeated Settings and Calendar checks need consistent steps
-                  and clear results.
+                  Native iOS checks across Settings, Calendar, Messages, and
+                  Maps need reusable steps and clear results.
                 </dd>
               </div>
               <div>
                 <dt>What I built</dt>
                 <dd>
-                  A Python and Appium framework using the Page Object Model to
-                  keep screen logic reusable.
+                  A Python and Appium framework using page objects to separate
+                  screen interactions from test intent.
                 </dd>
               </div>
               <div>
                 <dt>The result</dt>
                 <dd>
-                  A runnable test suite with a pytest report that makes
-                  individual outcomes inspectable.
+                  Device-free tests run in CI. Opt-in simulator checks clean up
+                  app state and save screenshots, page XML, and logs on failure.
                 </dd>
               </div>
             </dl>
@@ -283,20 +291,46 @@
             >
           </div>
           <figure class="case-media">
-            <a
-              href="./assets/images/projects/uiautomation-pytest-report-full.png"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open full iOS test report"
-            >
-              <img
-                src="./assets/images/projects/uiautomation-pytest-report-preview.webp"
-                alt="Pytest report with individual iOS test results"
-                loading="lazy"
-              />
-            </a>
+            <div class="demo-heading">
+              <span>Actual simulator recording</span>
+              <span>Test passed</span>
+            </div>
+            <div class="demo-stage">
+              <video
+                controls
+                playsinline
+                preload="none"
+                poster="./assets/images/projects/uiautomation-demo-poster.webp"
+                aria-label="Appium opens a Calendar event draft, enters a title, and cancels without saving"
+                width="460"
+                height="1000"
+              >
+                <source
+                  src="./assets/videos/uiautomation-calendar-demo.mp4"
+                  type="video/mp4"
+                />
+                <a href="./assets/videos/uiautomation-calendar-demo.mp4"
+                  >Download the test recording</a
+                >
+              </video>
+              <div class="demo-steps">
+                <h4>Calendar event draft</h4>
+                <ol>
+                  <li>Open Calendar on the simulator.</li>
+                  <li>Enter a test event title.</li>
+                  <li>Cancel without saving an event.</li>
+                </ol>
+                <p>Appium + pytest · iPhone 18 Pro · iOS 27.0</p>
+              </div>
+            </div>
             <figcaption>
-              Actual project output. Open image to inspect the full report.
+              Captured from a passing local integration test.
+              <a
+                href="./assets/images/projects/uiautomation-pytest-report-full.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View an earlier full-suite report</a
+              >.
             </figcaption>
           </figure>
         </article>
@@ -315,7 +349,7 @@
               Python tool to streamline that workflow for the engineering team.
             </p>
             <p class="case-result">
-              <strong>60%</strong> less manual testing preparation time
+              <strong>40%</strong> less manual test setup time across 30+ devices
             </p>
             <p class="project-note">
               Reported result from the internal test environment automation
@@ -580,14 +614,14 @@
           <h3 class="tech-strip-title">Tech Stack</h3>
           <ul class="tech-list">
             <li>Python</li>
-            <li>Swift</li>
-            <li>Bash/Shell</li>
-            <li>HTML/CSS</li>
+            <li>Pytest</li>
+            <li>Selenium</li>
             <li>Playwright</li>
             <li>Appium</li>
-            <li>Docker</li>
+            <li>GitHub Actions</li>
+            <li>Postman</li>
             <li>Git</li>
-            <li>Linux</li>
+            <li>Unix/Linux</li>
           </ul>
         </div>
       </section>
@@ -608,30 +642,24 @@
         <div class="experience-list fade-in">
           <article class="experience-item">
             <div class="experience-meta">
-              <p class="experience-duration">07/2025 — Current</p>
+              <p class="experience-duration">05/2025 — Present</p>
             </div>
             <div class="experience-content">
               <h3>Support Technician</h3>
               <p class="experience-company">Universal Music Group</p>
               <ul class="experience-achievements">
                 <li>
-                  Provide front-line and remote technical support across
-                  hardware, software, and conferencing systems, resolving 50+
-                  tickets weekly in hybrid enterprise environment
+                  Provide front-line and remote support across hardware,
+                  software, and conferencing systems in a hybrid enterprise
+                  environment
                 </li>
                 <li>
-                  Configure, deploy and maintain over 200 Mac and PC systems
-                  using JAMF, SCCM/Intune, and ServiceNow for operational
-                  readiness
+                  Configure, deploy, and maintain Mac and PC systems using
+                  Jamf, SCCM/Intune, and ServiceNow
                 </li>
                 <li>
-                  Support technology rollouts and process improvements, reducing
-                  deployment time by 30% through testing and implementing new
-                  tools
-                </li>
-                <li>
-                  Document best practices and mentor colleagues to strengthen
-                  global support operations
+                  Test and validate tools before rollout, documenting best
+                  practices and ensuring operational readiness
                 </li>
               </ul>
             </div>
@@ -639,29 +667,29 @@
 
           <article class="experience-item">
             <div class="experience-meta">
-              <p class="experience-duration">07/2023 — 11/2023</p>
+              <p class="experience-duration">07/2023 — 12/2023</p>
             </div>
             <div class="experience-content">
-              <h3>iOS Test Engineer</h3>
+              <h3>iOS Test Engineer Intern</h3>
               <p class="experience-company">
                 Apple — GPU, Graphics, and Displays Software CE
               </p>
               <ul class="experience-achievements">
                 <li>
-                  Performed daily display and video focused regression testing
-                  across 15+ device configurations for upcoming software trains
+                  Ran daily display and video regression checks across multiple
+                  iOS software trains using manual and automated methods
                 </li>
                 <li>
-                  Debugged and documented bugs, escalating to cross-functional
-                  teams reducing post-release issues by 25%
+                  Documented, triaged, and escalated defects through Radar to
+                  cross-functional teams
                 </li>
                 <li>
-                  Reduced manual testing time by 40% through a Python automation
-                  script for test rack restoration
+                  Built a Python script to restore test racks across 30+
+                  devices, reducing manual setup time by approximately 40%
                 </li>
                 <li>
-                  Maintained automated coverage while migrating legacy Ruby test
-                  cases to Python
+                  Maintained 95–100% automated test coverage while migrating
+                  iOS automation from Ruby/UIA2 to Python and the Quick API
                 </li>
               </ul>
             </div>
@@ -669,29 +697,29 @@
 
           <article class="experience-item">
             <div class="experience-meta">
-              <p class="experience-duration">01/2021 — 06/2021</p>
+              <p class="experience-duration">01/2021 — 07/2021</p>
             </div>
             <div class="experience-content">
-              <h3>Quality Engineer</h3>
+              <h3>Quality Engineer Intern</h3>
               <p class="experience-company">
                 Apple — Self Service Engineering CE
               </p>
               <ul class="experience-achievements">
                 <li>
-                  Led cross-functional collaboration for test planning and
-                  execution with developers and product managers
+                  Collaborated with developers, engineers, and product managers
+                  on test cases and sprint test plans
                 </li>
                 <li>
-                  Created 25+ automation scripts using Python and Selenium,
-                  reducing regression testing time by 30%
+                  Ran daily regression checks for the Azul software train
+                  across internal products and services
                 </li>
                 <li>
-                  Conducted load testing with JMeter simulating 10,000+
-                  concurrent users ensuring product stability
+                  Evaluated test results and triaged defects through Radar
                 </li>
                 <li>
-                  Utilized Splunk for log monitoring, identifying and resolving
-                  critical issues pre-deployment
+                  Built on-device and web test automation for Apple Service
+                  Toolkit 2 using Python, Selenium, Device Compute, and the
+                  Quick API
                 </li>
               </ul>
             </div>
@@ -706,12 +734,12 @@
               <p class="experience-company">Apple</p>
               <ul class="experience-achievements">
                 <li>
-                  Technical support specialist resolving 30+ complex Apple
-                  software/hardware issues daily with 95%+ customer satisfaction
+                  Diagnosed and resolved complex hardware and software issues
+                  across Apple's product line
                 </li>
                 <li>
-                  Achieved and maintained 15+ Apple certifications for software
-                  and hardware repair across all product lines
+                  Earned certifications to troubleshoot and repair current
+                  Apple devices
                 </li>
               </ul>
             </div>
@@ -736,7 +764,7 @@
 
         <div class="contact-container fade-in">
           <div class="contact-info">
-            <a href="mailto:collinsjulius@hotmail.com" class="contact-method">
+            <a href="mailto:collinsjulius@gmail.com" class="contact-method">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -749,7 +777,7 @@
                 ></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <span>collinsjulius@hotmail.com</span>
+              <span>collinsjulius@gmail.com</span>
             </a>
             <a
               href="https://github.com/dev-jujucollins"
@@ -836,7 +864,7 @@
           <p>Copyright &copy; 2026 Julius Collins. All rights reserved.</p>
           <div class="footer-links">
             <a href="#hero">Back to Top</a>
-            <a href="mailto:collinsjulius@hotmail.com">Contact</a>
+            <a href="mailto:collinsjulius@gmail.com">Contact</a>
             <a
               href="https://github.com/dev-jujucollins"
               target="_blank"
@@ -848,6 +876,6 @@
       </footer>
     </main>
 
-    <script src="./scripts/main.js?v=20260909-editorial"></script>
+    <script src="./scripts/main.js?v=20260926-automation"></script>
   </body>
 </html>
