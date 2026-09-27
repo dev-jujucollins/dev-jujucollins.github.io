@@ -20,7 +20,7 @@ node --test tests/main.test.cjs
 node --check scripts/main.js
 ```
 
-Tests cover the QA demonstration, contact-draft encoding and text preservation,
+Tests cover page navigation, contact-draft encoding and text preservation,
 workflow comparison, system theme changes, blocked storage, and local links.
 Also check desktop/mobile layouts, keyboard navigation, both themes, and reduced
 motion in a browser after visual changes.
@@ -31,9 +31,6 @@ motion in a browser after visual changes.
   opening a Calendar event draft, entering a title, and canceling without
   saving. The source project also covers Settings, Messages, and Maps. The
   earlier full-suite report remains linked below the recording.
-- **QA lab:** intentionally accepts blank task titles in its original version.
-  Run tests, apply validation, and rerun. Reset restores the original example.
-  Demo tasks are held in page memory only.
 - **Workflow comparison:** simplified manual and automated restoration steps.
   The displayed time reduction comes from the existing internal-tool project.
 - **Contact:** creates a mailto draft in the visitor's email app. It does not
@@ -44,6 +41,6 @@ The eBay image uses a real listing average and a clearly marked illustrative
 target; no price alert was sent. Each card links to a larger version of its
 capture.
 
-Core portfolio content remains readable without JavaScript. Demo and draft
-controls remain disabled when JavaScript is unavailable; a direct email link
-remains available.
+Core portfolio content remains readable without JavaScript. The workflow switch
+and contact draft form stay inactive when JavaScript is unavailable; a direct
+email link remains available.

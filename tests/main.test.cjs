@@ -42,78 +42,6 @@ class Element {
   }
 }
 
-test("demo reproduces blank-title bug and validates fixed input", () => {
-  const context = load();
-  for (const input of ["", " ", "\t\n"]) {
-    assert.equal(context.submitSampleTask(input, false).accepted, true);
-    assert.equal(context.submitSampleTask(input, true).accepted, false);
-  }
-  const valid = context.submitSampleTask("  Ship release  ", true);
-  assert.equal(valid.accepted, true);
-  assert.equal(valid.title, "Ship release");
-});
-
-test("regression checks distinguish original and fixed behavior", () => {
-  const context = load();
-  assert.equal(
-    context.runSampleChecks(false).filter((check) => check.passed).length,
-    1,
-  );
-  assert.equal(
-    context.runSampleChecks(true).filter((check) => check.passed).length,
-    3,
-  );
-});
-
-test("QA lab can reproduce, diagnose, fix, verify, and reset", () => {
-  const ids = [
-    "sample-form",
-    "sample-title",
-    "sample-feedback",
-    "sample-tasks",
-    "run-tests",
-    "apply-fix",
-    "reset-lab",
-    "test-summary",
-    "test-results",
-    "test-diagnosis",
-    "lab-version",
-  ];
-  const elements = Object.fromEntries(ids.map((id) => [id, new Element()]));
-  const submit = new Element();
-  elements["sample-form"].querySelector = () => submit;
-  elements["sample-form"].reset = () => {
-    elements["sample-title"].value = "Release smoke test";
-  };
-  const context = load({
-    document: {
-      addEventListener() {},
-      getElementById: (id) => elements[id],
-      createElement: () => new Element(),
-    },
-  });
-  context.initQALab();
-  elements["sample-form"].fire("submit");
-  assert.match(elements["sample-feedback"].textContent, /Bug reproduced/);
-  elements["run-tests"].fire("click");
-  assert.match(elements["test-summary"].textContent, /1 of 3/);
-  assert.equal(elements["apply-fix"].disabled, false);
-  elements["apply-fix"].fire("click");
-  assert.equal(
-    elements["test-results"].children.length,
-    0,
-    "old failures must clear when version changes",
-  );
-  elements["sample-form"].fire("submit");
-  assert.equal(elements["sample-feedback"].textContent, "Enter a task title.");
-  elements["run-tests"].fire("click");
-  assert.match(elements["test-summary"].textContent, /3 of 3/);
-  elements["reset-lab"].fire("click");
-  assert.equal(elements["lab-version"].textContent, "Original version");
-  elements["run-tests"].fire("click");
-  assert.match(elements["test-summary"].textContent, /1 of 3/);
-});
-
 test("contact draft encodes special characters and rejects invalid input", () => {
   const context = load();
   const url = new URL(
@@ -223,6 +151,18 @@ test("workflow selection switches panels and preserves accessible native control
   fieldset.fire("change");
   assert.equal(panels["workflow-manual"].hidden, true);
   assert.equal(panels["workflow-automated"].hidden, false);
+});
+
+test("primary navigation matches the remaining page sections", () => {
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const sections = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+  const nav = [...html.matchAll(/<a href="#([^"]+)" class="nav-link"/g)].map(
+    (match) => match[1],
+  );
+  assert.deepEqual(sections, ["projects", "skills", "experience", "contact"]);
+  assert.deepEqual(nav, sections);
 });
 
 test("every local page link and media asset resolves; fragment IDs are unique", () => {
