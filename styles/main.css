@@ -522,13 +522,13 @@ button:disabled {
 }
 .demo-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   align-items: center;
   gap: 20px;
 }
 .demo-stage video {
   display: block;
-  width: min(100%, 205px);
+  width: min(100%, 240px);
   height: auto;
   aspect-ratio: 460 / 1000;
   margin: 0 auto;
@@ -967,7 +967,7 @@ textarea::placeholder {
     grid-template-columns: minmax(0, 1fr);
   }
   .demo-stage video {
-    width: min(100%, 235px);
+    width: min(100%, 280px);
   }
   .demo-steps {
     max-width: 360px;

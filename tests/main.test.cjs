@@ -181,17 +181,30 @@ test("every local page link and media asset resolves; fragment IDs are unique", 
   }
 });
 
-test("iOS test recording has user controls and a compact playable file", () => {
+test("Maps test recording has user controls and compact valid media", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-  const video = html.match(/<video\b[^>]*>/)?.[0];
+  const video = html.match(/<video\b[^>]*>[\s\S]*?<\/video>/)?.[0];
   assert.ok(video, "Missing iOS project video");
   assert.match(video, /\bcontrols\b/);
+  assert.match(video, /\bplaysinline\b/);
   assert.match(video, /\bpreload="none"/);
   assert.doesNotMatch(video, /\bautoplay\b/);
 
-  const file = path.join(root, "assets/videos/uiautomation-calendar-demo.mp4");
-  assert.ok(fs.statSync(file).size < 3_000_000, "Video exceeds 3 MB");
-  assert.equal(fs.readFileSync(file).toString("ascii", 4, 8), "ftyp");
+  const videoPath = "./assets/videos/uiautomation-maps-demo.mp4";
+  const posterPath = "./assets/images/projects/uiautomation-maps-poster.webp";
+  assert.ok(video.includes(`src="${videoPath}"`));
+  assert.ok(video.includes(`href="${videoPath}"`));
+  assert.ok(video.includes(`poster="${posterPath}"`));
+  assert.ok(html.includes(`src="${posterPath}"`));
+
+  const recording = fs.readFileSync(path.resolve(root, videoPath));
+  assert.ok(recording.length < 5_000_000, "Video exceeds 5 MB");
+  assert.equal(recording.toString("ascii", 4, 8), "ftyp");
+
+  const poster = fs.readFileSync(path.resolve(root, posterPath));
+  assert.ok(poster.length < 150_000, "Video poster exceeds 150 KB");
+  assert.equal(poster.toString("ascii", 0, 4), "RIFF");
+  assert.equal(poster.toString("ascii", 8, 12), "WEBP");
 });
 
 test("tracker previews are valid, compact images", () => {

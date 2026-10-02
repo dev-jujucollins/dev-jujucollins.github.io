@@ -27,10 +27,17 @@ motion in a browser after visual changes.
 
 ## Interactive examples
 
-- **iOS automation recording:** click-to-play footage of a passing Appium test
-  opening a Calendar event draft, entering a title, and canceling without
-  saving. The source project also covers Settings, Messages, and Maps. The
-  earlier full-suite report remains linked below the recording.
+- **iOS automation recording:** click-to-play footage of a passing local Appium
+  integration test on an iPhone 18 Pro simulator running iOS 27.0. It searches
+  Maps for Golden Gate Bridge, gets directions from simulated Apple Park,
+  checks the destination and positive route distance and travel time, then
+  starts and ends navigation. The video finishes with the actual test result.
+  Recorded October 2, 2026 from source commit `aaf6879`; the native test result
+  was `1 passed in 66.38s`, including setup, assertions, and cleanup. The clip
+  shortens waits and adds captions while retaining the actions from that run.
+  Native playback controls are retained, with no autoplay and `preload="none"`.
+  The source project also covers Settings, Calendar,
+  and Messages. The earlier full-suite report remains linked below the recording.
 - **Workflow comparison:** simplified manual and automated restoration steps.
   The displayed time reduction comes from the existing internal-tool project.
 - **Contact:** creates a mailto draft in the visitor's email app. It does not
