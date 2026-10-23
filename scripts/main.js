@@ -66,7 +66,7 @@ function initNavigation() {
     menu.setAttribute("aria-expanded", String(open));
     nav.classList.toggle("menu-open", open);
   });
-  nav.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", (event) => {
     if (
       event.key === "Escape" &&
       menu.getAttribute("aria-expanded") === "true"
@@ -161,6 +161,7 @@ function initContactForm() {
   if (!form) return;
   const button = form.querySelector('button[type="submit"]');
   const status = form.querySelector(".form-status");
+  form.hidden = false;
   button.disabled = false;
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -171,7 +172,7 @@ function initContactForm() {
     );
     status.className = `form-status ${draft ? "success" : "error"}`;
     status.textContent = draft
-      ? "Email draft requested. Review and send it in your email app. If nothing opens, use the email link or copy your message below."
+      ? "Review and send in your email app. If nothing opens, use the email link."
       : "Enter your name, a valid email address, and a message.";
     if (draft) {
       try {
@@ -179,7 +180,7 @@ function initContactForm() {
       } catch {
         status.className = "form-status error";
         status.textContent =
-          "Could not open your email app. Use the email link or copy your message below.";
+          "Could not open your email app. Use the email link.";
       }
     }
   });

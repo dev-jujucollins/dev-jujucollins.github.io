@@ -78,6 +78,7 @@ test("email handoff preserves entered fields and does not claim delivery", () =>
     'button[type="submit"]': new Element(),
   };
   const form = new Element();
+  form.hidden = true;
   form.querySelector = (selector) => fields[selector];
   form.reset = () => assert.fail("Draft fields must not be cleared");
   const context = load({
@@ -85,10 +86,47 @@ test("email handoff preserves entered fields and does not claim delivery", () =>
     window: { location: {} },
   });
   context.initContactForm();
+  assert.equal(form.hidden, false);
+  assert.equal(fields['button[type="submit"]'].disabled, false);
   form.fire("submit");
   assert.match(context.window.location.href, /^mailto:/);
   assert.equal(fields["#contact-message"].value, "Keep this message");
   assert.match(fields[".form-status"].textContent, /Review and send/);
+});
+
+test("invalid drafts and failed email handoffs keep the message available", () => {
+  for (const name of ["   ", "Jules"]) {
+    const fields = {
+      "#contact-name": new Element(name),
+      "#contact-email": new Element("jules@example.com"),
+      "#contact-message": new Element("Keep this message"),
+      ".form-status": new Element(),
+      'button[type="submit"]': new Element(),
+    };
+    const form = new Element();
+    form.querySelector = (selector) => fields[selector];
+    const location = {};
+    let handoffs = 0;
+    Object.defineProperty(location, "href", {
+      set() {
+        handoffs += 1;
+        throw Error("Email app unavailable");
+      },
+    });
+    const context = load({
+      document: { addEventListener() {}, getElementById: () => form },
+      window: { location },
+    });
+    context.initContactForm();
+    form.fire("submit");
+    assert.equal(handoffs, name.trim() ? 1 : 0);
+    assert.equal(fields["#contact-message"].value, "Keep this message");
+    assert.equal(fields[".form-status"].className, "form-status error");
+    assert.match(
+      fields[".form-status"].textContent,
+      name.trim() ? /Use the email link/ : /Enter your name/,
+    );
+  }
 });
 
 test("theme follows system until explicitly chosen and tolerates blocked storage", () => {
@@ -153,6 +191,44 @@ test("workflow selection switches panels and preserves accessible native control
   assert.equal(panels["workflow-automated"].hidden, false);
 });
 
+test("Escape closes a pointer-opened menu when focus stays outside navigation", () => {
+  const menu = new Element();
+  menu.getAttribute = (name) => menu.attributes[name];
+  menu.focus = () => {
+    menu.focused = true;
+  };
+  const nav = new Element();
+  const classes = new Set();
+  nav.classList = {
+    add: (name) => classes.add(name),
+    remove: (name) => classes.delete(name),
+    toggle: (name, enabled) =>
+      enabled ? classes.add(name) : classes.delete(name),
+  };
+  const links = new Element();
+  links.querySelectorAll = () => [];
+  const document = new Element();
+  document.querySelector = (selector) =>
+    selector === ".globalnav" ? nav : menu;
+  document.getElementById = () => links;
+  document.querySelectorAll = () => [];
+  const context = load({
+    document,
+    window: {
+      scrollY: 0,
+      addEventListener() {},
+      matchMedia: () => ({ addEventListener() {} }),
+    },
+  });
+  context.initNavigation();
+  menu.fire("click");
+  assert.equal(menu.getAttribute("aria-expanded"), "true");
+  document.listeners.keydown({ key: "Escape" });
+  assert.equal(menu.getAttribute("aria-expanded"), "false");
+  assert.equal(classes.has("menu-open"), false);
+  assert.equal(menu.focused, true);
+});
+
 test("primary navigation matches the remaining page sections", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   const sections = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"/g)].map(
@@ -166,18 +242,62 @@ test("primary navigation matches the remaining page sections", () => {
 });
 
 test("every local page link and media asset resolves; fragment IDs are unique", () => {
+  for (const page of ["index.html", "404.html"]) {
+    const html = fs.readFileSync(path.join(root, page), "utf8");
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(new Set(ids).size, ids.length);
+    for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
+      if (/^(https?:|mailto:)/.test(target)) continue;
+      if (target.startsWith("#")) {
+        assert.ok(ids.includes(target.slice(1)), `Missing anchor: ${target}`);
+      } else {
+        const url = new URL(target, `https://portfolio.test/${page}`);
+        const localPath =
+          url.pathname === "/" ? "index.html" : url.pathname.slice(1);
+        assert.ok(
+          fs.existsSync(path.join(root, localPath)),
+          `Missing file in ${page}: ${target}`,
+        );
+        // Root-relative 404 assets must also resolve for missing nested URLs.
+        if (page === "404.html") assert.ok(target.startsWith("/"));
+      }
+    }
+  }
+});
+
+test("contact retains visible labels and a usable no-JavaScript fallback", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(new Set(ids).size, ids.length);
-  for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
-    if (/^(https?:|mailto:)/.test(target)) continue;
-    if (target.startsWith("#"))
-      assert.ok(ids.includes(target.slice(1)), `Missing anchor: ${target}`);
-    else
-      assert.ok(
-        fs.existsSync(path.resolve(root, target.split("?")[0])),
-        `Missing file: ${target}`,
-      );
+  const form = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/)?.[0];
+  assert.ok(form);
+  assert.match(form, /^<form\b[^>]*\bhidden\b/);
+  assert.doesNotMatch(form, /\bplaceholder=/);
+  for (const id of ["contact-name", "contact-email", "contact-message"]) {
+    assert.match(form, new RegExp(`<label for="${id}">[^<]+</label>`));
+    assert.match(
+      form,
+      new RegExp(`<(?:input|textarea)\\b[^>]*id="${id}"[^>]*required`),
+    );
+  }
+  assert.match(form, /Open email draft/);
+  assert.match(html, /href="mailto:collinsjulius@gmail.com" class="contact-method"/);
+  for (const mode of ["manual", "automated"]) {
+    assert.match(html, new RegExp(`<div id="workflow-${mode}">`));
+  }
+});
+
+test("external project links have distinct accessible names and safe targets", () => {
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const projects = [
+    "iOS UI Automation Framework",
+    "eBay Price Tracker",
+    "Valorant Match Tracker",
+    "Demandware Scraper",
+  ];
+  for (const name of projects) {
+    assert.ok(html.includes(`<span class="sr-only">— ${name}</span>`));
+  }
+  for (const [anchor] of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
+    assert.match(anchor, /rel="noopener noreferrer"/);
   }
 });
 

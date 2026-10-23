@@ -48,6 +48,17 @@ The eBay image uses a real listing average and a clearly marked illustrative
 target; no price alert was sent. Each card links to a larger version of its
 capture.
 
-Core portfolio content remains readable without JavaScript. The workflow switch
-and contact draft form stay inactive when JavaScript is unavailable; a direct
-email link remains available.
+Core portfolio content remains readable without JavaScript. Both workflow
+panels remain visible; the switch and contact draft form appear only after
+initialization. A direct email link remains available.
+
+## Content and layout
+
+Use project names and concrete facts as headings and body copy. Avoid taglines,
+repeated summaries, numbered eyebrows, and instructions that repeat a control's
+label. Keep visible form labels, accessible link names, and qualifications that
+explain recorded demos or reported results.
+
+Use the shared design tokens and components in `styles/main.css`, including the
+404 page. Keep mobile header spacing stable during initialization and readable
+without JavaScript. No build tooling or extra dependencies are required.
