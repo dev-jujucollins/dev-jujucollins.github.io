@@ -291,7 +291,6 @@ test("external project links have distinct accessible names and safe targets", (
     "iOS UI Automation Framework",
     "eBay Price Tracker",
     "Valorant Match Tracker",
-    "Demandware Scraper",
   ];
   for (const name of projects) {
     assert.ok(html.includes(`<span class="sr-only">— ${name}</span>`));

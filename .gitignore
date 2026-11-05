@@ -1,4 +1,10 @@
 .DS_Store
 
+# Python test tooling
+.venv/
+__pycache__/
+.pytest_cache/
+test-results/
+
 # Local agent instructions, not for the repo
 AGENTS.md

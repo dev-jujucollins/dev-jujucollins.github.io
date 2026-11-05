@@ -407,6 +407,29 @@ button:disabled {
 .case-intro > p:not(.case-result) {
   color: var(--text-secondary);
 }
+.case-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  margin-top: 26px;
+}
+.case-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  max-width: 220px;
+}
+.case-stats dd {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--link);
+}
+.case-stats dt {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
 .case-capabilities {
   margin: 26px 0;
   padding-left: 20px;
@@ -457,6 +480,11 @@ button:disabled {
 .case-media figcaption {
   font-size: 14px;
   color: var(--text-secondary);
+}
+/* Links inside running text need more than color to stand out (WCAG 1.4.1). */
+.case-media figcaption a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .case-result {
   margin: 28px 0 12px;
@@ -541,6 +569,9 @@ button:disabled {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
+.projects-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .project-card {
   min-width: 0;
   background: var(--bg-secondary);
@@ -575,9 +606,18 @@ button:disabled {
 .project-description {
   font-size: 16px;
   color: var(--text-secondary);
-  flex: 1;
+}
+.project-facts {
+  list-style: none;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+.project-facts li {
+  padding: 10px 0;
+  border-top: 1px solid var(--separator);
 }
 .project-body .text-link {
+  margin-top: auto;
   font-size: 16px;
 }
 .skill-card {

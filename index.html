@@ -101,7 +101,7 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20261023" />
+    <link rel="stylesheet" href="./styles/main.css?v=20261104" />
     <noscript>
       <style>
         @media (max-width: 760px) {
@@ -236,16 +236,38 @@
           <div class="case-intro">
             <h3 id="case-ios-title">iOS UI Automation Framework</h3>
             <p>
-              Python and Appium tests for Settings, Calendar, Messages, and Maps.
+              Python, Appium, and pytest tests for Settings, Calendar, Contacts,
+              Messages, Maps, Reminders, Safari, Photos, and Files.
             </p>
+            <dl class="case-stats">
+              <div>
+                <dt>pytest tests</dt>
+                <dd>400+</dd>
+              </div>
+              <div>
+                <dt>default suite on two simulators, down from 11–12 min</dt>
+                <dd>7.6 min</dd>
+              </div>
+            </dl>
             <ul class="case-capabilities">
               <li>
                 Page objects keep screen interactions separate from test intent.
               </li>
-              <li>Device-free tests run in CI.</li>
               <li>
-                Simulator checks clean up app state and save screenshots, page
-                XML, and logs on failure.
+                Runs split across simulators, each with its own Appium server
+                and WebDriverAgent build.
+              </li>
+              <li>
+                Runs in dark mode or at any of the 12 Dynamic Type sizes, and
+                flags controls with no accessibility label.
+              </li>
+              <li>
+                Failures save screenshots, page XML, Appium logs, and matching
+                crash reports.
+              </li>
+              <li>
+                Lint, type checks, and unit tests run on every push. Smoke and
+                journey suites run on a self-hosted macOS runner.
               </li>
             </ul>
             <a
@@ -373,10 +395,17 @@
             <div class="project-body">
               <h3>eBay Price Tracker</h3>
               <p class="project-description">
-                Checks eBay listing averages against watchlist targets, exports
-                item results to CSV, and can alert when an average reaches a
-                target.
+                Compares eBay listing averages with watchlist targets, saves CSV
+                history, and can send a Discord alert when a target is reached.
               </p>
+              <ul class="project-facts">
+                <li>
+                  40 pytest tests cover price parsing, outlier removal, alert
+                  thresholds, and watchlist validation, with eBay responses
+                  mocked.
+                </li>
+                <li>CI runs the suite on every push and pull request.</li>
+              </ul>
               <a
                 href="https://github.com/dev-jujucollins/ebay_tracker"
                 target="_blank"
@@ -411,35 +440,24 @@
             <div class="project-body">
               <h3>Valorant Match Tracker</h3>
               <p class="project-description">
-                Finds VCT matches by region and shows upcoming, live, and
-                completed results. Supports team filters, watch mode, and
-                CSV/JSON output.
+                Python CLI for VCT schedules and results, with region and team
+                filters, watch mode, and CSV/JSON export.
               </p>
+              <ul class="project-facts">
+                <li>
+                  270+ pytest tests run offline against saved vlr.gg pages and
+                  live, TBD, and malformed variants.
+                </li>
+                <li>
+                  CI covers Python 3.11–3.14 and Windows, with ruff and pyright.
+                </li>
+              </ul>
               <a
                 href="https://github.com/dev-jujucollins/valorant_matches"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-link"
                 >GitHub <span class="sr-only">— Valorant Match Tracker</span>
-                <span aria-hidden="true">↗</span></a
-              >
-            </div>
-          </article>
-
-          <article class="project-card" data-tags="python web-scraping">
-            <div class="project-body">
-              <h3>Demandware Scraper</h3>
-              <p class="project-description">
-                Inventory tracking tool for Salesforce Commerce Cloud websites.
-                Monitors stock levels and outputs formatted JSON data for
-                limited release items.
-              </p>
-              <a
-                href="https://github.com/dev-jujucollins/stocknumbers"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-link"
-                >GitHub <span class="sr-only">— Demandware Scraper</span>
                 <span aria-hidden="true">↗</span></a
               >
             </div>

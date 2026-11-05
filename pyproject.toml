@@ -1,0 +1,25 @@
+[project]
+name = "dev-jujucollins-site"
+version = "0.0.0"
+description = "Browser tests for the portfolio. The site itself has no build step or runtime dependencies."
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "axe-playwright-python>=0.1.8",
+    "pytest>=9.1",
+    "pytest-playwright>=0.10",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests/e2e"]
+addopts = [
+    "--browser=chromium",
+    "--tracing=retain-on-failure",
+    "--screenshot=only-on-failure",
+    "--output=test-results",
+]

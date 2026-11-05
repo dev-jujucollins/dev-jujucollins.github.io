@@ -13,6 +13,8 @@ Open http://127.0.0.1:8000.
 
 ## Validation
 
+### Unit tests
+
 Run the dependency-free JavaScript tests with Node.js 18 or later:
 
 ```sh
@@ -20,10 +22,38 @@ node --test tests/main.test.cjs
 node --check scripts/main.js
 ```
 
-Tests cover page navigation, contact-draft encoding and text preservation,
+They cover page navigation, contact-draft encoding and text preservation,
 workflow comparison, system theme changes, blocked storage, and local links.
-Also check desktop/mobile layouts, keyboard navigation, both themes, and reduced
-motion in a browser after visual changes.
+
+### Browser tests
+
+The browser tests in `tests/e2e/` serve the site locally and drive Chromium with
+pytest-playwright. Python packages are for testing only; the site itself still
+has no dependencies.
+
+```sh
+uv sync
+uv run playwright install chromium
+uv run pytest
+```
+
+They check that the page loads without console errors or failed requests, the
+resume downloads, the skip link moves focus, the theme follows the system and
+remembers a choice, desktop and phone navigation work, the contact form builds
+an encoded draft, the workflow switch toggles panels, and the content still
+works without JavaScript. axe-core scans the page in both themes at desktop and
+phone sizes. A failing test saves a trace and screenshot under `test-results/`;
+open a trace with `uv run playwright show-trace <path-to-trace.zip>`.
+
+Still look at layouts in a browser after visual changes.
+
+## CI and deployment
+
+`.github/workflows/site.yml` runs both suites on every push and pull request.
+Pushes to `main` deploy to GitHub Pages only after the tests pass, and publish
+only the site files (`index.html`, `404.html`, `robots.txt`, `sitemap.xml`,
+`assets/`, `scripts/`, and `styles/`). This requires **GitHub Actions** as the
+Pages source in Settings → Pages → Build and deployment.
 
 ## Interactive examples
 
@@ -61,4 +91,4 @@ explain recorded demos or reported results.
 
 Use the shared design tokens and components in `styles/main.css`, including the
 404 page. Keep mobile header spacing stable during initialization and readable
-without JavaScript. No build tooling or extra dependencies are required.
+without JavaScript. The site needs no build tooling or runtime dependencies.
