@@ -342,3 +342,80 @@ test("tracker previews are valid, compact images", () => {
     assert.equal(full.toString("hex", 0, 8), "89504e470d0a1a0a");
   }
 });
+
+// Width and height from a PNG IHDR chunk or a JPEG start-of-frame marker.
+function imageSize(buffer) {
+  if (buffer.toString("hex", 0, 8) === "89504e470d0a1a0a") {
+    return { type: "png", width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+  assert.equal(buffer.toString("hex", 0, 2), "ffd8", "Not a PNG or JPEG");
+  for (let offset = 2; offset < buffer.length; ) {
+    const marker = buffer[offset + 1];
+    const length = buffer.readUInt16BE(offset + 2);
+    if (marker >= 0xc0 && marker <= 0xc3) {
+      return {
+        type: "jpeg",
+        height: buffer.readUInt16BE(offset + 5),
+        width: buffer.readUInt16BE(offset + 7),
+      };
+    }
+    offset += 2 + length;
+  }
+  throw new Error("JPEG has no start-of-frame marker");
+}
+
+function metaContent(html, attribute, key) {
+  const tag = html.match(
+    new RegExp(`<meta\\s+${attribute}="${key}"\\s+content="([^"]+)"`),
+  );
+  assert.ok(tag, `Missing <meta ${attribute}="${key}">`);
+  return tag[1];
+}
+
+test("link previews use a local 1200x630 image with matching tags", () => {
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8").replace(/\s+/g, " ");
+  const site = "https://dev-jujucollins.github.io/";
+  const ogImage = metaContent(html, "property", "og:image");
+  assert.equal(metaContent(html, "name", "twitter:image"), ogImage);
+  assert.equal(metaContent(html, "name", "twitter:card"), "summary_large_image");
+  assert.ok(metaContent(html, "property", "og:image:alt").length > 20);
+  assert.equal(metaContent(html, "property", "og:url"), site);
+  assert.match(html, new RegExp(`<link rel="canonical" href="${site}" />`));
+  // X reads twitter:* tags from name=, not property=.
+  assert.doesNotMatch(html, /property="twitter:/);
+
+  assert.ok(ogImage.startsWith(site), "og:image must be an absolute URL");
+  const image = fs.readFileSync(path.join(root, ogImage.slice(site.length)));
+  const size = imageSize(image);
+  assert.deepEqual([size.width, size.height], [1200, 630]);
+  assert.equal(metaContent(html, "property", "og:image:width"), "1200");
+  assert.equal(metaContent(html, "property", "og:image:height"), "630");
+  assert.equal(metaContent(html, "property", "og:image:type"), `image/${size.type}`);
+  assert.ok(image.length < 300_000, "Link preview image exceeds 300 KB");
+});
+
+test("touch icon and profile photo are the expected sizes", () => {
+  const icon = imageSize(fs.readFileSync(path.join(root, "assets/apple-touch-icon.png")));
+  assert.deepEqual([icon.type, icon.width, icon.height], ["png", 180, 180]);
+
+  const photo = imageSize(fs.readFileSync(path.join(root, "assets/images/profile.jpg")));
+  // Square, and at least 2x the 120px display size for sharp Retina rendering.
+  assert.equal(photo.width, photo.height);
+  assert.ok(photo.width >= 240);
+});
+
+test("every file in assets/ is used by a page", () => {
+  const pages = ["index.html", "404.html"]
+    .map((page) => fs.readFileSync(path.join(root, page), "utf8"))
+    .join("\n");
+  const walk = (dir) =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const full = path.join(dir, entry.name);
+      return entry.isDirectory() ? walk(full) : [full];
+    });
+  const unused = walk(path.join(root, "assets"))
+    .filter((file) => path.basename(file) !== ".DS_Store")
+    .map((file) => path.relative(root, file).split(path.sep).join("/"))
+    .filter((file) => !pages.includes(file));
+  assert.deepEqual(unused, [], "Remove unused assets or link them from a page");
+});

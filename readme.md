@@ -23,7 +23,8 @@ node --check scripts/main.js
 ```
 
 They cover page navigation, contact-draft encoding and text preservation,
-workflow comparison, system theme changes, blocked storage, and local links.
+workflow comparison, system theme changes, blocked storage, local links,
+link-preview tags and image sizes, and unused files in `assets/`.
 
 ### Browser tests
 

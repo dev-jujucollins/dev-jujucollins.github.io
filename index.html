@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Julius Collins - QA Engineer · Python Automation</title>
     <meta
       name="description"
@@ -20,6 +19,7 @@
       content="#000000"
       media="(prefers-color-scheme: dark)"
     />
+    <link rel="canonical" href="https://dev-jujucollins.github.io/" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -28,7 +28,7 @@
         "@type": "Person",
         "name": "Julius Collins",
         "url": "https://dev-jujucollins.github.io/",
-        "image": "https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg",
+        "image": "https://dev-jujucollins.github.io/assets/images/profile.jpg",
         "jobTitle": "QA Engineer · Python Automation",
         "description": "QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery.",
         "email": "collinsjulius@gmail.com",
@@ -42,14 +42,17 @@
           "iOS Test Automation",
           "Regression Testing",
           "Selenium",
+          "Playwright",
           "Pytest",
-          "Appium"
+          "Appium",
+          "GitHub Actions"
         ]
       }
     </script>
 
-    <!-- Open Graph / Facebook -->
+    <!-- Link previews (LinkedIn, iMessage, Slack, X) -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Julius Collins" />
     <meta property="og:url" content="https://dev-jujucollins.github.io/" />
     <meta
       property="og:title"
@@ -61,27 +64,36 @@
     />
     <meta
       property="og:image"
-      content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
+      content="https://dev-jujucollins.github.io/assets/images/social-preview.jpg"
     />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://dev-jujucollins.github.io/" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
-      property="twitter:title"
+      property="og:image:alt"
+      content="Julius Collins, QA Engineer and Python automation: 400+ pytest tests across 9 iOS apps, beside an iPhone Maps test run"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
       content="Julius Collins - QA Engineer · Python Automation"
     />
     <meta
-      property="twitter:description"
+      name="twitter:description"
       content="QA engineer focused on iOS test automation, Python, regression testing, and reliable software delivery."
     />
     <meta
-      property="twitter:image"
-      content="https://dev-jujucollins.github.io/assets/images/profile_pic5.jpg"
+      name="twitter:image"
+      content="https://dev-jujucollins.github.io/assets/images/social-preview.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Julius Collins, QA Engineer and Python automation: 400+ pytest tests across 9 iOS apps, beside an iPhone Maps test run"
     />
 
-    <!-- Favicon -->
+    <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
 
     <!-- Set theme before CSS loads to prevent flash -->
     <script>
@@ -101,7 +113,7 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20261104" />
+    <link rel="stylesheet" href="./styles/main.css?v=20261105" />
     <noscript>
       <style>
         @media (max-width: 760px) {
@@ -181,7 +193,7 @@
             <div class="hero-identity">
               <img
                 id="profile-pic"
-                src="./assets/images/profile_pic5.jpg"
+                src="./assets/images/profile.jpg"
                 alt="Julius Collins profile picture"
                 width="120"
                 height="120"
@@ -191,6 +203,10 @@
             <h1 class="hero-headline">
               QA Engineer.<br />Python Automation.
             </h1>
+            <p class="hero-summary">
+              8 years at Apple, including quality engineering internships in
+              GPU, Graphics &amp; Displays and Self Service Engineering.
+            </p>
             <div class="hero-cta">
               <a href="#projects" class="btn btn-primary">View work</a>
               <a
@@ -208,7 +224,7 @@
             aria-label="Explore the iOS UI Automation Framework case study"
           >
             <h2 class="feature-title">
-              iOS UI Automation <span aria-hidden="true">↗</span>
+              iOS UI Automation <span aria-hidden="true">↓</span>
             </h2>
             <div class="feature-preview">
               <img
@@ -334,9 +350,7 @@
             <p class="case-result">
               <strong>~40%</strong> less manual test setup time
             </p>
-            <p class="project-note">
-              Reported internal result; source unavailable.
-            </p>
+            <p class="project-note">Internal Apple tool; code isn't public.</p>
           </div>
           <div class="workflow">
             <fieldset class="workflow-switch" hidden>
