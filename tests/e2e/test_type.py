@@ -34,6 +34,22 @@ def test_headline_still_reads_as_one_sentence(page: Page):
     expect(page.locator(".headline-char")).to_have_count(len("QAEngineer.PythonAutomation."))
 
 
+def wait_for_first_letter(page: Page, condition: str) -> None:
+    """Wait until the first letter's axes satisfy `condition` (JS using wght and rond).
+
+    The axes ease over 0.18s, so read them only once they reach their target.
+    """
+    page.wait_for_function(
+        f"""() => {{
+            const axes = getComputedStyle(document.querySelector('.headline-char'))
+                .fontVariationSettings;
+            const wght = Number(axes.match(/"wght" ([\\d.]+)/)[1]);
+            const rond = Number(axes.match(/"ROND" ([\\d.]+)/)[1]);
+            return {condition};
+        }}"""
+    )
+
+
 def test_letters_near_the_pointer_get_rounder_and_heavier(page: Page):
     page.goto("/")
     settled(page)
@@ -42,17 +58,11 @@ def test_letters_near_the_pointer_get_rounder_and_heavier(page: Page):
 
     first.hover()
 
-    page.wait_for_function(
-        "getComputedStyle(document.querySelector('.headline-char')).fontVariationSettings.includes('\"ROND\" 100')"
-    )
-    assert wght(first) > 700
+    wait_for_first_letter(page, "rond === 100 && wght > 700")
     assert rond(last) == 50
 
     page.mouse.move(5, 880)
-    page.wait_for_function(
-        "getComputedStyle(document.querySelector('.headline-char')).fontVariationSettings.includes('\"ROND\" 50')"
-    )
-    assert wght(first) == 650
+    wait_for_first_letter(page, "rond === 50 && wght === 650")
 
 
 def test_buttons_round_off_on_hover_without_changing_size(page: Page):
