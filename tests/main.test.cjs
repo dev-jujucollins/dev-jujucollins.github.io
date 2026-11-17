@@ -157,7 +157,7 @@ test("every local page link and media asset resolves; fragment IDs are unique", 
 test("contact offers direct links and no form", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   assert.doesNotMatch(html, /<form\b/);
-  assert.match(html, /href="mailto:collinsjulius@gmail.com" class="contact-method"/);
+  assert.match(html, /href="mailto:collinsjulius@hotmail.com" class="contact-method"/);
   assert.match(html, /href="https:\/\/linkedin.com\/in\/jujucollins"/);
   assert.match(html, /href="https:\/\/github.com\/dev-jujucollins"/);
 });

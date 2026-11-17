@@ -80,7 +80,7 @@ def test_content_stays_usable_without_javascript(page: Page):
     expect(page.get_by_role("heading", name="iOS UI Automation Framework")).to_be_visible()
     expect(page.get_by_role("heading", name="This site is tested")).to_be_visible()
     expect(page.get_by_role("button", name="Menu")).to_be_hidden()
-    expect(page.get_by_role("link", name="collinsjulius@gmail.com")).to_be_visible()
+    expect(page.get_by_role("link", name="collinsjulius@hotmail.com")).to_be_visible()
 
 def test_allo_font_loads_and_renders_the_page(page: Page):
     page.goto("/")
