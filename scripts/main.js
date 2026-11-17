@@ -102,9 +102,16 @@ function initNavigation() {
   const navLinks = [...links.querySelectorAll(".nav-link")];
   function updateNav() {
     nav.classList.toggle("scrolled", window.scrollY > 8);
-    const current = sections
-      .filter((section) => section.getBoundingClientRect().top <= 180)
-      .pop();
+    // At the very bottom the last section may be too short to reach the
+    // top of the screen, so it counts as current there.
+    const page = document.documentElement;
+    const atBottom =
+      !!page && window.innerHeight + window.scrollY >= page.scrollHeight - 2;
+    const current = atBottom
+      ? sections[sections.length - 1]
+      : sections
+          .filter((section) => section.getBoundingClientRect().top <= 180)
+          .pop();
     navLinks.forEach((link) => {
       const active = !!current && link.dataset.section === current.id;
       link.classList.toggle("active", active);
@@ -142,69 +149,125 @@ function initFadeAnimations() {
   });
 }
 
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+// Weight and roundness for a headline letter at `distance` px from the pointer.
+// Letters within `radius` round off (Allo's ROND axis, which keeps widths fixed);
+// with a precise pointer they also gain weight, which does change widths.
+function letterAxes(distance, radius, allowWeight) {
+  const t = Math.max(0, 1 - distance / radius);
+  const eased = t * t * (3 - 2 * t);
+  return {
+    wght: allowWeight ? Math.round(650 + 150 * eased) : 650,
+    rond: Math.round(50 + 50 * eased),
+  };
 }
 
-function buildContactDraft(name, email, message) {
-  if (!name.trim() || !message.trim() || !isValidEmail(email.trim()))
-    return null;
-  const subject = encodeURIComponent(`Portfolio Contact from ${name.trim()}`);
-  const body = encodeURIComponent(
-    `Name: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`,
-  );
-  return `mailto:collinsjulius@gmail.com?subject=${subject}&body=${body}`;
-}
-
-function initContactForm() {
-  const form = document.getElementById("contact-form");
-  if (!form) return;
-  const button = form.querySelector('button[type="submit"]');
-  const status = form.querySelector(".form-status");
-  form.hidden = false;
-  button.disabled = false;
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const draft = buildContactDraft(
-      form.querySelector("#contact-name").value,
-      form.querySelector("#contact-email").value,
-      form.querySelector("#contact-message").value,
-    );
-    status.className = `form-status ${draft ? "success" : "error"}`;
-    status.textContent = draft
-      ? "Review and send in your email app. If nothing opens, use the email link."
-      : "Enter your name, a valid email address, and a message.";
-    if (draft) {
-      try {
-        window.location.href = draft;
-      } catch {
-        status.className = "form-status error";
-        status.textContent =
-          "Could not open your email app. Use the email link.";
-      }
+// Wrap each letter of the hero headline in a span. Screen readers get the
+// original sentence from a visually hidden copy; the letters are aria-hidden.
+function splitHeadline(headline) {
+  const letters = document.createElement("span");
+  letters.setAttribute("aria-hidden", "true");
+  const chars = [];
+  const lines = [];
+  let current = "";
+  headline.childNodes.forEach((node) => {
+    if (node.nodeName === "BR") {
+      lines.push(current);
+      current = "";
+    } else {
+      current += node.textContent;
     }
   });
+  lines.push(current);
+  const clean = lines.map((line) => line.replace(/\s+/g, " ").trim());
+  const sentence = clean.join(" ");
+
+  clean.forEach((line, lineIndex) => {
+    if (lineIndex > 0) letters.appendChild(document.createElement("br"));
+    for (const char of line) {
+      if (char === " ") {
+        letters.appendChild(document.createTextNode(" "));
+        continue;
+      }
+      const span = document.createElement("span");
+      span.className = "headline-char";
+      span.textContent = char;
+      span.style.setProperty("--i", chars.length);
+      letters.appendChild(span);
+      chars.push(span);
+    }
+  });
+
+  const spoken = document.createElement("span");
+  spoken.className = "sr-only";
+  spoken.textContent = sentence;
+  headline.replaceChildren(spoken, letters);
+  return chars;
 }
 
-function initWorkflow() {
-  const fieldset = document.querySelector(".workflow-switch");
-  if (!fieldset) return;
-  const manual = document.getElementById("workflow-manual");
-  const automated = document.getElementById("workflow-automated");
-  function update() {
-    const mode = fieldset.querySelector("input:checked").value;
-    manual.hidden = mode !== "manual";
-    automated.hidden = mode !== "automated";
-  }
-  fieldset.hidden = false;
-  fieldset.addEventListener("change", update);
-  update();
-}
+const HeadlineType = {
+  radius: 180,
+
+  init() {
+    const headline = document.querySelector(".hero-headline");
+    if (!headline || typeof window.matchMedia !== "function") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    this.chars = splitHeadline(headline);
+    this.allowWeight = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    // One arrival moment: letters settle from light and round into place.
+    headline.classList.add("is-settling");
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        headline.classList.replace("is-settling", "is-arriving");
+        setTimeout(() => headline.classList.remove("is-arriving"), 1400);
+      });
+    });
+
+    const area = headline.closest(".hero-section") || headline;
+    let pointer = null;
+    let frame = 0;
+    const render = () => {
+      frame = 0;
+      for (const char of this.chars) {
+        let axes = { wght: 650, rond: 50 };
+        if (pointer) {
+          const box = char.getBoundingClientRect();
+          const dx = box.left + box.width / 2 - pointer.x;
+          const dy = box.top + box.height / 2 - pointer.y;
+          axes = letterAxes(Math.hypot(dx, dy), this.radius, this.allowWeight);
+        }
+        char.style.setProperty("--wght", axes.wght);
+        char.style.setProperty("--rond", axes.rond);
+      }
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(render);
+    };
+    const follow = (event) => {
+      pointer = { x: event.clientX, y: event.clientY };
+      schedule();
+    };
+    // A tap on touch screens rounds the letters under the finger.
+    area.addEventListener("pointerdown", follow);
+    area.addEventListener("pointermove", (event) => {
+      pointer = { x: event.clientX, y: event.clientY };
+      schedule();
+    });
+    area.addEventListener("pointerleave", () => {
+      pointer = null;
+      schedule();
+    });
+    area.addEventListener("pointercancel", () => {
+      pointer = null;
+      schedule();
+    });
+  },
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   ThemeManager.init();
+  HeadlineType.init();
   initNavigation();
-  initContactForm();
-  initWorkflow();
   initFadeAnimations();
 });

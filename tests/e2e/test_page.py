@@ -1,5 +1,8 @@
 """Page-level checks: loading, assets, layout, downloads, and the no-JavaScript fallback."""
 
+import re
+from pathlib import Path
+
 import pytest
 from playwright.sync_api import Page, expect
 
@@ -73,12 +76,41 @@ def test_not_found_page_links_home(page: Page, browser_problems: list[str]):
 def test_content_stays_usable_without_javascript(page: Page):
     page.goto("/")
 
+    expect(page.get_by_role("heading", level=1)).to_have_text("QA Engineer.Python Automation.")
     expect(page.get_by_role("heading", name="iOS UI Automation Framework")).to_be_visible()
-    # Both workflow panels show, and the JavaScript-only controls stay hidden.
-    expect(page.get_by_role("heading", name="Manual restoration")).to_be_visible()
-    expect(page.get_by_role("heading", name="Automated restoration")).to_be_visible()
-    expect(page.locator(".workflow-switch")).to_be_hidden()
-    expect(page.locator("#contact-form")).to_be_hidden()
+    expect(page.get_by_role("heading", name="This site is tested")).to_be_visible()
     expect(page.get_by_role("button", name="Menu")).to_be_hidden()
-    # The direct email link is the fallback for the draft form.
     expect(page.get_by_role("link", name="collinsjulius@gmail.com")).to_be_visible()
+
+def test_allo_font_loads_and_renders_the_page(page: Page):
+    page.goto("/")
+    loaded = page.evaluate(
+        """async () => {
+            await document.fonts.ready;
+            return [...document.fonts].some(
+                (face) => face.family.replaceAll('"', "") === "Allo" && face.status === "loaded"
+            );
+        }"""
+    )
+
+    assert loaded, "Allo did not load"
+    family = page.get_by_role("heading", level=1).evaluate("el => getComputedStyle(el).fontFamily")
+    assert family.startswith('"Allo"') or family.startswith("Allo")
+
+
+def count_node_tests() -> int:
+    source = (Path(__file__).resolve().parents[1] / "main.test.cjs").read_text()
+    return len(re.findall(r"(?m)^test\(", source))
+
+
+def test_tested_panel_shows_the_real_number_of_checks(page: Page, request: pytest.FixtureRequest):
+    """The page says how many checks run; this keeps that number honest."""
+    session = request.session
+    if len(session.items) != session.testscollected or request.config.option.keyword:
+        pytest.skip("Only meaningful when the whole browser suite runs")
+    expected = len(session.items) + count_node_tests()
+
+    page.goto("/")
+    shown = page.locator("[data-test-count]").inner_text()
+
+    assert int(shown) == expected, f"Update data-test-count in index.html to {expected}"

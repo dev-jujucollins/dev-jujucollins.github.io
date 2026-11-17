@@ -42,93 +42,6 @@ class Element {
   }
 }
 
-test("contact draft encodes special characters and rejects invalid input", () => {
-  const context = load();
-  const url = new URL(
-    context.buildContactDraft(
-      " Jules & Co ",
-      "jules@example.com",
-      "Hello?\nRésumé & #1",
-    ),
-  );
-  assert.equal(url.protocol, "mailto:");
-  assert.equal(url.pathname, "collinsjulius@gmail.com");
-  assert.equal(
-    url.searchParams.get("subject"),
-    "Portfolio Contact from Jules & Co",
-  );
-  assert.match(url.searchParams.get("body"), /Hello\?\nRésumé & #1/);
-  assert.equal(
-    context.buildContactDraft("  ", "jules@example.com", "Hi"),
-    null,
-  );
-  assert.equal(context.buildContactDraft("Jules", "not-an-email", "Hi"), null);
-  assert.equal(
-    context.buildContactDraft("Jules", "jules@example.com", "  "),
-    null,
-  );
-});
-
-test("email handoff preserves entered fields and does not claim delivery", () => {
-  const fields = {
-    "#contact-name": new Element("Jules"),
-    "#contact-email": new Element("jules@example.com"),
-    "#contact-message": new Element("Keep this message"),
-    ".form-status": new Element(),
-    'button[type="submit"]': new Element(),
-  };
-  const form = new Element();
-  form.hidden = true;
-  form.querySelector = (selector) => fields[selector];
-  form.reset = () => assert.fail("Draft fields must not be cleared");
-  const context = load({
-    document: { addEventListener() {}, getElementById: () => form },
-    window: { location: {} },
-  });
-  context.initContactForm();
-  assert.equal(form.hidden, false);
-  assert.equal(fields['button[type="submit"]'].disabled, false);
-  form.fire("submit");
-  assert.match(context.window.location.href, /^mailto:/);
-  assert.equal(fields["#contact-message"].value, "Keep this message");
-  assert.match(fields[".form-status"].textContent, /Review and send/);
-});
-
-test("invalid drafts and failed email handoffs keep the message available", () => {
-  for (const name of ["   ", "Jules"]) {
-    const fields = {
-      "#contact-name": new Element(name),
-      "#contact-email": new Element("jules@example.com"),
-      "#contact-message": new Element("Keep this message"),
-      ".form-status": new Element(),
-      'button[type="submit"]': new Element(),
-    };
-    const form = new Element();
-    form.querySelector = (selector) => fields[selector];
-    const location = {};
-    let handoffs = 0;
-    Object.defineProperty(location, "href", {
-      set() {
-        handoffs += 1;
-        throw Error("Email app unavailable");
-      },
-    });
-    const context = load({
-      document: { addEventListener() {}, getElementById: () => form },
-      window: { location },
-    });
-    context.initContactForm();
-    form.fire("submit");
-    assert.equal(handoffs, name.trim() ? 1 : 0);
-    assert.equal(fields["#contact-message"].value, "Keep this message");
-    assert.equal(fields[".form-status"].className, "form-status error");
-    assert.match(
-      fields[".form-status"].textContent,
-      name.trim() ? /Use the email link/ : /Enter your name/,
-    );
-  }
-});
-
 test("theme follows system until explicitly chosen and tolerates blocked storage", () => {
   const toggle = new Element();
   let systemChange;
@@ -165,30 +78,6 @@ test("theme follows system until explicitly chosen and tolerates blocked storage
   systemChange({ matches: true });
   assert.equal(document.documentElement.dataset.theme, "light");
   assert.equal(toggle.attributes["aria-label"], "Switch to dark theme");
-});
-
-test("workflow selection switches panels and preserves accessible native controls", () => {
-  const fieldset = new Element();
-  const selection = new Element("manual");
-  const panels = {
-    "workflow-manual": new Element(),
-    "workflow-automated": new Element(),
-  };
-  fieldset.querySelector = () => selection;
-  const context = load({
-    document: {
-      addEventListener() {},
-      querySelector: () => fieldset,
-      getElementById: (id) => panels[id],
-    },
-  });
-  context.initWorkflow();
-  assert.equal(panels["workflow-manual"].hidden, false);
-  assert.equal(panels["workflow-automated"].hidden, true);
-  selection.value = "automated";
-  fieldset.fire("change");
-  assert.equal(panels["workflow-manual"].hidden, true);
-  assert.equal(panels["workflow-automated"].hidden, false);
 });
 
 test("Escape closes a pointer-opened menu when focus stays outside navigation", () => {
@@ -237,7 +126,7 @@ test("primary navigation matches the remaining page sections", () => {
   const nav = [...html.matchAll(/<a href="#([^"]+)" class="nav-link"/g)].map(
     (match) => match[1],
   );
-  assert.deepEqual(sections, ["projects", "skills", "experience", "contact"]);
+  assert.deepEqual(sections, ["projects", "experience", "testing", "contact"]);
   assert.deepEqual(nav, sections);
 });
 
@@ -265,24 +154,12 @@ test("every local page link and media asset resolves; fragment IDs are unique", 
   }
 });
 
-test("contact retains visible labels and a usable no-JavaScript fallback", () => {
+test("contact offers direct links and no form", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-  const form = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/)?.[0];
-  assert.ok(form);
-  assert.match(form, /^<form\b[^>]*\bhidden\b/);
-  assert.doesNotMatch(form, /\bplaceholder=/);
-  for (const id of ["contact-name", "contact-email", "contact-message"]) {
-    assert.match(form, new RegExp(`<label for="${id}">[^<]+</label>`));
-    assert.match(
-      form,
-      new RegExp(`<(?:input|textarea)\\b[^>]*id="${id}"[^>]*required`),
-    );
-  }
-  assert.match(form, /Open email draft/);
+  assert.doesNotMatch(html, /<form\b/);
   assert.match(html, /href="mailto:collinsjulius@gmail.com" class="contact-method"/);
-  for (const mode of ["manual", "automated"]) {
-    assert.match(html, new RegExp(`<div id="workflow-${mode}">`));
-  }
+  assert.match(html, /href="https:\/\/linkedin.com\/in\/jujucollins"/);
+  assert.match(html, /href="https:\/\/github.com\/dev-jujucollins"/);
 });
 
 test("external project links have distinct accessible names and safe targets", () => {
@@ -405,7 +282,8 @@ test("touch icon and profile photo are the expected sizes", () => {
 });
 
 test("every file in assets/ is used by a page", () => {
-  const pages = ["index.html", "404.html"]
+  // Fonts are referenced from the stylesheet; license files ship beside them.
+  const pages = ["index.html", "404.html", "styles/main.css"]
     .map((page) => fs.readFileSync(path.join(root, page), "utf8"))
     .join("\n");
   const walk = (dir) =>
@@ -414,8 +292,35 @@ test("every file in assets/ is used by a page", () => {
       return entry.isDirectory() ? walk(full) : [full];
     });
   const unused = walk(path.join(root, "assets"))
-    .filter((file) => path.basename(file) !== ".DS_Store")
+    .filter((file) => ![".DS_Store", "OFL.txt"].includes(path.basename(file)))
     .map((file) => path.relative(root, file).split(path.sep).join("/"))
     .filter((file) => !pages.includes(file));
   assert.deepEqual(unused, [], "Remove unused assets or link them from a page");
+});
+
+test("self-hosted font is preloaded, licensed, and a compact WOFF2", () => {
+  const html = fs.readFileSync(path.join(root, "index.html"), "utf8").replace(/\s+/g, " ");
+  const css = fs.readFileSync(path.join(root, "styles/main.css"), "utf8");
+  const font = "assets/fonts/allo-latin.woff2";
+  assert.match(css, /url\("\.\.\/assets\/fonts\/allo-latin\.woff2"\)/);
+  assert.match(css, /font-display: swap;/);
+  assert.match(
+    html,
+    /<link rel="preload" href="\.\/assets\/fonts\/allo-latin\.woff2" as="font" type="font\/woff2" crossorigin \/>/,
+  );
+  const data = fs.readFileSync(path.join(root, font));
+  assert.equal(data.toString("ascii", 0, 4), "wOF2");
+  assert.ok(data.length < 260_000, "Font subset exceeds 260 KB");
+  assert.match(fs.readFileSync(path.join(root, "assets/fonts/OFL.txt"), "utf8"), /SIL Open Font License/);
+});
+
+test("headline letters round off near the pointer and only gain weight with a precise pointer", () => {
+  const { letterAxes } = load();
+  assert.deepEqual({ ...letterAxes(0, 140, true) }, { wght: 800, rond: 100 });
+  assert.deepEqual({ ...letterAxes(0, 140, false) }, { wght: 650, rond: 100 });
+  assert.deepEqual({ ...letterAxes(140, 140, true) }, { wght: 650, rond: 50 });
+  assert.deepEqual({ ...letterAxes(500, 140, true) }, { wght: 650, rond: 50 });
+  const near = letterAxes(35, 140, true);
+  const far = letterAxes(105, 140, true);
+  assert.ok(near.rond > far.rond && near.wght > far.wght, "Effect should fade with distance");
 });

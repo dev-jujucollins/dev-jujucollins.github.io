@@ -7,8 +7,8 @@ from playwright.sync_api import Page, expect
 
 SECTIONS = [
     ("Work", "projects"),
-    ("Approach", "skills"),
     ("Experience", "experience"),
+    ("Testing", "testing"),
     ("Contact", "contact"),
 ]
 

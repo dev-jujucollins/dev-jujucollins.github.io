@@ -1,5 +1,8 @@
 .DS_Store
 
+# Full-size source images (only optimized copies ship)
+originals/
+
 # Python test tooling
 .venv/
 __pycache__/

@@ -1,8 +1,19 @@
 /* ==========================================================================
    Julius Collins — Portfolio
-   Apple-inspired design language: system type, generous whitespace,
-   neutral surfaces, a single blue accent, pill buttons, large-radius cards.
+   Route-map design language: Allo type, map-paper surfaces, road-sign
+   navy ink, California freeway-sign green, and Experience drawn as a route.
    ========================================================================== */
+
+/* Allo 1.0.1 by Josh Puckett (SIL Open Font License 1.1, see
+   assets/fonts/OFL.txt). Variable weight (400-800), roundness (0-100), and
+   optical size, subset to Latin, punctuation, and arrows. */
+@font-face {
+  font-family: "Allo";
+  src: url("../assets/fonts/allo-latin.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* --------------------------------------------------------------------------
    Design tokens
@@ -10,8 +21,8 @@
 :root {
   /* Type */
   --font-primary:
-    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
+    "Allo", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
   --font-mono:
     ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
@@ -41,52 +52,54 @@
   --nav-height: 48px;
 }
 
-/* Light theme (default surfaces mirror apple.com) */
+/* Light theme: map paper, road-sign navy, freeway-sign green */
 :root,
 [data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f7;
+  --bg-primary: #f3f5f1;
+  --bg-secondary: #e8ece6;
   --bg-card: #ffffff;
-  --bg-card-alt: #f5f5f7;
-  --bg-nav: rgba(255, 255, 255, 0.8);
+  --bg-card-alt: #e8ece6;
+  --bg-nav: rgba(243, 245, 241, 0.85);
   --bg-input: #ffffff;
 
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #636369;
+  --text-primary: #14213a;
+  --text-secondary: #4f5b6e;
+  --text-tertiary: #556175;
 
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
-  --link: #0066cc;
+  --accent: #0b6b4e;
+  --accent-hover: #095c43;
+  --link: #0a6347;
+  --route: #0b6b4e;
 
-  --separator: #d2d2d7;
-  --focus-ring: rgba(0, 125, 250, 0.6);
+  --separator: #cdd5cc;
+  --focus-ring: rgba(11, 107, 78, 0.55);
 
-  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 11px 34px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 4px 16px rgba(20, 33, 58, 0.05);
+  --shadow-card-hover: 0 11px 34px rgba(20, 33, 58, 0.14);
 }
 
 [data-theme="dark"] {
-  --bg-primary: #000000;
-  --bg-secondary: #161617;
-  --bg-card: #1d1d1f;
-  --bg-card-alt: #1d1d1f;
-  --bg-nav: rgba(22, 22, 23, 0.8);
-  --bg-input: #1d1d1f;
+  --bg-primary: #0e1624;
+  --bg-secondary: #142033;
+  --bg-card: #1a2840;
+  --bg-card-alt: #1a2840;
+  --bg-nav: rgba(14, 22, 36, 0.85);
+  --bg-input: #1a2840;
 
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-tertiary: #86868b;
+  --text-primary: #edf1f6;
+  --text-secondary: #a9b4c6;
+  --text-tertiary: #97a3b7;
 
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
-  --link: #2997ff;
+  --accent: #0b6b4e;
+  --accent-hover: #0d7a59;
+  --link: #5ccb9e;
+  --route: #2fa77a;
 
-  --separator: #424245;
-  --focus-ring: rgba(41, 151, 255, 0.7);
+  --separator: #2c3b55;
+  --focus-ring: rgba(92, 203, 158, 0.7);
 
-  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-card-hover: 0 11px 34px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 11px 34px rgba(0, 0, 0, 0.5);
 }
 
 /* --------------------------------------------------------------------------
@@ -109,7 +122,7 @@ body {
   font-family: var(--font-primary);
   font-size: 17px;
   line-height: 1.47;
-  letter-spacing: -0.022em;
+  letter-spacing: 0;
   color: var(--text-primary);
   background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
@@ -253,7 +266,8 @@ main:focus {
   line-height: 1.25;
   transition:
     background-color var(--transition-fast),
-    transform var(--transition-fast);
+    transform var(--transition-fast),
+    font-variation-settings var(--transition-normal);
 }
 .btn:hover {
   text-decoration: none;
@@ -298,9 +312,9 @@ button:disabled {
 }
 .section-headline {
   font-size: clamp(32px, 4.6vw, 52px);
-  font-weight: 700;
+  font-weight: 650;
   line-height: 1.1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.0175em;
 }
 .hero-section {
   padding: calc(var(--nav-height) + 64px) var(--space-md) 64px;
@@ -336,8 +350,24 @@ button:disabled {
 .hero-headline {
   font-size: clamp(38px, 4.8vw, 60px);
   line-height: 1.04;
-  letter-spacing: -0.045em;
-  font-weight: 700;
+  letter-spacing: -0.0225em;
+  font-weight: 650;
+}
+/* Letters set by scripts/main.js: each reads its own weight and roundness. */
+.headline-char {
+  font-variation-settings:
+    "wght" var(--wght, 650),
+    "ROND" var(--rond, 50);
+  transition: font-variation-settings 0.18s ease-out;
+}
+.hero-headline.is-settling .headline-char {
+  --wght: 480;
+  --rond: 100;
+  transition: none;
+}
+.hero-headline.is-arriving .headline-char {
+  transition: font-variation-settings 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(var(--i) * 18ms);
 }
 .hero-summary {
   max-width: 34em;
@@ -371,7 +401,7 @@ button:disabled {
   padding: 24px;
   font-size: clamp(21px, 2.4vw, 28px);
   line-height: 1.2;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.0125em;
 }
 .feature-title span {
   color: var(--link);
@@ -384,7 +414,7 @@ button:disabled {
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--separator);
-  background: #0b1425;
+  background: #14213a;
 }
 /* Show the route at a readable size instead of shrinking the whole phone. */
 .feature-preview img {
@@ -409,10 +439,10 @@ button:disabled {
 .case-intro h3 {
   font-size: clamp(28px, 3vw, 38px);
   line-height: 1.12;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.0125em;
   margin-bottom: 20px;
 }
-.case-intro > p:not(.case-result) {
+.case-intro > p {
   color: var(--text-secondary);
 }
 .case-stats {
@@ -429,9 +459,9 @@ button:disabled {
 }
 .case-stats dd {
   font-size: 44px;
-  font-weight: 700;
+  font-weight: 650;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   color: var(--link);
 }
 .case-stats dt {
@@ -494,83 +524,7 @@ button:disabled {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.case-result {
-  margin: 28px 0 12px;
-  font-size: 17px;
-}
-.case-result strong {
-  display: block;
-  font-size: 64px;
-  letter-spacing: -0.05em;
-  line-height: 1.1;
-  color: var(--link);
-}
-.project-note {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-.workflow {
-  min-width: 0;
-  padding: clamp(24px, 4vw, 44px);
-  background: var(--bg-secondary);
-}
-.workflow-switch {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  border: 0;
-  margin-bottom: 24px;
-}
-.workflow-switch label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border: 1px solid var(--separator);
-  border-radius: var(--radius-full);
-  font-size: 14px;
-  cursor: pointer;
-}
-.workflow-switch label:has(input:checked) {
-  border-color: var(--link);
-  color: var(--link);
-  background: var(--bg-primary);
-}
-.workflow-switch input {
-  accent-color: var(--accent);
-  width: 16px;
-  height: 16px;
-}
-.workflow h4 {
-  font-size: 22px;
-  line-height: 1.25;
-  margin-bottom: 22px;
-}
-.workflow-switch:not([hidden]) ~ div h4 {
-  display: none;
-}
-.workflow-steps {
-  list-style: none;
-  counter-reset: step;
-  margin-bottom: 24px;
-}
-.workflow-steps li {
-  counter-increment: step;
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 16px 0;
-  border-top: 1px solid var(--separator);
-  font-size: 16px;
-}
-.workflow-steps li::before {
-  content: "0" counter(step);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-tertiary);
-}
-.projects-grid,
-.skills-grid {
+.projects-grid {
   max-width: var(--content-width);
   margin: auto;
   display: grid;
@@ -628,18 +582,9 @@ button:disabled {
   margin-top: auto;
   font-size: 16px;
 }
-.skill-card {
-  min-width: 0;
-  padding: 24px 0;
-  border-top: 1px solid var(--separator);
-}
-.skill-card h3 {
+.tech-title {
+  margin-bottom: 14px;
   font-size: 22px;
-  margin-bottom: 12px;
-}
-.skill-card p {
-  color: var(--text-secondary);
-  font-size: 16px;
 }
 .tech-strip {
   max-width: var(--content-width);
@@ -656,23 +601,60 @@ button:disabled {
 .tech-list li {
   font-size: 14px;
   padding: 8px 14px;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border-radius: var(--radius-full);
 }
 .experience-list {
   max-width: var(--content-width);
   margin: auto;
 }
+/* Experience reads as a route: one continuous line with a stop per role. */
 .experience-item {
+  position: relative;
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 30px;
-  padding: 32px 0;
-  border-top: 1px solid var(--separator);
+  padding: 32px 0 32px 48px;
+}
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--route);
+}
+.experience-item:first-child::before {
+  top: 38px;
+  border-radius: 3px 3px 0 0;
+}
+.experience-item:last-child::before {
+  bottom: auto;
+  height: 38px;
+}
+.experience-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 32px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 6px solid var(--route);
+}
+.section-alt .experience-item::after {
+  background: var(--bg-secondary);
+}
+.section-alt .experience-item:first-child::after,
+.experience-item:first-child::after {
+  background: var(--route);
 }
 .experience-duration {
   color: var(--text-tertiary);
-  font-size: 14px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
 }
 .experience-content h3 {
   font-size: 26px;
@@ -696,14 +678,61 @@ button:disabled {
 .contact-container {
   max-width: var(--content-width);
   margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
 }
 .contact-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+/* "This site is tested": the count is checked against the suites by
+   tests/e2e/test_page.py, so it cannot drift. */
+.tested {
+  max-width: var(--content-width);
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: start;
+}
+.tested-count {
+  font-size: 19px;
+  color: var(--text-secondary);
+}
+.tested-count strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: clamp(64px, 9vw, 104px);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--link);
+}
+.tested-list {
+  list-style: none;
+}
+.tested-list li {
+  position: relative;
+  padding: 14px 0 14px 32px;
+  border-top: 1px solid var(--separator);
+  color: var(--text-secondary);
+}
+/* A small route stop, matching the Experience line. */
+.tested-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 4px solid var(--route);
+}
+.tested-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 20px;
 }
 .contact-method {
   display: flex;
@@ -725,52 +754,6 @@ button:disabled {
   height: 20px;
   flex-shrink: 0;
   color: var(--link);
-}
-.contact-form,
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-.contact-form {
-  gap: 20px;
-}
-.form-group label {
-  font-weight: 600;
-  font-size: 14px;
-}
-.form-group input,
-.form-group textarea {
-  min-width: 0;
-  font: inherit;
-  padding: 14px 16px;
-  background: var(--bg-input);
-  color: var(--text-primary);
-  border: 1px solid var(--separator);
-  border-radius: var(--radius-md);
-}
-.form-group textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-.form-submit {
-  align-self: flex-start;
-}
-.form-status:empty {
-  display: none;
-}
-.form-status {
-  padding: 14px;
-  border: 1px solid var(--separator);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-}
-.form-status.error {
-  color: #bd1b27;
-}
-[data-theme="dark"] .form-status.error {
-  color: #ff8992;
 }
 .footer-section {
   padding: 28px var(--space-md);
@@ -849,9 +832,6 @@ button:disabled {
   .hero-identity {
     flex-wrap: wrap;
   }
-  .contact-container {
-    gap: 28px;
-  }
 }
 @media (max-width: 760px) {
   .globalnav-content {
@@ -884,7 +864,8 @@ button:disabled {
   }
   .hero-layout,
   .case-study,
-  .contact-container {
+  .tested,
+  .contact-info {
     grid-template-columns: minmax(0, 1fr);
   }
   .hero-identity {
@@ -909,8 +890,7 @@ button:disabled {
   .section {
     padding: 64px var(--space-md);
   }
-  .projects-grid,
-  .skills-grid {
+  .projects-grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .project-card {
@@ -930,6 +910,20 @@ button:disabled {
     width: 100%;
   }
 }
+/* Allo's roundness axis: links and buttons soften on hover and focus.
+   Roundness does not change letter widths, so nothing shifts. */
+/* :is() lifts this above `.btn { font: inherit }`, which resets the axis. */
+:is(a, button, .btn) {
+  font-variation-settings: "ROND" 50;
+}
+a,
+button {
+  transition: font-variation-settings var(--transition-normal);
+}
+:is(a, button, .btn):is(:hover, :focus-visible) {
+  font-variation-settings: "ROND" 100;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -954,3 +948,6 @@ button:disabled {
     --separator: #a1a1a6;
   }
 }
+
+/* Even-width digits wherever numbers are compared. */
+.case-stats dd,

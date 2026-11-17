@@ -11,12 +11,12 @@
     <meta name="author" content="Julius Collins" />
     <meta
       name="theme-color"
-      content="#ffffff"
+      content="#f3f5f1"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#000000"
+      content="#0e1624"
       media="(prefers-color-scheme: dark)"
     />
     <link rel="canonical" href="https://dev-jujucollins.github.io/" />
@@ -113,7 +113,14 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <link rel="stylesheet" href="./styles/main.css?v=20261105" />
+    <link
+      rel="preload"
+      href="./assets/fonts/allo-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./styles/main.css?v=20261117c" />
     <noscript>
       <style>
         @media (max-width: 760px) {
@@ -140,10 +147,10 @@
         </button>
         <div class="globalnav-links" id="nav-links">
           <a href="#projects" class="nav-link" data-section="projects">Work</a>
-          <a href="#skills" class="nav-link" data-section="skills">Approach</a>
           <a href="#experience" class="nav-link" data-section="experience"
             >Experience</a
           >
+          <a href="#testing" class="nav-link" data-section="testing">Testing</a>
           <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </div>
         <button
@@ -210,7 +217,7 @@
             <div class="hero-cta">
               <a href="#projects" class="btn btn-primary">View work</a>
               <a
-                href="./assets/resume/JuliusCollins_Resume_External.pdf"
+                href="./assets/resume/Julius_Collins_Resume.pdf"
                 download
                 class="btn btn-secondary"
                 aria-label="Download Resume PDF"
@@ -338,53 +345,6 @@
           </figure>
         </article>
 
-        <article
-          class="case-study case-study--workflow fade-in"
-          aria-labelledby="case-lab-title"
-        >
-          <div class="case-intro">
-            <h3 id="case-lab-title">Device restoration automation</h3>
-            <p>
-              A Python tool that streamlines restoration across 30+ lab devices.
-            </p>
-            <p class="case-result">
-              <strong>~40%</strong> less manual test setup time
-            </p>
-            <p class="project-note">Internal Apple tool; code isn't public.</p>
-          </div>
-          <div class="workflow">
-            <fieldset class="workflow-switch" hidden>
-              <legend class="sr-only">Compare lab preparation workflows</legend>
-              <label
-                ><input type="radio" name="workflow" value="manual" checked />
-                Manual</label
-              >
-              <label
-                ><input type="radio" name="workflow" value="automated" />
-                Automated</label
-              >
-            </fieldset>
-            <div id="workflow-manual">
-              <h4>Manual restoration</h4>
-              <ol class="workflow-steps">
-                <li>Identify the device and target configuration.</li>
-                <li>Start restoration manually.</li>
-                <li>Check the result before the next device.</li>
-                <li>Repeat preparation across the test rack.</li>
-              </ol>
-            </div>
-            <div id="workflow-automated">
-              <h4>Automated restoration</h4>
-              <ol class="workflow-steps">
-                <li>Select the devices and intended configuration.</li>
-                <li>Run the restoration workflow.</li>
-                <li>Review results and investigate exceptions.</li>
-              </ol>
-            </div>
-            <p class="project-note">Illustrative workflow.</p>
-          </div>
-        </article>
-
         <div class="projects-grid fade-in">
           <article class="project-card" data-tags="python price-monitoring alerts">
             <div class="project-media">
@@ -479,59 +439,10 @@
         </div>
       </section>
 
-      <!-- Skills -->
-      <section
-        id="skills"
-        class="section section-alt"
-        aria-labelledby="skills-title"
-      >
-        <div class="section-header fade-in">
-          <h2 id="skills-title" class="section-headline">Approach</h2>
-        </div>
-
-        <div class="skills-grid fade-in">
-          <article class="skill-card">
-            <h3>Reproduce the problem</h3>
-            <p>
-              Pin down the environment, collect logs, and write clear steps so
-              the failure can be investigated consistently.
-            </p>
-          </article>
-          <article class="skill-card">
-            <h3>Automate the repetition</h3>
-            <p>
-              Turn recurring setup and checks into reusable Python tools,
-              keeping inputs and results easy to inspect.
-            </p>
-          </article>
-          <article class="skill-card">
-            <h3>Protect the fix</h3>
-            <p>
-              Add regression coverage, check relevant device configurations, and
-              document what the test does and does not cover.
-            </p>
-          </article>
-        </div>
-
-        <div class="tech-strip fade-in">
-          <ul class="tech-list" aria-label="Technologies and tools">
-            <li>Python</li>
-            <li>Pytest</li>
-            <li>Selenium</li>
-            <li>Playwright</li>
-            <li>Appium</li>
-            <li>GitHub Actions</li>
-            <li>Postman</li>
-            <li>Git</li>
-            <li>Unix/Linux</li>
-          </ul>
-        </div>
-      </section>
-
       <!-- Experience -->
       <section
         id="experience"
-        class="section"
+        class="section section-alt"
         aria-labelledby="experience-title"
       >
         <div class="section-header fade-in">
@@ -548,17 +459,12 @@
               <p class="experience-company">Universal Music Group</p>
               <ul class="experience-achievements">
                 <li>
-                  Provide front-line and remote support across hardware,
-                  software, and conferencing systems in a hybrid enterprise
-                  environment
+                  Configure, deploy, and maintain Mac and PC systems using Jamf,
+                  SCCM/Intune, and ServiceNow
                 </li>
                 <li>
-                  Configure, deploy, and maintain Mac and PC systems using
-                  Jamf, SCCM/Intune, and ServiceNow
-                </li>
-                <li>
-                  Test and validate tools before rollout, documenting best
-                  practices and ensuring operational readiness
+                  Test and validate new tools and applications before rollout,
+                  documenting best practices and ensuring operational readiness
                 </li>
               </ul>
             </div>
@@ -575,20 +481,24 @@
               </p>
               <ul class="experience-achievements">
                 <li>
-                  Ran daily display and video regression checks across multiple
-                  iOS software trains using manual and automated methods
+                  Executed daily display- and video-focused regression testing
+                  across multiple iOS software trains using manual and automated
+                  test methods
                 </li>
                 <li>
-                  Documented, triaged, and escalated defects through Radar to
-                  cross-functional teams
+                  Documented, triaged, and escalated bugs through Radar to cross-
+                  functional teams, reducing post-release defects through earlier
+                  identification
                 </li>
                 <li>
-                  Built a Python script to restore test racks across 30+
-                  devices, reducing manual setup time by approximately 40%
+                  Developed a Python automation script to restore test racks
+                  across 30+ devices, reducing manual test setup time by
+                  approximately 40% and accelerating daily regression cycles
                 </li>
                 <li>
-                  Maintained 95–100% automated test coverage while migrating
-                  iOS automation from Ruby/UIA2 to Python and the Quick API
+                  Maintained 95–100% automated test coverage across sprints while
+                  migrating iOS test automation from Ruby/UIA2 to Python and the
+                  Quick API framework
                 </li>
               </ul>
             </div>
@@ -605,20 +515,23 @@
               </p>
               <ul class="experience-achievements">
                 <li>
-                  Collaborated with developers, engineers, and product managers
-                  on test cases and sprint test plans
+                  Collaborated cross-functionally with developers, engineers, and
+                  product managers on test case development and execution of test
+                  plans for each sprint
                 </li>
                 <li>
-                  Ran daily regression checks for the Azul software train
-                  across internal products and services
+                  Performed daily regression testing for the Azul software train
+                  across products, services, and internal applications including
+                  Mobile Genius, Repair Central, and diagnostics.apple.com
                 </li>
                 <li>
-                  Evaluated test results and triaged defects through Radar
+                  Evaluated test results, reported defects, and triaged bugs using
+                  Radar
                 </li>
                 <li>
-                  Built on-device and web test automation for Apple Service
-                  Toolkit 2 using Python, Selenium, Device Compute, and the
-                  Quick API
+                  Created automation scripts for on-device and web-based
+                  application testing of the Apple Service Toolkit 2 platform
+                  using Python, Selenium, Device Compute, and the Quick API
                 </li>
               </ul>
             </div>
@@ -634,15 +547,78 @@
               <ul class="experience-achievements">
                 <li>
                   Diagnosed and resolved complex hardware and software issues
-                  across Apple's product line
-                </li>
-                <li>
-                  Earned certifications to troubleshoot and repair current
-                  Apple devices
+                  across Apple's product line, applying systematic troubleshooting
+                  methodologies directly applicable to QA root cause analysis
                 </li>
               </ul>
             </div>
           </article>
+        </div>
+
+        <div class="tech-strip fade-in">
+          <h3 id="tools-title" class="tech-title">Tools</h3>
+          <ul class="tech-list" aria-labelledby="tools-title">
+            <li>Python</li>
+            <li>Pytest</li>
+            <li>Selenium</li>
+            <li>Playwright</li>
+            <li>Appium</li>
+            <li>GitHub Actions</li>
+            <li>Postman</li>
+            <li>Git</li>
+            <li>Unix/Linux</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- This site's own test suite -->
+      <section id="testing" class="section" aria-labelledby="testing-title">
+        <div class="section-header fade-in">
+          <h2 id="testing-title" class="section-headline">This site is tested</h2>
+        </div>
+
+        <div class="tested fade-in">
+          <p class="tested-count">
+            <strong data-test-count>43</strong>
+            automated checks run on every push. The site only deploys when all
+            of them pass.
+          </p>
+          <div class="tested-detail">
+            <ul class="tested-list">
+              <li>
+                Accessibility scans with axe-core in light and dark mode, at
+                desktop and phone sizes
+              </li>
+              <li>
+                Keyboard and screen reader paths: the skip link, the phone
+                menu, and the headline's spoken text
+              </li>
+              <li>
+                No console errors, failed requests, broken links, or unused
+                files
+              </li>
+              <li>
+                Theme choice, navigation, reactive type, and reduced motion
+              </li>
+              <li>Link previews, image sizes, and the self-hosted font</li>
+            </ul>
+            <p class="tested-links">
+              <a
+                href="https://github.com/dev-jujucollins/dev-jujucollins.github.io/actions/workflows/site.yml"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >Latest test run on GitHub <span aria-hidden="true">↗</span></a
+              >
+              <a
+                href="https://github.com/dev-jujucollins/dev-jujucollins.github.io/tree/main/tests"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                >Read the tests <span aria-hidden="true">↗</span></a
+              >
+            </p>
+          </div>
         </div>
       </section>
 
@@ -700,46 +676,6 @@
               <span>LinkedIn</span>
             </a>
           </div>
-
-          <form
-            id="contact-form"
-            class="contact-form"
-            aria-labelledby="contact-title"
-            hidden
-          >
-            <div class="form-group">
-              <label for="contact-name">Name</label>
-              <input
-                type="text"
-                id="contact-name"
-                name="name"
-                autocomplete="name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="contact-email">Email</label>
-              <input
-                type="email"
-                id="contact-email"
-                name="email"
-                autocomplete="email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="contact-message">Message</label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-              ></textarea>
-            </div>
-            <div class="form-status" role="status" aria-live="polite"></div>
-            <button type="submit" class="btn btn-primary form-submit" disabled>
-              Open email draft
-            </button>
-          </form>
         </div>
       </section>
 
@@ -760,6 +696,6 @@
       </footer>
     </main>
 
-    <script src="./scripts/main.js?v=20261023"></script>
+    <script src="./scripts/main.js?v=20261117c"></script>
   </body>
 </html>

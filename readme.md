@@ -22,8 +22,8 @@ node --test tests/main.test.cjs
 node --check scripts/main.js
 ```
 
-They cover page navigation, contact-draft encoding and text preservation,
-workflow comparison, system theme changes, blocked storage, local links,
+They cover page navigation, contact links, system theme changes, blocked
+storage, local links,
 link-preview tags and image sizes, and unused files in `assets/`.
 
 ### Browser tests
@@ -40,8 +40,8 @@ uv run pytest
 
 They check that the page loads without console errors or failed requests, the
 resume downloads, the skip link moves focus, the theme follows the system and
-remembers a choice, desktop and phone navigation work, the contact form builds
-an encoded draft, the workflow switch toggles panels, and the content still
+remembers a choice, desktop and phone navigation work, the headline and buttons
+react to the pointer (and stay still with reduced motion), and the content still
 works without JavaScript. axe-core scans the page in both themes at desktop and
 phone sizes. A failing test saves a trace and screenshot under `test-results/`;
 open a trace with `uv run playwright show-trace <path-to-trace.zip>`.
@@ -69,27 +69,27 @@ Pages source in Settings → Pages → Build and deployment.
   Native playback controls are retained, with no autoplay and `preload="none"`.
   The source project also covers Settings, Calendar,
   and Messages. The earlier full-suite report remains linked below the recording.
-- **Workflow comparison:** simplified manual and automated restoration steps.
-  The displayed time reduction comes from the existing internal-tool project.
-- **Contact:** creates a mailto draft in the visitor's email app. It does not
-  deliver mail or clear the entered message.
+- **This site is tested:** the number of automated checks shown on the page is
+  verified by `test_tested_panel_shows_the_real_number_of_checks`, which fails
+  with the correct number whenever tests are added or removed. Update
+  `data-test-count` in `index.html` to match.
 
 The eBay and Valorant card images are dated snapshots from local project runs.
 The eBay image uses a real listing average and a clearly marked illustrative
 target; no price alert was sent. Each card links to a larger version of its
 capture.
 
-Core portfolio content remains readable without JavaScript. Both workflow
-panels remain visible; the switch and contact draft form appear only after
-initialization. A direct email link remains available.
+Core portfolio content remains readable without JavaScript.
 
 ## Content and layout
 
 Use project names and concrete facts as headings and body copy. Avoid taglines,
 repeated summaries, numbered eyebrows, and instructions that repeat a control's
-label. Keep visible form labels, accessible link names, and qualifications that
+label. Keep accessible link names and qualifications that
 explain recorded demos or reported results.
 
 Use the shared design tokens and components in `styles/main.css`, including the
 404 page. Keep mobile header spacing stable during initialization and readable
 without JavaScript. The site needs no build tooling or runtime dependencies.
+Text is set in [Allo](https://allo.joshpuckett.me) by Josh Puckett, self-hosted
+under the SIL Open Font License (`assets/fonts/OFL.txt`).
