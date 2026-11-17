@@ -78,7 +78,7 @@ def test_content_stays_usable_without_javascript(page: Page):
 
     expect(page.get_by_role("heading", level=1)).to_have_text("QA Engineer.Python Automation.")
     expect(page.get_by_role("heading", name="iOS UI Automation Framework")).to_be_visible()
-    expect(page.get_by_role("heading", name="This site is tested")).to_be_visible()
+    expect(page.locator("#testing-title")).to_be_visible()
     expect(page.get_by_role("button", name="Menu")).to_be_hidden()
     expect(page.get_by_role("link", name="collinsjulius@hotmail.com")).to_be_visible()
 
@@ -111,6 +111,8 @@ def test_tested_panel_shows_the_real_number_of_checks(page: Page, request: pytes
     expected = len(session.items) + count_node_tests()
 
     page.goto("/")
-    shown = page.locator("[data-test-count]").inner_text()
+    shown = [int(text) for text in page.locator("[data-test-count]").all_inner_texts()]
 
-    assert int(shown) == expected, f"Update data-test-count in index.html to {expected}"
+    assert shown and all(n == expected for n in shown), (
+        f"Update every data-test-count in index.html to {expected}"
+    )

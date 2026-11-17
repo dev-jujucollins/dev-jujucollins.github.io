@@ -406,22 +406,27 @@ button:disabled {
 .feature-title span {
   color: var(--link);
 }
-.feature-preview {
-  height: 280px;
-  margin: 0 24px 24px;
+.feature-count {
   display: flex;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--separator);
-  background: #14213a;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 8px 24px 0;
+  font-size: 18px;
+  color: var(--text-secondary);
 }
-/* Show the route at a readable size instead of shrinking the whole phone. */
-.feature-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 12%;
+.feature-count strong {
+  font-size: clamp(64px, 7vw, 96px);
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--link);
+  font-variant-numeric: tabular-nums;
+}
+.feature-detail {
+  padding: 16px 24px 28px;
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 .case-study {
   max-width: var(--content-width);
@@ -569,18 +574,44 @@ button:disabled {
   font-size: 16px;
   color: var(--text-secondary);
 }
-.project-facts {
-  list-style: none;
+/* Card stats echo the case study's numbers at a smaller size. */
+.card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--separator);
+  border-bottom: 1px solid var(--separator);
+}
+.card-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  max-width: 190px;
+}
+.card-stats dd {
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 650;
+  color: var(--link);
+  font-variant-numeric: tabular-nums;
+}
+.card-stats dt {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.project-detail {
   font-size: 15px;
   color: var(--text-secondary);
 }
-.project-facts li {
-  padding: 10px 0;
-  border-top: 1px solid var(--separator);
-}
-.project-body .text-link {
-  margin-top: auto;
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
   font-size: 16px;
+}
+.project-body .project-links {
+  margin-top: auto;
 }
 .tech-title {
   margin-bottom: 14px;
@@ -873,9 +904,6 @@ button:disabled {
   }
   .hero-feature {
     margin-top: 16px;
-  }
-  .feature-preview {
-    height: 235px;
   }
   .demo-stage {
     grid-template-columns: minmax(0, 1fr);

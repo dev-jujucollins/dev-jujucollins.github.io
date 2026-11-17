@@ -120,7 +120,7 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="./styles/main.css?v=20261117c" />
+    <link rel="stylesheet" href="./styles/main.css?v=20261117d" />
     <noscript>
       <style>
         @media (max-width: 760px) {
@@ -227,20 +227,20 @@
           </div>
           <a
             class="hero-feature"
-            href="#case-ios"
-            aria-label="Explore the iOS UI Automation Framework case study"
+            href="#testing"
+            aria-label="See the automated checks that test this site"
           >
             <h2 class="feature-title">
-              iOS UI Automation <span aria-hidden="true">↓</span>
+              This site is tested <span aria-hidden="true">↓</span>
             </h2>
-            <div class="feature-preview">
-              <img
-                src="./assets/images/projects/uiautomation-maps-poster.webp"
-                alt="Maps driving route from simulated Apple Park to Golden Gate Bridge on an iPhone simulator"
-                width="460"
-                height="1000"
-              />
-            </div>
+            <p class="feature-count">
+              <strong data-test-count>43</strong>
+              checks pass before every deploy
+            </p>
+            <p class="feature-detail">
+              Accessibility scans, keyboard paths, broken links, and layout, in
+              both themes at desktop and phone sizes.
+            </p>
           </a>
         </div>
       </header>
@@ -260,7 +260,8 @@
             <h3 id="case-ios-title">iOS UI Automation Framework</h3>
             <p>
               Python, Appium, and pytest tests for Settings, Calendar, Contacts,
-              Messages, Maps, Reminders, Safari, Photos, and Files.
+              Messages, Maps, Reminders, Safari, Photos, and Files, plus a
+              native Swift XCUITest port of the same device tests.
             </p>
             <dl class="case-stats">
               <div>
@@ -268,14 +269,15 @@
                 <dd>400+</dd>
               </div>
               <div>
+                <dt>Swift XCUITest tests</dt>
+                <dd>70+</dd>
+              </div>
+              <div>
                 <dt>default suite on two simulators, down from 11–12 min</dt>
                 <dd>7.6 min</dd>
               </div>
             </dl>
             <ul class="case-capabilities">
-              <li>
-                Page objects keep screen interactions separate from test intent.
-              </li>
               <li>
                 Runs split across simulators, each with its own Appium server
                 and WebDriverAgent build.
@@ -285,23 +287,30 @@
                 flags controls with no accessibility label.
               </li>
               <li>
-                Failures save screenshots, page XML, Appium logs, and matching
-                crash reports.
-              </li>
-              <li>
                 Lint, type checks, and unit tests run on every push. Smoke and
                 journey suites run on a self-hosted macOS runner.
               </li>
             </ul>
-            <a
-              class="text-link"
-              href="https://github.com/dev-jujucollins/UIAutomation"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub
-              <span class="sr-only">— iOS UI Automation Framework</span>
-              <span aria-hidden="true">↗</span></a
-            >
+            <p class="project-links">
+              <a
+                class="text-link"
+                href="https://github.com/dev-jujucollins/UIAutomation/tree/main/tests"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Read the tests
+                <span class="sr-only">— iOS UI Automation Framework</span>
+                <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="text-link"
+                href="https://github.com/dev-jujucollins/UIAutomation"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Repository
+                <span class="sr-only">— iOS UI Automation Framework</span>
+                <span aria-hidden="true">↗</span></a
+              >
+            </p>
           </div>
           <figure class="case-media">
             <div class="demo-stage">
@@ -349,15 +358,15 @@
           <article class="project-card" data-tags="python price-monitoring alerts">
             <div class="project-media">
               <a
-                href="./assets/images/projects/ebay-tracker-output.png?v=20260926"
+                href="./assets/images/projects/ebay-tests-full.png?v=20261117"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="project-media-link"
-                aria-label="Open full September 2026 eBay price check image"
+                aria-label="Open the full eBay Price Tracker test summary"
               >
                 <img
-                  src="./assets/images/projects/ebay-tracker-output-preview.webp?v=20260926"
-                  alt="Steam Deck OLED 1TB price check captured September 26, 2026: $809.42 average from 47 active listings, beside an illustrative $800 target"
+                  src="./assets/images/projects/ebay-tests.webp?v=20261117"
+                  alt="eBay Price Tracker test suite: 40 pytest tests passing in CI on Nov 17, 2026, split into alert rules (20), prices, scraping, and CSV (15), and the eBay API client (5), with Ubuntu Python 3.13 and CodeQL checks"
                   class="project-preview"
                   width="1600"
                   height="1000"
@@ -372,37 +381,55 @@
                 Compares eBay listing averages with watchlist targets, saves CSV
                 history, and can send a Discord alert when a target is reached.
               </p>
-              <ul class="project-facts">
-                <li>
-                  40 pytest tests cover price parsing, outlier removal, alert
-                  thresholds, and watchlist validation, with eBay responses
-                  mocked.
-                </li>
-                <li>CI runs the suite on every push and pull request.</li>
-              </ul>
-              <a
-                href="https://github.com/dev-jujucollins/ebay_tracker"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-link"
-                >GitHub <span class="sr-only">— eBay Price Tracker</span>
-                <span aria-hidden="true">↗</span></a
-              >
+              <dl class="card-stats">
+                <div>
+                  <dt>pytest tests</dt>
+                  <dd>40</dd>
+                </div>
+                <div>
+                  <dt>checks on every push: tests and CodeQL</dt>
+                  <dd>2</dd>
+                </div>
+              </dl>
+              <p class="project-detail">
+                Covers price parsing, outlier removal, alert thresholds, and
+                watchlist validation, with eBay responses mocked.
+              </p>
+              <p class="project-links">
+                <a
+                  class="text-link"
+                  href="https://github.com/dev-jujucollins/ebay_tracker/tree/main/tests"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Read the tests
+                  <span class="sr-only">— eBay Price Tracker</span>
+                  <span aria-hidden="true">↗</span></a
+                >
+                <a
+                  class="text-link"
+                  href="https://github.com/dev-jujucollins/ebay_tracker"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Repository
+                  <span class="sr-only">— eBay Price Tracker</span>
+                  <span aria-hidden="true">↗</span></a
+                >
+              </p>
             </div>
           </article>
 
           <article class="project-card" data-tags="python cli esports-data">
             <div class="project-media">
               <a
-                href="./assets/images/projects/valorant-match-tracker-output.png?v=20260926"
+                href="./assets/images/projects/valorant-tests-full.png?v=20261117"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="project-media-link"
-                aria-label="Open full September 2026 Valorant results image"
+                aria-label="Open the full Valorant Match Tracker test summary"
               >
                 <img
-                  src="./assets/images/projects/valorant-match-tracker-output-preview.webp?v=20260926"
-                  alt="Valorant Champions 2026 tracker preview showing three completed match results captured September 26, 2026"
+                  src="./assets/images/projects/valorant-tests.webp?v=20261117"
+                  alt="Valorant Match Tracker test suite: 289 pytest tests passing in CI on Nov 17, 2026, split into scraping (131), CLI (96), config, cache, and profile (37), and output (25), with Ubuntu and Windows Python checks, ruff, pyright, and CodeQL"
                   class="project-preview"
                   width="1600"
                   height="1000"
@@ -417,23 +444,40 @@
                 Python CLI for VCT schedules and results, with region and team
                 filters, watch mode, and CSV/JSON export.
               </p>
-              <ul class="project-facts">
-                <li>
-                  270+ pytest tests run offline against saved vlr.gg pages and
-                  live, TBD, and malformed variants.
-                </li>
-                <li>
-                  CI covers Python 3.11–3.14 and Windows, with ruff and pyright.
-                </li>
-              </ul>
-              <a
-                href="https://github.com/dev-jujucollins/valorant_matches"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-link"
-                >GitHub <span class="sr-only">— Valorant Match Tracker</span>
-                <span aria-hidden="true">↗</span></a
-              >
+              <dl class="card-stats">
+                <div>
+                  <dt>pytest tests</dt>
+                  <dd>289</dd>
+                </div>
+                <div>
+                  <dt>CI targets: Python 3.13–3.14, Linux and Windows</dt>
+                  <dd>3</dd>
+                </div>
+              </dl>
+              <p class="project-detail">
+                Runs offline against saved vlr.gg pages, including live, TBD,
+                and malformed variants, with ruff and pyright in CI.
+              </p>
+              <p class="project-links">
+                <a
+                  class="text-link"
+                  href="https://github.com/dev-jujucollins/valorant_matches/tree/main/tests"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Read the tests
+                  <span class="sr-only">— Valorant Match Tracker</span>
+                  <span aria-hidden="true">↗</span></a
+                >
+                <a
+                  class="text-link"
+                  href="https://github.com/dev-jujucollins/valorant_matches"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Repository
+                  <span class="sr-only">— Valorant Match Tracker</span>
+                  <span aria-hidden="true">↗</span></a
+                >
+              </p>
             </div>
           </article>
         </div>

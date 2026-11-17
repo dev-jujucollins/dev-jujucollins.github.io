@@ -67,17 +67,18 @@ Pages source in Settings → Pages → Build and deployment.
   was `1 passed in 66.38s`, including setup, assertions, and cleanup. The clip
   shortens waits and adds captions while retaining the actions from that run.
   Native playback controls are retained, with no autoplay and `preload="none"`.
-  The source project also covers Settings, Calendar,
-  and Messages. The earlier full-suite report remains linked below the recording.
+  The source project covers nine system apps and has a native Swift XCUITest
+  port of the device tests. The earlier full-suite report remains linked below the recording.
 - **This site is tested:** the number of automated checks shown on the page is
   verified by `test_tested_panel_shows_the_real_number_of_checks`, which fails
   with the correct number whenever tests are added or removed. Update
   `data-test-count` in `index.html` to match.
 
-The eBay and Valorant card images are dated snapshots from local project runs.
-The eBay image uses a real listing average and a clearly marked illustrative
-target; no price alert was sent. Each card links to a larger version of its
-capture.
+The eBay and Valorant card images summarize each repo's test suite: test
+functions counted per area from the source, the CI matrix and checks from its
+workflow files, and the latest CI result on `main` (Nov 17, 2026). The card text
+uses the same counts. Regenerate both when the suites change. Each card links to
+the full-size image, the repo's `tests/` folder, and the repo.
 
 Core portfolio content remains readable without JavaScript.
 

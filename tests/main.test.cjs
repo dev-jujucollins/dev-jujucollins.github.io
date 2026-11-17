@@ -191,7 +191,6 @@ test("Maps test recording has user controls and compact valid media", () => {
   assert.ok(video.includes(`src="${videoPath}"`));
   assert.ok(video.includes(`href="${videoPath}"`));
   assert.ok(video.includes(`poster="${posterPath}"`));
-  assert.ok(html.includes(`src="${posterPath}"`));
 
   const recording = fs.readFileSync(path.resolve(root, videoPath));
   assert.ok(recording.length < 5_000_000, "Video exceeds 5 MB");
@@ -203,17 +202,17 @@ test("Maps test recording has user controls and compact valid media", () => {
   assert.equal(poster.toString("ascii", 8, 12), "WEBP");
 });
 
-test("tracker previews are valid, compact images", () => {
-  for (const project of ["ebay-tracker", "valorant-match-tracker"]) {
+test("tracker test-summary images are valid and compact", () => {
+  for (const project of ["ebay-tests", "valorant-tests"]) {
     const preview = fs.readFileSync(
-      path.join(root, `assets/images/projects/${project}-output-preview.webp`),
+      path.join(root, `assets/images/projects/${project}.webp`),
     );
     assert.ok(preview.length < 150_000, `${project} preview is too large`);
     assert.equal(preview.toString("ascii", 0, 4), "RIFF");
     assert.equal(preview.toString("ascii", 8, 12), "WEBP");
 
     const full = fs.readFileSync(
-      path.join(root, `assets/images/projects/${project}-output.png`),
+      path.join(root, `assets/images/projects/${project}-full.png`),
     );
     assert.ok(full.length < 1_500_000, `${project} full image is too large`);
     assert.equal(full.toString("hex", 0, 8), "89504e470d0a1a0a");
