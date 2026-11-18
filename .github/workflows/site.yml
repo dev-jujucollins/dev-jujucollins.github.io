@@ -26,19 +26,35 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check scripts/main.js
 
+      # Readable results in the log, plus JUnit XML for the summary below.
       - name: Run unit tests
-        run: node --test tests/main.test.cjs
+        run: >-
+          mkdir -p test-results &&
+          node --test
+          --test-reporter=spec --test-reporter-destination=stdout
+          --test-reporter=junit --test-reporter-destination=test-results/node-junit.xml
+          tests/main.test.cjs
 
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
 
       - name: Install test dependencies
-        run: uv sync --locked
+        run: uv sync --locked --quiet
 
+      # Headless Chromium only. The runner already has its system libraries;
+      # --with-deps spent ~3 minutes downloading CJK and other fonts this
+      # English site, which ships its own font, never uses.
       - name: Install Chromium for Playwright
-        run: uv run playwright install --with-deps chromium
+        run: uv run playwright install --only-shell chromium
 
+      # Runs even if the unit tests failed, so one run reports everything.
       - name: Run browser and accessibility tests
+        if: ${{ !cancelled() }}
         run: uv run pytest
+
+      # Results table on the run page, and each failure flagged on its line.
+      - name: Summarize results
+        if: ${{ !cancelled() }}
+        run: python3 tests/ci_report.py --summary "$GITHUB_STEP_SUMMARY" test-results/*.xml
 
       - name: Upload Playwright traces and screenshots
         if: failure()

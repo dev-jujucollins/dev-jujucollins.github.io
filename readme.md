@@ -15,16 +15,19 @@ Open http://127.0.0.1:8000.
 
 ### Unit tests
 
-Run the dependency-free JavaScript tests with Node.js 18 or later:
+Run the dependency-free JavaScript tests with Node.js 22 or later:
 
 ```sh
-node --test tests/main.test.cjs
+node --test --test-reporter=spec tests/main.test.cjs
 node --check scripts/main.js
 ```
 
+`--test-reporter=spec` prints one line per test with a summary. Node only uses
+that format by default in an interactive terminal, so CI asks for it explicitly.
+
 They cover page navigation, contact links, system theme changes, blocked
-storage, local links,
-link-preview tags and image sizes, and unused files in `assets/`.
+storage, local links, link-preview tags and image sizes, and unused files in
+`assets/`.
 
 ### Browser tests
 
@@ -33,10 +36,15 @@ pytest-playwright. Python packages are for testing only; the site itself still
 has no dependencies.
 
 ```sh
-uv sync
-uv run playwright install chromium
+uv sync --quiet
+uv run playwright install --only-shell chromium
 uv run pytest
 ```
+
+Results print one line per test, grouped by area, with a short failure summary
+at the end (see `tests/conftest.py`). Add `-v` for pytest's standard output with
+full test IDs, or `-k theme` to run one area. `tests/unit/` covers the CI
+report script.
 
 They check that the page loads without console errors or failed requests, the
 resume downloads, the skip link moves focus, the theme follows the system and
@@ -51,6 +59,8 @@ Still look at layouts in a browser after visual changes.
 ## CI and deployment
 
 `.github/workflows/site.yml` runs both suites on every push and pull request.
+Each run's summary page shows a results table, and each failure is flagged on
+the test line that failed (`tests/ci_report.py` reads both suites' JUnit XML).
 Pushes to `main` deploy to GitHub Pages only after the tests pass, and publish
 only the site files (`index.html`, `404.html`, `robots.txt`, `sitemap.xml`,
 `assets/`, `scripts/`, and `styles/`). This requires **GitHub Actions** as the

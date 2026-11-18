@@ -16,10 +16,18 @@ dev = [
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests/e2e"]
+testpaths = ["tests/unit", "tests/e2e"]
+# Quiet mode turns on the one-line-per-test output in tests/conftest.py; pass -v for
+# pytest's standard lines. JUnit XML (xunit1 keeps file and line) feeds the CI summary.
 addopts = [
+    "-q",
+    "-ra",
+    "--tb=short",
+    "--junitxml=test-results/pytest-junit.xml",
     "--browser=chromium",
     "--tracing=retain-on-failure",
     "--screenshot=only-on-failure",
     "--output=test-results",
 ]
+console_output_style = "classic"
+junit_family = "xunit1"
